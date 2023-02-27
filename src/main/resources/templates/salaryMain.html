@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>웹사이트 제목</title>
+  <style>
+    /* CSS 스타일링을 위한 코드 */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f2f2f2;
+      padding: 10px 20px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      margin: 0 10px;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #f00;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f2f2f2;
+      padding: 10px 20px;
+      margin-left: auto;
+    }
+
+    .header-buttons {
+      display: flex;
+      margin-left: auto;
+    }
+
+    .header-button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+
+    .sidebar {
+      background-color: #f2f2f2;
+      width: 200px;
+      height: 100%;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin: 10px 0;
+    }
+
+    .sidebar a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      color: #f00;
+    }
+
+    .logo {
+      background-color: #f2f2f2;
+      margin: 10px;
+      position: fixed;
+      z-index: 999;
+    }
+
+    .logo.fixed {
+      background-color: #f2f2f2;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .ldHzwk {
+      min-width: 1200px;
+      padding: 20px 32px 32px 0px;
+      color: rgb(51, 51, 51);
+    }
+    .jJdRQz {
+    display: flex;
+    height: 64px;
+}
+.fXXFuV {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 120px;
+    min-width: 120px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(102, 102, 102);
+    background-color: rgb(249, 249, 249);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid rgb(238, 238, 238);
+    font-weight: 700;
+}
+
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
+
+    .gIEVkW {
+      position: absolute;
+      right: 0px;
+      width: 40px;
+      height: 38px;
+      border-left: 1px solid rgb(204, 204, 204);
+    }
+    .gevCaN {
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: start;
+    word-break: keep-all;
+    line-height: 20px;
+    flex: 2 1 0%;
+    width: 180px;
+    min-width: 180px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(102, 102, 102);
+    background-color: rgb(249, 249, 249);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid rgb(238, 238, 238);
+    font-weight: 700;
+}
+
+    .kGsaWZ {
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      width: inherit;
+      height: inherit;
+      padding: 0px 12px 2px;
+      border: none;
+      background-color: transparent;
+    }
+
+    .ghQcKK {
+      position: relative;
+      min-height: 100vh;
+      padding: 80px 0px 0px 240px;
+      background: rgb(249, 249, 249);
+      line-height: 1;
+    }
+    .bmbwNA {
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: start;
+    word-break: keep-all;
+    line-height: 20px;
+    flex: 3 1 0%;
+    width: 240px;
+    min-width: 240px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(102, 102, 102);
+    background-color: rgb(249, 249, 249);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid rgb(238, 238, 238);
+    font-weight: 700;
+}
+.dCOvoh {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 131px;
+    min-width: 131px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(102, 102, 102);
+    background-color: rgb(249, 249, 249);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid rgb(238, 238, 238);
+    font-weight: 700;
+}
+
+.hpedKq > div {
+    display: flex;
+    gap: 20px;
+}
+
+[type='button']:not(:disabled), [type='reset']:not(:disabled), [type='submit']:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+.hIcMSF {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 164px;
+    min-width: 164px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(102, 102, 102);
+    background-color: rgb(249, 249, 249);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid rgb(238, 238, 238);
+    font-weight: 700;
+}
+.hyvBkc:last-child {
+    border-right: 1px solid rgb(238, 238, 238);
+}
+.hyvBkc {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    flex: 5 1 0%;
+    width: 282px;
+    min-width: 282px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(102, 102, 102);
+    background-color: rgb(249, 249, 249);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid rgb(238, 238, 238);
+    font-weight: 700;
+}
+.eJDeHa {
+    min-width: fit-content;
+    height: 566px;
+    overflow-y: scroll;
+}
+.bcgrrv {
+    display: flex;
+    min-height: 48px;
+}
+.ecqsLp {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 120px;
+    min-width: 120px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid transparent;
+    font-weight: 400;
+}
+.ecqsLp > button {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 80px;
+    height: 30px;
+    color: rgb(51, 102, 255);
+    border: 1px solid rgb(51, 102, 255);
+    border-radius: 4px;
+}
+button {
+    outline: none;
+    background: none;
+    border: none;
+}
+.bsvflV {
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: start;
+    word-break: keep-all;
+    line-height: 20px;
+    flex: 2 1 0%;
+    width: 180px;
+    min-width: 180px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid transparent;
+    font-weight: 400;
+}
+.kPAmKQ {
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: start;
+    word-break: keep-all;
+    line-height: 20px;
+    flex: 3 1 0%;
+    width: 240px;
+    min-width: 240px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid transparent;
+    font-weight: 400;
+}
+.gpeqDp {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 110px;
+    min-width: 110px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid transparent;
+    font-weight: 400;
+}
+.ldWMLp {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 131px;
+    min-width: 131px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid transparent;
+    font-weight: 400;
+}
+.gpeqDp {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 110px;
+    min-width: 110px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid transparent;
+    font-weight: 400;
+}
+.mqttN {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 164px;
+    min-width: 164px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid transparent;
+    font-weight: 400;
+}
+.DJoE:last-child {
+    border-right: 1px solid rgb(238, 238, 238);
+}
+.DJoE {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    flex: 5 1 0%;
+    width: 282px;
+    min-width: 282px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid transparent;
+    font-weight: 400;
+}
+
+.hUnWPB {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 20px;
+    width: 110px;
+    min-width: 110px;
+    height: inherit;
+    padding: 4px 16px;
+    color: rgb(102, 102, 102);
+    background-color: rgb(249, 249, 249);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+    border-image: initial;
+    border-right: none;
+    border-top: 1px solid rgb(238, 238, 238);
+    font-weight: 700;
+}
+    .hjPBnh {
+      display: flex;
+      gap: 14px;
+      margin: 0px;
+    }
+
+    option {
+      font-weight: normal;
+      display: block;
+      white-space: nowrap;
+      min-height: 1.2em;
+      padding: 0px 2px 1px;
+    }
+
+    .iPtNDI {
+      position: relative;
+    }
+
+    .iPtNDI svg {
+      position: absolute;
+      right: 16px;
+      top: 17px;
+    }
+
+    svg {
+      overflow: hidden;
+      vertical-align: middle;
+    }
+
+    svg:not(:root) {
+      overflow-clip-margin: content-box;
+      overflow: hidden;
+    }
+
+    .bqLxI {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      width: 202px;
+      height: 40px;
+      border: 1px solid rgb(204, 204, 204);
+      border-radius: 5px;
+      padding: 0px 12px;
+      color: rgb(72, 72, 72);
+      line-height: 20px;
+      appearance: none;
+      cursor: pointer;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    select {
+      outline: none;
+    }
+
+    .kcjVOr {
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 32px;
+      min-height: 110px;
+      color: rgb(51, 51, 51);
+      padding: 25px 30px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+    }
+
+    .dNkbEP {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .goEyPq {
+      width: inherit;
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      align-items: center;
+    }
+
+    p {
+      display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+
+    button {
+      outline: none;
+      background: none;
+      border: none;
+    }
+
+    a,
+    button,
+    input,
+    textarea {
+      transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, color 0.15s ease-in-out, opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+    }
+
+    body,
+    input,
+    textarea,
+    select,
+    button,
+    table {
+      font-family: 'Noto Sans JP', 'Noto Sans KR', 'SF Pro KR', 'SF Pro Text', 'SF Pro Icons', 'Apple Gothic', 'HY Gulim', 'MalgunGothic', 'HY Dotum', 'Lexi Gulim', 'Helvetica Neue', 'Helvetica', 'Arial', 'roboto', sans-serif;
+    }
+
+    .leUGlo {
+      width: 100%;
+      min-height: 110px;
+      background-color: rgb(255, 255, 255);
+      padding: 30px;
+      border-radius: 10px;
+      margin: 20px 0px 0px;
+    }
+
+    .kHXIYd {
+      width: 100%;
+    }
+
+    .goEyPq>button {
+      font-size: 14px;
+      line-height: 20px;
+      border-radius: 4px;
+      padding: 10px 24px;
+      border: 1px solid rgb(224, 224, 224);
+    }
+    
+    .ftFvfK {
+    width: 100%;
+    margin: 20px 0px 0px;
+    overflow-x: scroll;
+}
+
+    main {
+      margin-left: 200px;
+      padding: 20px;
+      padding-bottom: 50px;
+      /* 푸터 높이만큼 padding-bottom을 추가함 */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="로고이미지주소" alt="로고">
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#">홈</a></li>
+        <li><a href="#">게시판</a></li>
+        <li><a href="#">회원가입</a></li>
+        <li><a href="#">로그인</a></li>
+      </ul>
+      <div class="header-buttons">
+        <button class="header-button">작성하기</button>
+        <button class="header-button">검색</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="sidebar">
+    <ul>
+      <li><a href="#">공지사항</a></li>
+      <li><a href="#">이벤트</a></li>
+      <li><a href="#">새소식</a></li>
+      <li><a href="#">고객센터</a></li>
+    </ul>
+  </div>
+  <main>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+    </head>
+
+    <body>
+      <div class="sc-hFVsQR ldHzwk">
+        <h1 class="sc-cPIbRQ kcjVOr">
+          <div class="sc-cnOiCc goEyPq">
+            <p>직원별 급여 정보</p> <button>급여 정보 엑셀 업로드</button>
+          </div>
+        </h1>
+        <div class="sc-kmXbIF leUGlo">
+          <div class="sc-hdxRZL kHXIYd">
+            <div class="sc-cqQeAO dNkbEP">
+              <div class="sc-hpfkCd hjPBnh">
+                <div class="sc-leZLoi iPtNDI"><select width="202" class="sc-hmTbGb bqLxI">
+                    <option value="">부서를 선택해주세요.</option>
+                    <option value="39160">CEO</option>
+                    <option value="39161">NOT_ASSIGNED</option>
+                  </select><svg width="10" height="7" viewBox="0 0 10 7" fill="#000" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M8.99995 0.25C9.62823 0.25 9.97804 0.976242 9.5864 1.46752L5.6004 6.46752C5.30079 6.84334 4.72998 6.84431 4.42909 6.46952L0.415093 1.46952C0.0210263 0.978653 0.370471 0.25 0.999945 0.25H8.99995Z"
+                      fill="current"></path>
+                  </svg></div>
+              </div>
+              <div class="sc-fuRDZQ ccvQbG"><button class="sc-jeToga gIEVkW"><svg width="16" height="16"
+                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6 0C9.31383 0 12 2.68617 12 6C12 6.61712 11.9061 7.22389 11.724 7.80319C11.5997 8.19833 11.1787 8.41794 10.7835 8.2937C10.3884 8.16946 10.1688 7.74841 10.293 7.35327C10.4296 6.91898 10.5 6.4639 10.5 6C10.5 3.5146 8.4854 1.5 6 1.5C3.5146 1.5 1.5 3.5146 1.5 6C1.5 8.48489 3.51489 10.5 6 10.5C7.21276 10.5 8.36614 10.0191 9.19853 9.19097C9.46508 8.92578 9.88105 8.90226 10.1741 9.12L10.2581 9.19256L15.7806 14.7199C16.0733 15.0129 16.0731 15.4878 15.7801 15.7806C15.5137 16.0467 15.097 16.0707 14.8035 15.8528L14.7194 15.7801L9.691 10.747L9.63026 10.7955C8.67436 11.5114 7.50763 11.9363 6.28345 11.9934L6 12C2.68643 12 0 9.31328 0 6C0 2.68617 2.68617 0 6 0Z"
+                      fill="#333333"></path>
+                  </svg></button><input placeholder="이름을 검색해주세요." class="sc-iiNlcH kGsaWZ" value=""></div>
+            </div>
+            <div class="sc-jTMoxg ftFvfK">
+              <div class="sc-jFmBXp jJdRQz">
+                <div width="120" class="sc-febvLc fXXFuV">급여 정보 상세</div>
+                <div width="180" class="sc-febvLc gevCaN">이름</div>
+                <div width="240" class="sc-febvLc bmbwNA">부서</div>
+                <div width="110" class="sc-febvLc hUnWPB">수습 종료일</div>
+                <div width="131" class="sc-febvLc dCOvoh">수습급여지급율</div>
+                <div width="110" class="sc-febvLc hUnWPB">부양가족 수</div>
+                <div width="164" class="sc-febvLc hIcMSF">7세 이상 20세 이하 자녀의 수</div>
+                <div width="282" class="sc-febvLc hyvBkc">세액 감면 유형</div>
+              </div>
+              <div class="sc-cCmLNy eJDeHa">
+                <div class="sc-cnMZnH bcgrrv">
+                  <div width="120" class="sc-febvLc ecqsLp"><button>보기</button></div>
+                  <div width="180" class="sc-febvLc bsvflV">강태오</div>
+                  <div width="240" class="sc-febvLc kPAmKQ">CEO</div>
+                  <div width="110" class="sc-febvLc gpeqDp">-</div>
+                  <div width="131" class="sc-febvLc ldWMLp">100 %</div>
+                  <div width="110" class="sc-febvLc gpeqDp">1</div>
+                  <div width="164" class="sc-febvLc mqttN">0</div>
+                  <div width="282" class="sc-febvLc DJoE">-</div>
+                </div>
+                <div class="sc-cnMZnH bcgrrv">
+                  <div width="120" class="sc-febvLc ecqsLp"><button>보기</button></div>
+                  <div width="180" class="sc-febvLc bsvflV">김보성</div>
+                  <div width="240" class="sc-febvLc kPAmKQ">CEO</div>
+                  <div width="110" class="sc-febvLc gpeqDp">-</div>
+                  <div width="131" class="sc-febvLc ldWMLp">100 %</div>
+                  <div width="110" class="sc-febvLc gpeqDp">1</div>
+                  <div width="164" class="sc-febvLc mqttN">0</div>
+                  <div width="282" class="sc-febvLc DJoE">-</div>
+                </div>
+                <div class="sc-cnMZnH bcgrrv">
+                  <div width="120" class="sc-febvLc ecqsLp"><button>보기</button></div>
+                  <div width="180" class="sc-febvLc bsvflV">신보람</div>
+                  <div width="240" class="sc-febvLc kPAmKQ">CEO</div>
+                  <div width="110" class="sc-febvLc gpeqDp">-</div>
+                  <div width="131" class="sc-febvLc ldWMLp">100 %</div>
+                  <div width="110" class="sc-febvLc gpeqDp">1</div>
+                  <div width="164" class="sc-febvLc mqttN">0</div>
+                  <div width="282" class="sc-febvLc DJoE">-</div>
+                </div>
+                <div class="sc-cnMZnH bcgrrv">
+                  <div width="120" class="sc-febvLc ecqsLp"><button>보기</button></div>
+                  <div width="180" class="sc-febvLc bsvflV">이현구</div>
+                  <div width="240" class="sc-febvLc kPAmKQ">CEO</div>
+                  <div width="110" class="sc-febvLc gpeqDp">-</div>
+                  <div width="131" class="sc-febvLc ldWMLp">100 %</div>
+                  <div width="110" class="sc-febvLc gpeqDp">1</div>
+                  <div width="164" class="sc-febvLc mqttN">0</div>
+                  <div width="282" class="sc-febvLc DJoE">-</div>
+                </div>
+              </div>
+            </div>
+            <ul class="sc-hAiVDd eJPjJx"><button class="sc-dMVFSy kMrTSF">1</button></ul>
+          </div>
+        </div>
+      </div>
+    </body>
+
+    </html>
+  </main>
+  <footer>
+    © 2023 웹사이트 이름. All rights reserved.
+  </footer>
+</body>
+
+</html>

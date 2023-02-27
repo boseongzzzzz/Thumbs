@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>웹사이트 제목</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./HRmain.css" />
+    <link rel="stylesheet" href="./modal.css"/>
+    <script type="text/javascript" src="./modal.js"></script>
+
+    <script type="text/javascript">
+      function handleSearch() {
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+        const status = document.getElementById("status").value;
+        const type = document.getElementById("type").value;
+
+        // TODO: 선택한 값으로 조회 로직 구현
+        console.log(
+          `startDate: ${startDate}, endDate: ${endDate}, status: ${status}, type: ${type}`
+        );
+      }
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <img src="로고이미지주소" alt="로고" />
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="#">게시판</a></li>
+          <li><a href="#">회원가입</a></li>
+          <li><a href="#">로그인</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="sidebar">
+      <ul>
+        <li><a class="sidebar-text" href="#">공지사항</a></li>
+        <li><a class="sidebar-text" href="#">이벤트</a></li>
+        <li><a class="sidebar-text" href="#">새소식</a></li>
+        <li><a class="sidebar-text" href="#">고객센터</a></li>
+      </ul>
+    </div>
+    <main>
+      <h1>인사 발령</h1>
+      <hr />
+
+      <div style="display: flex">
+        <div class="card" style="flex: 1">
+          <h2>인사 발령 조회</h2>
+          <div class="inner-card">
+            <form>
+              <label for="startDate">시작일자:</label>
+              <input type="date" id="startDate" name="startDate" />
+
+              <label for="endDate">종료일자:</label>
+              <input type="date" id="endDate" name="endDate" />
+
+              <label for="status">상태:</label>
+              <select id="status" name="status">
+                <option value="">전체</option>
+                <option value="state1">상태 1</option>
+                <option value="state2">상태 2</option>
+                <option value="state3">상태 3</option>
+              </select>
+
+              <label for="type">유형:</label>
+              <select id="type" name="type">
+                <option value="">전체</option>
+                <option value="type1">유형 1</option>
+                <option value="type2">유형 2</option>
+                <option value="type3">유형 3</option>
+              </select>
+
+              <button type="button" onClick="handleSearch()">조회</button>
+              <br /><br />
+              <table>
+                <thead>
+                  <tr>
+                    <th>결재상태</th>
+                    <th>발령일</th>
+                    <th>공지일</th>
+                    <th>발령인원</th>
+                    <th>발령 유형</th>
+                    <th>제목</th>
+                    <th>등록일</th>
+                    <th>공지여부</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>대기</td>
+                    <td>2023-02-15</td>
+                    <td>2023-02-10</td>
+                    <td>3</td>
+                    <td>임원</td>
+                    <td>인사 발령 안내</td>
+                    <td>2023-02-08</td>
+                    <td>미공지</td>
+                  </tr>
+                  <tr>
+                    <td>승인</td>
+                    <td>2023-02-14</td>
+                    <td>2023-02-10</td>
+                    <td>1</td>
+                    <td>일반</td>
+                    <td>신입 사원 발령</td>
+                    <td>2023-02-08</td>
+                    <td>미공지</td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex">
+        <div class="card" style="flex: 1">
+          <h2>인사 발령 등록</h2>
+          <div class="inner-card">
+            <div class="container">
+              <h1>인사 발령 등록</h1>
+              <table>
+                <thead>
+                  <tr>
+                    <th>결재상태</th>
+                    <th>발령일</th>
+                    <th>공지일</th>
+                    <th>발령인원</th>
+                    <th>발령 유형</th>
+                    <th>제목</th>
+                    <th>등록일</th>
+                    <th>공지여부</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>대기</td>
+                    <td>2023-02-15</td>
+                    <td>2023-02-10</td>
+                    <td>3</td>
+                    <td>임원</td>
+                    <td>인사 발령 안내</td>
+                    <td>2023-02-08</td>
+                    <td>미공지</td>
+                  </tr>
+                  <tr>
+                    <td>승인</td>
+                    <td>2023-02-14</td>
+                    <td>2023-02-10</td>
+                    <td>1</td>
+                    <td>일반</td>
+                    <td>신입 사원 발령</td>
+                    <td>2023-02-08</td>
+                    <td>미공지</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="btn-container">
+                <button type="button">삭제</button>
+                <button type="button" onclick="showModal()">등록</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- 모달 추가 샘플 페이지 -->
+    <div id="person-search-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="hideModal()">&times;</span>
+        <h3>People</h3>
+        <form>
+          <table>
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="person1"
+                    name="person"
+                    value="홍길동"
+                  />
+                </td>
+                <td><label for="person1">홍길동</label></td>
+                <td>25</td>
+                <td>Male</td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="person2"
+                    name="person"
+                    value="이순신"
+                  />
+                </td>
+                <td><label for="person2">이순신</label></td>
+                <td>45</td>
+                <td>Male</td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="person3"
+                    name="person"
+                    value="유관순"
+                  />
+                </td>
+                <td><label for="person3">유관순</label></td>
+                <td>20</td>
+                <td>Female</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="btn-container">
+            <button class="add-btn" onclick="addSelectedData()">
+              Add Selected Data
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="selected-people">
+        <h3>Selected People</h3>
+        <ul></ul>
+    </div>
+
+    </main>
+    <footer>© 2023 웹사이트 이름. All rights reserved.</footer>
+  </body>
+</html>

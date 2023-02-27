@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>웹사이트 제목</title>
+    <style>
+        /* CSS 스타일링을 위한 코드 */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f2f2f2;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f00;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f2f2f2;
+            padding: 10px 20px;
+            margin-left: auto;
+        }
+
+        .header-buttons {
+            display: flex;
+            margin-left: auto;
+        }
+
+        .header-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .sidebar {
+            background-color: #f2f2f2;
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+        }
+
+        .sidebar a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            color: #f00;
+        }
+
+        .logo {
+            background-color: #f2f2f2;
+            margin: 10px;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .logo.fixed {
+            background-color: #f2f2f2;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        main {
+            margin-left: 200px;
+            padding: 20px;
+            padding-bottom: 50px;
+            /* 푸터 높이만큼 padding-bottom을 추가함 */
+        }
+        .fFiFXy {
+    min-width: 1200px;
+    padding: 20px 32px 93px 0px;
+    color: rgb(51, 51, 51);
+}
+
+.gYMViG {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 40px 0px 0px;
+}
+.gYMViG > div {
+    display: flex;
+    gap: 20px;
+}
+.donuVp {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+.eJdBry {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.fsjsQa {
+    position: relative;
+    width: 262px;
+    height: 40px;
+}
+
+.fsjtHi {
+    position: relative;
+    width: 200px;
+    height: 40px;
+}
+.eKUbtX {
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    color: rgb(158, 158, 158);
+}
+.eFlkkl {
+    position: relative;
+}
+.jKLWkJ {
+    display: flex;
+    gap: 14px;
+    margin: 0px;
+}
+.eFlkkl svg {
+    position: absolute;
+    right: 16px;
+    top: 17px;
+}
+
+.iEjBcj {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 480px;
+    height: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    padding: 0px 12px;
+    color: rgb(72, 72, 72);
+    line-height: 20px;
+    appearance: none;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+select {
+    outline: none;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+.jOWjcU {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: end;
+    width: 100%;
+    height: 100%;
+    padding: 0px 30px 0px 12px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.donuVp > h4 {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(136, 136, 136);
+}
+.kBzABp {
+    color: rgb(204, 204, 204);
+    position: relative;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 200px;
+    height: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    padding: 10px 12px;
+    background-color: rgb(255, 255, 255);
+}
+
+.fbRswM {
+    width: 100%;
+    border: none;
+    z-index: 3;
+    background-color: transparent;
+    cursor: pointer;
+    color: rgb(72, 72, 72);
+}
+input {
+    outline: none;
+}
+
+a, button, input, textarea {
+    transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, color 0.15s ease-in-out, opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+.bkJshf {
+    position: absolute;
+    right: 13px;
+    z-index: 2;
+}
+svg {
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+div {
+    display: block;
+}
+.fBfZku {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.dUEwDP {
+    position: relative;
+    min-height: 100vh;
+    padding: 80px 0px 0px 240px;
+    background: rgb(249, 249, 249);
+    line-height: 1;
+}
+body {
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size: 0.875rem;
+    color: #484848;
+}
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+.jdfPwt {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+    min-height: 110px;
+    color: rgb(51, 51, 51);
+    padding: 25px 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: 1.33;
+    font-weight: 600;
+}
+.izzYjN {
+    width: 100%;
+    min-height: 110px;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px 0px 0px;
+}
+.bnsVqD {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+}
+.hpedKq {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 40px 0px 0px;
+}
+.hpedKq > div {
+    display: flex;
+    gap: 20px;
+}
+.WcCxm {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+.hDWBFU {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.fmFIRY {
+    display: flex;
+    gap: 32px;
+    height: 40px;
+}
+.fmFIRY > p {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 7px;
+}
+[type='button']:not(:disabled), [type='reset']:not(:disabled), [type='submit']:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+
+button {
+    outline: none;
+    background: none;
+    border: none;
+}
+
+body, p, h1, h2, h3, span, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
+    margin: 0;
+    padding: 0;
+}
+.iRTjgj {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    background-color: rgb(51, 102, 255);
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    border-radius: 4px;
+    margin: 30px 0px 0px;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="로고이미지주소" alt="로고">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">홈</a></li>
+                <li><a href="#">게시판</a></li>
+                <li><a href="#">회원가입</a></li>
+                <li><a href="#">로그인</a></li>
+            </ul>
+            <div class="header-buttons">
+                <button class="header-button">작성하기</button>
+                <button class="header-button">검색</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">이벤트</a></li>
+            <li><a href="#">새소식</a></li>
+            <li><a href="#">고객센터</a></li>
+        </ul>
+    </div>
+    <main>
+        <div class="sc-cJRpLa fFiFXy">
+            <h1 class="sc-hZDVde jdfPwt">신보람/CEO</h1>
+            <div class="sc-hLeiDn izzYjN">
+                <div class="sc-jIkldg ezZXAx">
+                    <h3 class="sc-bRJSeJ fBfZku">인적 정보</h3>
+                    <div class="sc-jFYche gYMViG">
+                        <div>
+                            <div class="sc-bPxJiH donuVp">
+                                <h4>수습 종료일</h4>
+                                <div width="200" class="sc-fjWoZz kBzABp"><input type="text" placeholder="날짜를 선택해주세요"
+                                        readonly="" class="sc-jccYHG fbRswM" value=""><svg width="20" height="18"
+                                        viewBox="0 0 20 18" fill="#000" class="sc-iuxOeI bkJshf">
+                                        <path
+                                            d="M7.08848 2.64823C7.03709 2.28215 6.71238 2 6.31947 2C5.89085 2 5.54339 2.33579 5.54339 2.75V3H3.47382L3.32544 3.00626C2.49861 3.07676 1.91626 3.73357 1.91626 4.53947L1.92165 14.5004L1.92834 14.649C1.99923 15.4291 2.62677 16 3.47382 16H16.926L17.0822 15.9934C17.9005 15.9235 18.4782 15.3052 18.4782 14.5V4.5L18.4715 4.3513C18.4006 3.57087 17.773 3 16.926 3H16.4086L16.3033 3.00685C15.9245 3.05651 15.6325 3.3703 15.6325 3.75C15.6325 4.16421 15.98 4.5 16.4086 4.5H16.926V14.5H3.47382L3.46843 4.53908L3.4658 4.49889L3.47382 4.5H5.54339V5.25L5.55047 5.35177C5.60186 5.71785 5.92657 6 6.31947 6C6.7481 6 7.09556 5.66421 7.09556 5.25V4.5H13.3043V5.25L13.3113 5.35177C13.3627 5.71785 13.6874 6 14.0803 6C14.509 6 14.8564 5.66421 14.8564 5.25V2.75L14.8493 2.64823C14.798 2.28215 14.4732 2 14.0803 2C13.6517 2 13.3043 2.33579 13.3043 2.75V3H7.09556V2.75L7.08848 2.64823Z"
+                                            fill="current"></path>
+                                        <path
+                                            d="M16.4086 8.75C16.4086 8.33579 16.0611 8 15.6325 8H4.7673L4.66199 8.00685C4.28318 8.05651 3.99121 8.3703 3.99121 8.75C3.99121 9.16421 4.33868 9.5 4.7673 9.5H15.6325L15.7378 9.49315C16.1166 9.44349 16.4086 9.1297 16.4086 8.75Z"
+                                            fill="current"></path>
+                                    </svg></div>
+                            </div>
+                            <div class="sc-bPxJiH donuVp">
+                                <h4>수습급여지급율</h4>
+                                <div class="sc-ktLMLx eJdBry">
+                                    <div width="200" class="sc-bGhRYA fsjtHi">
+                                        <div class="sc-ciEjBl eKUbtX">%</div><input class="sc-gukea jOWjcU" value="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="sc-bPxJiH donuVp">
+                                <h4>부양가족 수</h4>
+                                <div class="sc-ktLMLx eJdBry">
+                                    <div width="200" class="sc-bGhRYA fsjtHi">
+                                        <div class="sc-ciEjBl eKUbtX">명</div><input class="sc-gukea jOWjcU" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-bPxJiH donuVp">
+                                <h4>7세 이상 20세 이하 자녀의 수</h4>
+                                <div class="sc-ktLMLx eJdBry">
+                                    <div width="200" class="sc-bGhRYA fsjtHi">
+                                        <div class="sc-ciEjBl eKUbtX">명</div><input class="sc-gukea jOWjcU" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-bPxJiH donuVp">
+                                <h4>세액 감면 유형</h4>
+                                <div class="sc-hGglLj jKLWkJ">
+                                    <div class="sc-itMJkM eFlkkl"><select width="480" class="sc-Dmqmp iEjBcj">
+                                            <option value="">유형 없음</option>
+                                            <option value="1">외국인기술자 소득세 감면 (조특법 18조) 50%</option>
+                                            <option value="6">내국인 우수 인력의 국내복귀에 대한 소득세 감면 (조특법 18조의 3) 50%</option>
+                                            <option value="7">중소기업 취업자에 대한 소득세 감면 (조특법 30조) 70%</option>
+                                            <option value="8">중소기업 취업자에 대한 소득세 감면 (청년) (조특법 30조) 90%</option>
+                                            <option value="2">성과공유중소기업에 대한 소득세 감면 (조특법 19조) 50%</option>
+                                        </select><svg width="10" height="7" viewBox="0 0 10 7" fill="#000"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M8.99995 0.25C9.62823 0.25 9.97804 0.976242 9.5864 1.46752L5.6004 6.46752C5.30079 6.84334 4.72998 6.84431 4.42909 6.46952L0.415093 1.46952C0.0210263 0.978653 0.370471 0.25 0.999945 0.25H8.99995Z"
+                                                fill="current"></path>
+                                        </svg></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><button class="sc-gWoSmj iRTjgj">저장하기</button>
+                </div>
+            </div>
+            <div class="sc-hLeiDn izzYjN">
+                <div class="sc-dXGMVt iaMrDO">
+                    <h3 class="sc-hQZdRR bnsVqD">연봉 정보</h3>
+                    <div class="sc-cyRTDc hpedKq">
+                        <div>
+                            <div class="sc-ibYzZP WcCxm">
+                                <h4>포괄임금 설정</h4>
+                                <div class="sc-jOferD hDWBFU">
+                                    <div class="sc-eSEOys fmFIRY">
+                                        <p><button class="sc-dxtBLK UvLWg"><svg width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M19 12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12C5 8.13401 8.13401 5 12 5C15.866 5 19 8.13401 19 12Z"
+                                                        fill="#3366FF"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75ZM12 21.25C6.89137 21.25 2.75 17.1086 2.75 12C2.75 6.89137 6.89137 2.75 12 2.75C17.1086 2.75 21.25 6.89137 21.25 12C21.25 17.1086 17.1086 21.25 12 21.25Z"
+                                                        fill="#3366FF"></path>
+                                                </svg></button>포괄임금</p>
+                                        <p><button class="sc-dxtBLK UvLWg"><svg width="22" height="22"
+                                                    viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M21.75 11C21.75 16.9371 16.9371 21.75 11 21.75C5.06294 21.75 0.25 16.9371 0.25 11C0.25 5.06294 5.06294 0.25 11 0.25C16.9371 0.25 21.75 5.06294 21.75 11ZM1.75 11C1.75 16.1086 5.89137 20.25 11 20.25C16.1086 20.25 20.25 16.1086 20.25 11C20.25 5.89137 16.1086 1.75 11 1.75C5.89137 1.75 1.75 5.89137 1.75 11Z"
+                                                        fill="#CCCCCC"></path>
+                                                </svg></button>비포괄임금</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="sc-ibYzZP WcCxm">
+                                <h4>연봉 계약 금액</h4>
+                                <div class="sc-ktLMLx eJdBry">
+                                    <div width="262" class="sc-bGhRYA fsjsQa">
+                                        <div class="sc-ciEjBl eKUbtX">원</div><input class="sc-gukea jOWjcU" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-ibYzZP WcCxm">
+                                <h4>월 기본급</h4>
+                                <div class="sc-ktLMLx eJdBry">
+                                    <div width="262" class="sc-bGhRYA fsjsQa">
+                                        <div class="sc-ciEjBl eKUbtX">원</div><input class="sc-gukea jOWjcU" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-ibYzZP WcCxm">
+                                <h4>기준소득월액</h4>
+                                <div class="sc-ktLMLx eJdBry">
+                                    <div width="262" class="sc-bGhRYA fsjsQa">
+                                        <div class="sc-ciEjBl eKUbtX">원</div><input class="sc-gukea jOWjcU" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sc-ibYzZP WcCxm">
+                                <h4>통상시급</h4>
+                                <div class="sc-ktLMLx eJdBry">
+                                    <div width="262" class="sc-bGhRYA fsjsQa">
+                                        <div class="sc-ciEjBl eKUbtX">원</div><input class="sc-gukea jOWjcU" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="sc-ibYzZP WcCxm">
+                                <h4>월 고정초과근로수당</h4>
+                                <div class="sc-ktLMLx eJdBry">
+                                    <div width="262" class="sc-bGhRYA fsjsQa">
+                                        <div class="sc-ciEjBl eKUbtX">원</div><input class="sc-gukea jOWjcU" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><button class="sc-gWoSmj iRTjgj">저장하기</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        © 2023 웹사이트 이름. All rights reserved.
+    </footer>
+</body>
+
+</html>
