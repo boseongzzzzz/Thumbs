@@ -12,10 +12,12 @@ public class SecurityConfig {
     public SecurityFilterChain loginFilter(HttpSecurity http) throws Exception{
         return http.csrf().disable()
                 .authorizeRequests()
-                    .anyRequest().permitAll()
+                    .anyRequest().authenticated()
                     .and()
-                .formLogin().successForwardUrl("/main.html")
+                .formLogin().defaultSuccessUrl("/index")
                     .and()
+                .logout()
+                .and()
                 .build();
 
     }
