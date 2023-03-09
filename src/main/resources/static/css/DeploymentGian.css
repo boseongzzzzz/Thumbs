@@ -1,0 +1,101 @@
+        /* 기안 폼 스타일*/
+        .container {
+            margin: 0 auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .column {
+            flex-basis: 20%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .column:nth-child(1) {
+            flex-basis: 20%;
+        }
+
+        .column:nth-child(2) {
+            flex-basis: 20%;
+        }
+
+        .column:nth-child(3) {
+            flex-basis: 20%;
+            position: relative;
+        }
+
+
+        /* 조직도 트리 스타일 */
+        #tree li {
+            list-style-type: none;
+            margin-left: 10px;
+            position: relative;
+        }
+
+        #tree li:before {
+            content: "";
+            position: absolute;
+            top: -7px;
+            bottom: 0;
+            left: -14px;
+            border-left: 1px solid #ccc;
+            width: 1px;
+        }
+
+        #tree li:last-child:before {
+            height: 30px;
+        }
+
+        #tree li:after {
+            content: "";
+            position: absolute;
+            top: -7px;
+            bottom: 0;
+            left: -14px;
+            border-top: 1px solid #ccc;
+            width: 15px;
+        }
+
+        #tree li a {
+            text-decoration: none;
+            color: #333;
+        }
+        input[type="file"] {
+            padding: 0.5rem 0;
+         }
+         
+         input[type="file"]::-webkit-file-upload-button {
+            background-color: #5154589b;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+         }
+         
+         input[type="file"]::-webkit-file-upload-button:hover {
+            background-color: #116be8d6;
+         }
+         
+         input[type="file"]::-webkit-file-upload-button:active {
+            background-color: #116be8d6;
+         }
+         
+         input[type="file"]::-webkit-file-upload-button:focus {
+            outline: none;
+         }
+         
+         textarea:focus, input[type="text"]:focus, input[type="file"]:focus {
+            outline: none;
+            border-color: #116be8d6;
+         }
+         @media screen and (min-width: 1200px) {
+            main {
+               max-width: 1200px;
+               margin: 0 auto;
+            }
+         }
