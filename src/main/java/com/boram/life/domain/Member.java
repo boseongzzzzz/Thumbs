@@ -11,14 +11,14 @@ import javax.persistence.*;
 public class Member {
     @Id @GeneratedValue
     @Column(name = "member_id")
-    private long MemberId;
+    private Long MemberId;
     @Column(name = "member_pw")
     private String pw;
     @Column(name = "member_address")
     private String address;
     @Column(name = "member_gender")
     private String gender;
-    @Column(name = "member_regno")
+    @Column(name = "member_reg_no")
     private String regNo;
     @Column(name = "member_email")
     private String email;
@@ -26,6 +26,7 @@ public class Member {
     private String name;
     @Column(name = "member_introduction")
     private String introduction;
-    @Column(name = "member_authnum")
-    private int authNum;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "auth_num")
+    private Authority authority;
 }
