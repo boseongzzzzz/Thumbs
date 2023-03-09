@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="approvalLine2.css">
+	<link rel="stylesheet" type="text/css" href="header.css">
+	<link rel="stylesheet" type="text/css" href="sidebar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="header-left">			
+		</div>
+		<div class="header-right">
+			<nav>
+				<ul>
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Account</a></li>
+					<li><a href="#">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<aside>
+		<nav>
+			<h3>&nbsp;&nbsp;결재</h3>
+			<ul>
+				<li><a href="#">&nbsp;상신함</a></li>
+				<li><a href="#">&nbsp;수신함</a></li>
+				<li><a href="#">&nbsp;임시저장</a></li>
+			</ul>
+		</nav>
+	</aside>
+	<main class="flex-container">
+        <img src="../../../../../파이널/approval/image/koreanLogo.jpg" alt="koreanLogo.jpg" class="logo-image">
+        <div class="label-container">
+          <label for="receiver">수신 </label>
+          <input type="text" id="receiver" name="receiver" class="input-text">
+        </div>
+        <div class="label-container2">
+          <label for="title">제목 </label>
+          <input type="text" id="title" name="title" class="input-text2">
+        </div>
+        <br>
+        <hr />
+        
+        <div class="text-area-container">
+            <textarea name="text" id="editor" th:text="${data}"></textarea>
+            <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+            <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+            <script>
+            ClassicEditor.create( document.querySelector( '#editor' ), { language: "ko"
+            } );
+            </script>
+        </div>
+        <h1>국립국어원 원장</h1>
+        <br>
+        <br>
+        <hr style="border: solid 8px rgb(113, 113, 113);"/>
+        <br>
+        <div class="box-container">
+            <div class="box-group">
+                <input class="box1"></input>
+            </div>
+            <div class="box-group2">
+                <input class="box"></input>
+                <input class="box"></input>
+            </div>
+            <div class="box-group3">
+                <input class="box"></input>
+                <input class="box"></input>
+            </div>
+        </div>  
+        <div class="box-group4">
+            <input class="box2" id="today"></input>
+            <input class="box2"></input>
+        </div>
+        <script>
+            const today = new Date().toISOString().substr(0, 10); // 오늘 날짜를 YYYY-MM-DD 형식으로 반환
+            document.getElementById("today").value = today; // input 요소에 오늘 날짜를 넣음
+        </script>
+        <br>
+        <br>
+        <div class="referrer-container">
+            <div class="label-container3">
+                <label for="referrer">참조자 :</label>
+                <input type="text" id="referrer" name="referrer" class="input-text">
+            </div>
+            <div class="label-container3">
+                <label for="receipt">접수 :</label>
+                <input type="text" id="receipt" name="receipt" class="input-text3">
+                <input type="text" id="receipt" name="receipt" class="input-text3">
+                <label for="implm" style="margin-left: 100px;">시행 :</label>
+                <input type="text" id="implm" name="implm" class="input-text4">
+            </div>
+        </div>
+        <br>
+        <div>(우) 07511 서울특별시 강서구 금낭화로 154(방화동 827)
+            홈페이지 주소: www.korean.go.kr</div>
+        <br>
+        <div>대표 전화: 02-2669-9775</div>
+        <br>
+        <br>
+    </main>
+    <footer>
+		<a href=""><button class="previous-button">반려</button></a>
+		<a href=""><button class="complete-button">결재</button></a>
+	</footer>
+</body>
+</html>
