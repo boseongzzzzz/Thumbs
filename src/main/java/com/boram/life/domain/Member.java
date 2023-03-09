@@ -13,19 +13,19 @@ public class Member {
     @Column(name = "member_id")
     private Long MemberId;
     @Column(name = "member_pw")
-    private String pw;
+    private String MemberPw;
     @Column(name = "member_address")
-    private String address;
+    private String MemberAddress;
     @Column(name = "member_gender")
-    private String gender;
+    private String MemberGender;
     @Column(name = "member_reg_no")
-    private String regNo;
+    private String MemberRegNo;
     @Column(name = "member_email")
-    private String email;
+    private String MemberEmail;
     @Column(name = "member_name")
-    private String name;
+    private String MemberName;
     @Column(name = "member_introduction")
-    private String introduction;
+    private String MemberIntroduction;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "auth_num")
     private Authority authority;

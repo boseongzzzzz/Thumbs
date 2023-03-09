@@ -10,11 +10,12 @@ import javax.persistence.Id;
 
 @Entity
 @Getter @Setter
-public class Category {
+public class Promotion {
     @Id @GeneratedValue
-    @Column(name = "category_id")
-    private Long categoryId;
-
-    @Column(name = "category_name")
-    private String categoryName;
+    @Column(name = "promotion_id")
+    private Long promotionId;
+    @Column(name = "promotion_position")
+    private String promotionPosition;
+    @Column(name = "promotion_standard")
+    private String promotionStandard;
 }

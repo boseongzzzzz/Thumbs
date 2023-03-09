@@ -21,8 +21,8 @@ public class Position {
     private String positionRank;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    Member positionMember;
+    private Member positionMember;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_id")
-    Department positionDepartment;
+    private Department positionDepartment;
 }
