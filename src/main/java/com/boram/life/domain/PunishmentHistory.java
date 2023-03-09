@@ -8,18 +8,18 @@ import java.util.Date;
 
 @Entity
 @Getter @Setter
-public class ViolationHistory {
+public class PunishmentHistory {
     @Id @GeneratedValue
-    @Column(name = "violation_history_id")
-    private Long  violationHistoryId;
-    @Column(name = "violation_history_date")
-    private Date violationHistoryDate;
+    @Column(name = "punishment_history_id")
+    private Long  punishmentHistoryId;
+    @Column(name = "punishment_history_date")
+    private Date punishmentHistoryDate;
     @ManyToOne
     @JoinColumn(name = "position_id")
     private Position position;
     @ManyToOne
-    @JoinColumn(name = "violation_id")
-    private Violation violation;
+    @JoinColumn(name = "punishment_id")
+    private Punishment punishment;
     @ManyToOne
     @JoinColumn(name = "draft_id")
     private Draft draft;

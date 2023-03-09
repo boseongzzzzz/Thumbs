@@ -10,10 +10,10 @@ import javax.persistence.Id;
 
 @Entity
 @Getter @Setter
-public class Violation {
+public class Punishment {
     @Id @GeneratedValue
-    @Column(name = "violation_id")
-    private Long ViolationId;
-    @Column(name = "violation_type")
-    private Long ViolationType;
+    @Column(name = "punishment_id")
+    private Long punishmentId;
+    @Column(name = "punishment_type")
+    private Long punishmentType;
 }
