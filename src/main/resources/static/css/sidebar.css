@@ -1,4 +1,4 @@
-aside {
+.aside {
 	background-color: #F7F9FB;
 	width: 200px;
 	height: 100vh;
@@ -10,17 +10,17 @@ aside {
 
 }
 
-aside nav ul {
+.aside nav ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-aside nav li {
+.aside nav li {
 	margin: 5px 0;
 }
 
-aside nav a {
+.aside nav a {
 	display: block;
 	padding: 10px;
 	color: #292F36;
@@ -29,7 +29,7 @@ aside nav a {
 	font-weight: bold;
 }
 
-aside .logo {
+.aside .logo {
     display: block;
     margin: 0 auto 20px;
     width: 80%;
