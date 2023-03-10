@@ -57,11 +57,12 @@
         <img src="/image/koreanLogo.jpg" alt="koreanLogo.jpg" class="logo-image">
         <div class="label-container">
           <label for="receiver">수신 </label>
-          <input type="text" id="receiver" name="receiver" class="input-text">
+          <textarea itemid="receiverText" rows="2" id="receiver" name="receiver" th:text="${data}">
+          </textarea>  
         </div>
         <div class="label-container2">
           <label for="title">제목 </label>
-          <input type="text" id="title" name="title" class="input-text2">
+          <input type="text" id="title" name="title" class="input-text2" th:text="${data}">
         </div>
         <br>
         <hr />
@@ -71,32 +72,33 @@
             <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
             <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
             <script>
-            ClassicEditor.create( document.querySelector( '#editor' ), { language: "ko"
+            ClassicEditor.create( document.querySelector( '#editor' ), { 
+                language: "ko",
             } );
             </script>
         </div>
-        <h1>국립국어원 원장</h1>
+        <h1 style="font-size: 3rem;">국 립 국 어 원 장</h1>
         <br>
         <br>
         <hr style="border: solid 8px rgb(113, 113, 113);"/>
         <br>
+        <div class="box-group4">
+            <input class="box1" id="today"></input>
+        </div>
         <div class="box-container">
             <div class="box-group">
-                <input class="box1"></input>
+                <input class="box2" id="line1" th:text="${data}"></input>        
+                <input class="box2" style="font-weight: bold;"></input>
             </div>
             <div class="box-group2">
                 <input class="box"></input>
-                <input class="box"></input>
+                <input class="box" style="font-weight: bold;"></input>
             </div>
             <div class="box-group3">
                 <input class="box"></input>
-                <input class="box"></input>
+                <input class="box" style="font-weight: bold;"></input>
             </div>
         </div>  
-        <div class="box-group4">
-            <input class="box2" id="today"></input>
-            <input class="box2"></input>
-        </div>
         <script>
             const today = new Date().toISOString().substr(0, 10); // 오늘 날짜를 YYYY-MM-DD 형식으로 반환
             document.getElementById("today").value = today; // input 요소에 오늘 날짜를 넣음
@@ -105,17 +107,17 @@
         <br>
         <div class="referrer-container">
             <div class="label-container3">
-                <label for="referrer">참조자 :</label>
+                <label for="referrer">참조자</label>
                 <input type="text" id="referrer" name="referrer" class="input-text">
             </div>
             <div class="label-container3">
-                <label for="receipt">접수 :</label>
+                <label for="receipt">시행</label>
                 <input type="text" id="receipt" name="receipt" class="input-text3">
-                <input type="text" id="receipt2" name="receipt" class="input-text3">
-                <label for="implm" style="margin-left: 100px;">시행 :</label>
+                <input type="text" id="receipt" name="receipt" class="input-text3">
+                <label for="implm" style="margin-left: 100px;">접수</label>
                 <input type="text" id="implm" name="implm" class="input-text4">
-            </div>
-        </div>
+            </div>    
+        </div> 
         <br>
         <div>(우) 07511 서울특별시 강서구 금낭화로 154(방화동 827)
             홈페이지 주소: www.korean.go.kr</div>
