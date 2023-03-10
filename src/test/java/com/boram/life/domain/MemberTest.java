@@ -1,25 +1,28 @@
 package com.boram.life.domain;
 
-import org.assertj.core.api.Assertions;
+import com.boram.life.member.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-@Rollback
-@DataJpaTest
+@Rollback(value = false)
+@Slf4j
 @Transactional
+@RequiredArgsConstructor
 class MemberTest {
+
+    MemberRepository memberRepository;
 
     @PersistenceContext
     EntityManager em;
+
     @Test
     public void 맴버_도메인_테스트(){
         //given
@@ -33,7 +36,8 @@ class MemberTest {
         member1.setMemberIntroduction("안녕하세요. 처음 뵙겠습니다.");
 
         //when
-        em.persist(member1);
+        memberRepository.saveMember(member1);
+
         Member member = em.find(Member.class, member1.getMemberId());
 
         //then
