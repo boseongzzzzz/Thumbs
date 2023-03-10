@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="approvalLine2.css">
-	<link rel="stylesheet" type="text/css" href="header.css">
-	<link rel="stylesheet" type="text/css" href="sidebar.css">
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/css/approvalLine2.css ">
+	<link rel="stylesheet" type="text/css" href="/css/header.css">
+	<link rel="stylesheet" type="text/css" href="/css/sidebar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -22,18 +23,38 @@
 			</nav>
 		</div>
 	</header>
-	<aside>
-		<nav>
-			<h3>&nbsp;&nbsp;결재</h3>
-			<ul>
-				<li><a href="#">&nbsp;상신함</a></li>
-				<li><a href="#">&nbsp;수신함</a></li>
-				<li><a href="#">&nbsp;임시저장</a></li>
-			</ul>
-		</nav>
-	</aside>
+    <aside>
+        <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
+        <nav>
+            <h2 style="color: rgba(0, 0, 0, 0.33)">&nbsp;&nbsp;결재</h2>
+            <ul>
+                <li><a href="#"><h3>&nbsp;진행 문서함</h3></a>
+                    <ul>
+                        <li><a href="#">　　　- 기안</a></li>
+                        <li><a href="#">　　　- 결재</a></li>
+                        <li><a href="#">　　　- 참조</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><h3>&nbsp;완료 문서함</h3></a>
+                    <ul>
+                        <li><a href="#">　　　- 기안 완료</a></li>
+                        <li><a href="#">　　　- 결재 완료</a></li>
+                        <li><a href="#">　　　- 공람 완료</a></li>
+                        <li><a href="#">　　　- 저장 문서</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><h3>&nbsp;임시저장</h3></a>
+                    <ul>
+                        <li><a href="#">　　　- 기안 문서</a></li>
+                        <li><a href="#">　　　- 반려 문서</a></li>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </aside>
 	<main class="flex-container">
-        <img src="../../../../../파이널/approval/image/koreanLogo.jpg" alt="koreanLogo.jpg" class="logo-image">
+        <img src="/image/koreanLogo.jpg" alt="koreanLogo.jpg" class="logo-image">
         <div class="label-container">
           <label for="receiver">수신 </label>
           <input type="text" id="receiver" name="receiver" class="input-text">
@@ -90,7 +111,7 @@
             <div class="label-container3">
                 <label for="receipt">접수 :</label>
                 <input type="text" id="receipt" name="receipt" class="input-text3">
-                <input type="text" id="receipt" name="receipt" class="input-text3">
+                <input type="text" id="receipt2" name="receipt" class="input-text3">
                 <label for="implm" style="margin-left: 100px;">시행 :</label>
                 <input type="text" id="implm" name="implm" class="input-text4">
             </div>
