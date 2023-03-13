@@ -9,6 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
+  <script type="text/javascript">
+    function handleSearch() {
+      const startDate = document.getElementById("startDate").value;
+      const endDate = document.getElementById("endDate").value;
+      const status = document.getElementById("status").value;
+      const type = document.getElementById("type").value;
+
+      // TODO: 선택한 값으로 조회 로직 구현
+      console.log(
+        `startDate: ${startDate}, endDate: ${endDate}, status: ${status}, type: ${type}`
+      );
+    }
+  </script>
 </head>
 <body>
 	<header>
@@ -33,7 +46,7 @@
     <ul>
       <li><a href="#"><h3>&nbsp;진행 문서함</h3></a>
         <ul>
-          <li><a href="#">　　　- 기안</a></li>
+          <li><a href="approval.html">　　　- 기안</a></li>
           <li><a href="#">　　　- 결재</a></li>
           <li><a href="#">　　　- 참조</a></li>
       </ul> 
@@ -57,20 +70,43 @@
     </nav>
 	</aside>
     <main>
-      <h1 style="margin-right: 1200px; color : rgb(21, 34, 106)">진행 문서함</h1>
+      <h1 style="margin-right: 1200px; color : rgb(21, 34, 106)">완료 문서함</h1>
       <div style="display: flex">
         <div class="card" style="flex: 1">
-          <h2 style="color: rgba(76, 76, 121, 0.993);">결 재</h2>
+          <h2 style="color: rgba(76, 76, 121, 0.993);">결재 완료</h2>
           <div class="inner-card">
             <form>
+              <label for="startDate">시작일자:</label>
+              <input type="date" id="startDate" name="startDate" />
+
+              <label for="endDate">종료일자:</label>
+              <input type="date" id="endDate" name="endDate" />
+
+              <label for="status">상태:</label>
+              <select id="status" name="status">
+                <option value="">전체</option>
+                <option value="state1">상태 1</option>
+                <option value="state2">상태 2</option>
+                <option value="state3">상태 3</option>
+              </select>
+
+              <label for="type">유형:</label>
+              <select id="type" name="type">
+                <option value="">전체</option>
+                <option value="type1">유형 1</option>
+                <option value="type2">유형 2</option>
+                <option value="type3">유형 3</option>
+              </select>
+
+              <button type="button" onClick="handleSearch()">조회</button>
               <br />
               <table>
                 <thead>
                   <tr>
                     <th>문서번호</th>
                     <th>제 목</th>
-                    <th>기안자</th>
                     <th>첨부파일</th>
+                    <th>결재의견</th>
                     <th>작성일</th>
                   </tr>
                 </thead>
@@ -78,15 +114,15 @@
                   <tr>   
                     <td>02123</td>
                     <td>인사기안</td>
-                    <td>이현구</td>
                     <td>O</td>
+                    <td>0</td>
                     <td>2023-02-08</td>
                   </tr>
                   <tr>
                     <td>04223</td>
                     <td>기안</td>
-                    <td>김보성</td>
                     <td>O</td>
+                    <td>0</td>
                     <td>2023-03-08</td>
                   </tr>
                 </tbody>
