@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    <link rel="stylesheet" type="text/css" href="css/approval.html">
-    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
-    <link rel="stylesheet" type="text/css" href="css/Gian.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/approval.html">
+    <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="../css/Gian.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -194,7 +194,7 @@
             <!-- 기본 폼 : 제목-->
             <div sytle="float:left;">
                 <div style="float:left; margin:10px; width:8%;">제　　목　:</div>
-                <div style="float:left; margin:10px; width:88%;"><input type="text" name="subject"
+                <div style="float:left; margin:10px; width:88%;"><input type="text" name="draftTitle" id="draftTitle"
                         placeholder="제목을 입력하세요." style="width:100%">
                 </div>
             </div>
@@ -235,7 +235,7 @@
                         <!-- <button class="add-row-button" style="position:absolute; bottom:0px;">행 추가 (+)</button> -->
                     </div>
                 </div>
-                <div id="deploy-container">
+                <div id="position-container">
                     <div class="row" style="width:100%">
                         <div class="col-md-4">
                             <div class="col-md-4" style="clear:both;">
@@ -273,7 +273,7 @@
                                     placeholder="직책을 입력하세요.">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" id="deployDate" name="deployDate[]"
+                                <input type="text" class="form-control" id="positionDate" name="positionDate[]"
                                     placeholder="일자를 선택하세요.">
                             </div>
                         </div>
@@ -355,7 +355,7 @@
         <div style="clear:both; height: 100px;"> <!-- 기본 폼 : 임시저장 및 제출 -->
             <br>
             <div style="float: right; margin:10px; padding:10px;">
-                <button class="add-temp-gian">기안완료</button>
+                <button class="add-temp-gian" onclick="submitForm()">기안시작</button>
             </div>
         </div>
 
@@ -372,7 +372,7 @@
             // 조직도 관련 부분 : 시작
 
             // 결재라인을 위한 부서 데이터
-            var departmentsForApproval = [
+            let departmentsForApproval = [
                 { dept_id: 1, dept_name: '국립국어원장', parent_dept_id: null },
                 { dept_id: 2, dept_name: '기획연수부', parent_dept_id: 1 },
                 { dept_id: 3, dept_name: '어문연구실', parent_dept_id: 1 },
@@ -387,7 +387,7 @@
             ];
 
             // 수신참조를 위한 부서 데이터
-            var departmentsForReception = [
+            let departmentsForReception = [
                 { dept_id: 1, dept_name: '국립국어원장', parent_dept_id: null },
                 { dept_id: 2, dept_name: '기획연수부', parent_dept_id: 1 },
                 { dept_id: 3, dept_name: '어문연구실', parent_dept_id: 1 },
@@ -420,13 +420,13 @@
 
             // 기본 DOM 구성
             $(function () {
-                var tree1 = createOrgChartForApproval(departmentsForApproval, employeesForApproval);
+                let tree1 = createOrgChartForApproval(departmentsForApproval, employeesForApproval);
                 $('#midApproverTree').append(tree1);
                 $('#finalApproverTree').append(tree1);
 
                 // 수신참조 : 조직도 트리 생성 및 선택
-                var receivers = []; // 선택된 수신자 부서를 담을 배열
-                var referrers = []; // 선택된 참조자 부서를 담을 배열
+                let receivers = []; // 선택된 수신자 부서를 담을 배열
+                let referrers = []; // 선택된 참조자 부서를 담을 배열
 
                 $('#receptionTree').treeview({
                     data: createReceptionTree(departmentsForReception, null),
@@ -464,11 +464,11 @@
 
             // 결재라인 : 조직도 생성 함수
             function createOrgChartForApproval(departmentsForApproval, employeesForApproval) {
-                var rootDept = departmentsForApproval.filter(function (dept) {
+                let rootDept = departmentsForApproval.filter(function (dept) {
                     return dept.parent_dept_id === null;
                 })[0];
 
-                var orgChartHtml = '<ul>';
+                let orgChartHtml = '<ul>';
                 orgChartHtml += createDepartmentNode(rootDept, employeesForApproval);
                 orgChartHtml += '</ul>';
 
@@ -477,22 +477,22 @@
 
             // 결재라인 : 부서 노드 생성 함수
             function createDepartmentNode(dept, employeesForApproval) {
-                var departmentNode = '';
+                let departmentNode = '';
                 departmentNode += '<li>';
 
                 // 부서 이름을 span 태그로 변경
                 departmentNode += '<span>' + dept.dept_name + '</span>';
 
                 // 자식 부서 추가
-                var childdepartmentsForApproval = departmentsForApproval.filter(function (subDept) {
+                let childdepartmentsForApproval = departmentsForApproval.filter(function (subDept) {
                     return subDept.parent_dept_id === dept.dept_id;
                 });
 
                 if (childdepartmentsForApproval.length > 0) {
                     departmentNode += '<ul>';
 
-                    for (var i = 0; i < childdepartmentsForApproval.length; i++) {
-                        var childDept = createDepartmentNode(childdepartmentsForApproval[i], employeesForApproval);
+                    for (let i = 0; i < childdepartmentsForApproval.length; i++) {
+                        let childDept = createDepartmentNode(childdepartmentsForApproval[i], employeesForApproval);
                         departmentNode += childDept;
                     }
 
@@ -500,15 +500,15 @@
                 }
 
                 // 자식 부서 없으면 직원 추가
-                var employeesInDept = employeesForApproval.filter(function (emp) {
+                let employeesInDept = employeesForApproval.filter(function (emp) {
                     return emp.dept_id === dept.dept_id;
                 });
 
                 if (employeesInDept.length > 0) {
                     departmentNode += '<ul>';
 
-                    for (var j = 0; j < employeesInDept.length; j++) {
-                        var employeeNode = createEmployeeNode(employeesInDept[j], dept.dept_name);
+                    for (let j = 0; j < employeesInDept.length; j++) {
+                        let employeeNode = createEmployeeNode(employeesInDept[j], dept.dept_name);
                         departmentNode += employeeNode;
                     }
                     departmentNode += '</ul>';
@@ -521,14 +521,14 @@
 
             // 결재라인 : 직원 노드 생성 함수
             function createEmployeeNode(emp, deptName) {
-                var employeeNode = '';
+                let employeeNode = '';
                 employeeNode += '<li><a href="#">' + deptName + ' ' + emp.emp_name + '</a></li>';
                 return employeeNode;
             }
 
             // 수신 : 조직도 트리 노드 생성 함수
             function createReceptionNode(dept) {
-                var node = {
+                let node = {
                     text: dept.dept_name,
                     dept_id: dept.dept_id,
                     selectable: false
@@ -540,7 +540,7 @@
 
             // 참조 : 조직도 트리 노드 생성 함수
             function createReferenceNode(dept) {
-                var node = {
+                let node = {
                     text: dept.dept_name,
                     dept_id: dept.dept_id,
                     selectable: false
@@ -552,12 +552,12 @@
 
             // 수신 : 조직도 트리 노드 재귀 생성 함수
             function createReceptionTree(departmentsForReception, parent_id) {
-                var tree2 = [];
+                let tree2 = [];
 
-                for (var i = 0; i < departmentsForReception.length; i++) {
+                for (let i = 0; i < departmentsForReception.length; i++) {
                     if (departmentsForReception[i].parent_dept_id === parent_id) {
-                        var node = createReceptionNode(departmentsForReception[i]);
-                        var children = createReceptionTree(departmentsForReception, departmentsForReception[i].dept_id);
+                        let node = createReceptionNode(departmentsForReception[i]);
+                        let children = createReceptionTree(departmentsForReception, departmentsForReception[i].dept_id);
 
                         if (children.length > 0) {
                             node.nodes = children;
@@ -575,12 +575,12 @@
 
             // 참조 : 조직도 트리 노드 재귀 생성 함수
             function createReferenceTree(departmentsForReception, parent_id) {
-                var tree3 = [];
+                let tree3 = [];
 
-                for (var i = 0; i < departmentsForReception.length; i++) {
+                for (let i = 0; i < departmentsForReception.length; i++) {
                     if (departmentsForReception[i].parent_dept_id === parent_id) {
-                        var node = createReferenceNode(departmentsForReception[i]);
-                        var children = createReferenceTree(departmentsForReception, departmentsForReception[i].dept_id);
+                        let node = createReferenceNode(departmentsForReception[i]);
+                        let children = createReferenceTree(departmentsForReception, departmentsForReception[i].dept_id);
 
                         if (children.length > 0) {
                             node.nodes = children;
@@ -605,8 +605,8 @@
             // // 수신참조 : 조직도 트리 노드 선택 여부 처리
             // $('#receptionTree').on('nodeSelected', function (event, data) {
             //     if (data.nodes) {
-            //         var selectable = true;
-            //         for (var i = 0; i < data.nodes.length; i++) {
+            //         let selectable = true;
+            //         for (let i = 0; i < data.nodes.length; i++) {
             //             if (data.nodes[i].selectable) {
             //                 selectable = false;
             //                 break;
@@ -622,16 +622,16 @@
 
             // 중간결재자 모달에서 부서 선택 시 input 태그에 값 삽입
             $('#midApproverTree').on('click', 'a', function () {
-                var text = $(this).text()
-                var deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
+                let text = $(this).text()
+                let deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
                 $('#midApprover').val(deptName);
                 $('#orgChartModal1').modal('hide');
             });
 
             // 최종결재자 모달에서 부서 선택 시 input 태그에 값 삽입
             $('#finalApproverTree').on('click', 'a', function () {
-                var text = $(this).text()
-                var deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
+                let text = $(this).text()
+                let deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
                 $('#finalApprover').val(deptName);
                 $('#orgChartModal2').modal('hide');
             });
@@ -655,7 +655,7 @@
 
             // 달력 초기 설정
             $(function () {
-                $('#deployDate').datepicker({
+                $('#positionDate').datepicker({
                     format: "yyyy-mm-dd",
                     startDate: 'd',
                     autoclose: true,
@@ -666,11 +666,9 @@
 
             });
 
-            // $('.deployDate').datepicker()
-
             // '행 추가' 버튼 클릭 시 처리
             function addRow() {
-                var formHtml = `
+                let formHtml = `
                   <div class="row" style="width:100%">
                     <div class="col-md-4">
                       <div class="col-md-4" style="clear:both;">
@@ -703,16 +701,16 @@
                         <input type="text" class="form-control" name="duty[]" style="width:100%" placeholder="직책을 입력하세요.">
                       </div>
                       <div class="col-md-4">
-                        <input type="text" class="form-control deployDate" id="deployDate"  name="deployDate" placeholder="일자를 선택하세요.">
+                        <input type="text" class="form-control positionDate" id="positionDate"  name="positionDate" placeholder="일자를 선택하세요.">
                       </div>
                     </div>
                     <div class="col-md-1"></div>
                   </div>
                 `;
-                document.querySelector('#deploy-container').insertAdjacentHTML('beforeend', formHtml);
+                document.querySelector('#position-container').insertAdjacentHTML('beforeend', formHtml);
 
                 // 행 추가 시 추가된 폼에 대한 달력 처리
-                $(document).find("input[name=deployDate]").removeClass('hasDatepicker').datepicker({
+                $(document).find("input[name=positionDate]").removeClass('hasDatepicker').datepicker({
                     format: "yyyy-mm-dd",
                     startDate: 'd',
                     autoclose: true,
@@ -720,9 +718,14 @@
                     immediateUpdate: true,
                     title: "배정 및 보직일자",
                 }).on("changeDate", function (e) {
-                    var deployDate = e.format('yyyy-mm-dd');
+                    let positionDate = e.format('yyyy-mm-dd');
                     $(this).datepicker('hide');
                 });
+            }
+
+            function submitForm(){
+
+
             }
 
         </script>
