@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>기안 테스트</title>
+</head>
+<body>
+<h1>기안 테스트 (입력한 값이 잘 넘어오는지 확인하는 임시 페이지)</h1>
+<table>
+  <tr>
+    <th>기안번호</th>
+    <td th:text="${draftId}"></td>
+  </tr>
+  <tr>
+    <th>문서(형식)번호</th>
+    <td th:text="${document}"></td>
+  </tr>
+  <tr>
+    <th>----------</th>
+  </tr>
+  <tr>
+    <th>1결재자(=기안자)</th>
+    <td th:text="${draftMember1}"></td>
+  </tr>
+  <tr>
+    <th>2결재자</th>
+    <td th:text="${draftMember2}"></td>
+  </tr>
+  <tr>
+    <th>3결재자</th>
+    <td th:text="${draftMember3}"></td>
+  </tr>
+  <tr>
+    <th>----------</th>
+  </tr>
+  <tr>
+    <th>제목</th>
+    <td th:text="${draftTitle}"></td>
+  </tr>
+  <tr>
+    <th>내용</th>
+    <td th:text="${draftDetails}"></td>
+  </tr>
+  <tr>
+  <tr>
+    <th>----------</th>
+  </tr>
+    <th>상태</th>
+    <td th:text="${draftStatus}"></td>
+  </tr>
+  <tr>
+    <th>최종결재일자</th>
+    <td th:text="${draftFinalApprove}"></td>
+  </tr>
+  <tr>
+    <th>----------</th>
+  </tr>
+  <tr>
+    <th>반려관련</th>
+    <td th:text="${draftReject}"></td>
+  </tr>
+  <tr>
+    <th>----------</th>
+  </tr>
+</table>
+<div>
+  <br><br>
+  <span> * 상태 : 결재 상태, 1=1결(기안)완료, 2=2결완료, 3=3결완료, 4=회수됨, 5=반려됨, 6=발송됨 </span>
+</div>
+
+</body>
+</html>

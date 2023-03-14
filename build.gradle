@@ -37,11 +37,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
-	implementation 'org.modelmapper:modelmapper:2.4.4'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
+	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+
 
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
-

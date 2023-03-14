@@ -1,6 +1,17 @@
+        main {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            margin-top: 60px;
+            margin-left: 450px; /* aside 영역의 너비 + 간격 */
+            width: calc(100% - 450px);
+            max-width: 3000px;
+        }
+
         /* 기안 폼 스타일*/
         .container {
-            margin: 0 auto;
+            margin: 0;
+            width: 100%;
         }
 
         .row {
@@ -93,9 +104,9 @@
             outline: none;
             border-color: #116be8d6;
          }
-         @media screen and (min-width: 1200px) {
+         @media screen and (min-width: 100px) {
             main {
-               max-width: 1200px;
+               max-width: 3000px;
                margin: 0 auto;
             }
          }

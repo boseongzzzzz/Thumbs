@@ -55,7 +55,7 @@
         }
     </style>
 
-    <title>진급 기안하기</title>
+    <title>배정 및 보직 기안하기</title>
 </head>
 
 <body>
@@ -112,7 +112,7 @@
     </aside>
     <main>
         <div style="height: 100px; margin:10px; padding:10px"> <!-- 기본 폼 : 선택한 서식 및 현재 작업을 알려주는 헤드라인 -->
-            <h1>'진급' 문서 기안하기</h1>
+            <h1>'배정 및 보직' 문서 기안하기</h1>
         </div>
 
         <div label="결재라인" style="height: 110px; border:1px solid lightgray; margin:10px; padding:10px; width:100%">
@@ -194,16 +194,16 @@
             <!-- 기본 폼 : 제목-->
             <div sytle="float:left;">
                 <div style="float:left; margin:10px; width:8%;">제　　목　:</div>
-                <div style="float:left; margin:10px; width:88%;"><input type="text" name="subject"
+                <div style="float:left; margin:10px; width:88%;"><input type="text" name="draftTitle" id="draftTitle"
                         placeholder="제목을 입력하세요." style="width:100%">
                 </div>
             </div>
         </div>
 
         <div style="clear:both; border:1px solid lightgray; margin:10px; padding:10px; width:100%;">
-            <!-- 진급 전용 폼 : 관련 내용 -->
+            <!-- 보직 전용 폼 : 관련 내용 -->
             <div style="padding:10px">
-                <h3>진급 대상자</h3>
+                <h3>배정 및 보직 대상자</h3>
             </div>
             <div class="container" style="clear:both;">
                 <div class="row" style="width:100%">
@@ -211,10 +211,9 @@
                         <div class="col-md-12" style="height:70px; text-align: center;">
                             <h3>(~ 에서)</h3>
                         </div>
-                        <div class="col-md-3" style="clear:both; text-align: center;">부서명</div>
-                        <div class="col-md-3" style="text-align: center;">직　급</div>
-                        <div class="col-md-3" style="text-align: center;">호　봉</div>
-                        <div class="col-md-3" style="text-align: center;">이　름</div>
+                        <div class="col-md-4" style="clear:both; text-align: center;">부 서 명</div>
+                        <div class="col-md-4" style="text-align: center;">직　　책</div>
+                        <div class="col-md-4" style="text-align: center;">이　　름</div>
                     </div>
                     <div class="col-md-2" style="text-align: center; position: relative;">
                         <div style="position:absolute; left:35%; bottom:0px;">
@@ -225,9 +224,9 @@
                         <div class="col-md-12" style="height:70px; text-align: center;">
                             <h3>(~ 으로)</h3>
                         </div>
-                        <div class="col-md-4" style="text-align: center;">직　급</div>
-                        <div class="col-md-4" style="text-align: center;">호　봉</div>
-                        <div class="col-md-4" style="text-align: center;">진급일자</div>
+                        <div class="col-md-4" style="clear:both; text-align: center;">부 서 명</div>
+                        <div class="col-md-4" style="text-align: center;">직　　책</div>
+                        <div class="col-md-4" style="text-align: center;">배정일자</div>
                     </div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-secondary" onclick="addRow()"
@@ -236,22 +235,18 @@
                         <!-- <button class="add-row-button" style="position:absolute; bottom:0px;">행 추가 (+)</button> -->
                     </div>
                 </div>
-                <div id="promotion-container">
+                <div id="position-container">
                     <div class="row" style="width:100%">
                         <div class="col-md-4">
-                            <div class="col-md-3" style="clear:both;">
-                                <input type="text" class="form-control" id="exDeptName" placeholder="(부서명)"
+                            <div class="col-md-4" style="clear:both;">
+                                <input type="text" class="form-control" id="exDeptName" placeholder="(기존 부서명)"
                                     style="text-align: center;" readonly>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="exGrade" placeholder="(기존 직급)"
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="exDuty" placeholder="(기존 직책)"
                                     style="text-align: center;" readonly>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="exHobong" placeholder="(기존 호봉)"
-                                    style="text-align: center;" readonly>
-                            </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <input type="text" class="form-control" id="empName" placeholder="(사원명)"
                                     style="text-align: center;" readonly>
                             </div>
@@ -262,57 +257,24 @@
                         </div>
                         <div class="col-md-5">
                             <div class="col-md-4">
-                                <select class="form-select" name="grade[]" style="width:100%">
+                                <select class="form-select" name="dept[]" style="width:100%">
                                     <option value=null>선택하세요.</option>
-                                    <option value="1">1급</option>
-                                    <option value="2">2급</option>
-                                    <option value="3">3급</option>
-                                    <option value="4">4급</option>
-                                    <option value="5">5급</option>
-                                    <option value="6">6급</option>
-                                    <option value="7">7급</option>
-                                    <option value="8">8급</option>
-                                    <option value="9">9급</option>
+                                    <option value="기획운영과">기획연수부-기획운영과</option>
+                                    <option value="공공언어과">기획연수부-공공언어과</option>
+                                    <option value="교육연수과">기획연수부-교육연수과</option>
+                                    <option value="어문연구과">어문연구실-어문연구과</option>
+                                    <option value="언어정보과">어문연구실-언어정보과</option>
+                                    <option value="한국어진흥과">어문연구실-한국어진흥과</option>
+                                    <option value="특수언어진흥과">어문연구실-특수언어진흥과</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select" name="hobong[]" style="width:100%">
-                                    <option value=null>선택하세요.</option>
-                                    <option value="1">1호봉</option>
-                                    <option value="2">2호봉</option>
-                                    <option value="3">3호봉</option>
-                                    <option value="4">4호봉</option>
-                                    <option value="5">5호봉</option>
-                                    <option value="6">6호봉</option>
-                                    <option value="7">7호봉</option>
-                                    <option value="8">8호봉</option>
-                                    <option value="9">9호봉</option>
-                                    <option value="10">10호봉</option>
-                                    <option value="11">11호봉</option>
-                                    <option value="12">12호봉</option>
-                                    <option value="13">13호봉</option>
-                                    <option value="14">14호봉</option>
-                                    <option value="15">15호봉</option>
-                                    <option value="16">16호봉</option>
-                                    <option value="17">17호봉</option>
-                                    <option value="18">18호봉</option>
-                                    <option value="19">19호봉</option>
-                                    <option value="20">20호봉</option>
-                                    <option value="21">21호봉</option>
-                                    <option value="22">22호봉</option>
-                                    <option value="23">23호봉</option>
-                                    <option value="24">24호봉</option>
-                                    <option value="25">25호봉</option>
-                                    <option value="26">26호봉</option>
-                                    <option value="27">27호봉</option>
-                                    <option value="28">28호봉</option>
-                                    <option value="29">29호봉</option>
-                                    <option value="30">30호봉</option>
-                                </select>
+                                <input type="text" class="form-control" name="duty[]" style="width:100%"
+                                    placeholder="직책을 입력하세요.">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" id="promotionDate" name="promotionDate[]"
-                                    style="width:100%" placeholder="일자를 선택하세요.">
+                                <input type="text" class="form-control" id="positionDate" name="positionDate[]"
+                                    placeholder="일자를 선택하세요.">
                             </div>
                         </div>
                     </div>
@@ -393,7 +355,7 @@
         <div style="clear:both; height: 100px;"> <!-- 기본 폼 : 임시저장 및 제출 -->
             <br>
             <div style="float: right; margin:10px; padding:10px;">
-                <button class="add-temp-gian">기안시작</button>
+                <button class="add-temp-gian" onclick="submitForm()">기안시작</button>
             </div>
         </div>
 
@@ -410,7 +372,7 @@
             // 조직도 관련 부분 : 시작
 
             // 결재라인을 위한 부서 데이터
-            var departmentsForApproval = [
+            let departmentsForApproval = [
                 { dept_id: 1, dept_name: '국립국어원장', parent_dept_id: null },
                 { dept_id: 2, dept_name: '기획연수부', parent_dept_id: 1 },
                 { dept_id: 3, dept_name: '어문연구실', parent_dept_id: 1 },
@@ -425,7 +387,7 @@
             ];
 
             // 수신참조를 위한 부서 데이터
-            var departmentsForReception = [
+            let departmentsForReception = [
                 { dept_id: 1, dept_name: '국립국어원장', parent_dept_id: null },
                 { dept_id: 2, dept_name: '기획연수부', parent_dept_id: 1 },
                 { dept_id: 3, dept_name: '어문연구실', parent_dept_id: 1 },
@@ -458,13 +420,13 @@
 
             // 기본 DOM 구성
             $(function () {
-                var tree1 = createOrgChartForApproval(departmentsForApproval, employeesForApproval);
+                let tree1 = createOrgChartForApproval(departmentsForApproval, employeesForApproval);
                 $('#midApproverTree').append(tree1);
                 $('#finalApproverTree').append(tree1);
 
                 // 수신참조 : 조직도 트리 생성 및 선택
-                var receivers = []; // 선택된 수신자 부서를 담을 배열
-                var referrers = []; // 선택된 참조자 부서를 담을 배열
+                let receivers = []; // 선택된 수신자 부서를 담을 배열
+                let referrers = []; // 선택된 참조자 부서를 담을 배열
 
                 $('#receptionTree').treeview({
                     data: createReceptionTree(departmentsForReception, null),
@@ -502,11 +464,11 @@
 
             // 결재라인 : 조직도 생성 함수
             function createOrgChartForApproval(departmentsForApproval, employeesForApproval) {
-                var rootDept = departmentsForApproval.filter(function (dept) {
+                let rootDept = departmentsForApproval.filter(function (dept) {
                     return dept.parent_dept_id === null;
                 })[0];
 
-                var orgChartHtml = '<ul>';
+                let orgChartHtml = '<ul>';
                 orgChartHtml += createDepartmentNode(rootDept, employeesForApproval);
                 orgChartHtml += '</ul>';
 
@@ -515,22 +477,22 @@
 
             // 결재라인 : 부서 노드 생성 함수
             function createDepartmentNode(dept, employeesForApproval) {
-                var departmentNode = '';
+                let departmentNode = '';
                 departmentNode += '<li>';
 
                 // 부서 이름을 span 태그로 변경
                 departmentNode += '<span>' + dept.dept_name + '</span>';
 
                 // 자식 부서 추가
-                var childdepartmentsForApproval = departmentsForApproval.filter(function (subDept) {
+                let childdepartmentsForApproval = departmentsForApproval.filter(function (subDept) {
                     return subDept.parent_dept_id === dept.dept_id;
                 });
 
                 if (childdepartmentsForApproval.length > 0) {
                     departmentNode += '<ul>';
 
-                    for (var i = 0; i < childdepartmentsForApproval.length; i++) {
-                        var childDept = createDepartmentNode(childdepartmentsForApproval[i], employeesForApproval);
+                    for (let i = 0; i < childdepartmentsForApproval.length; i++) {
+                        let childDept = createDepartmentNode(childdepartmentsForApproval[i], employeesForApproval);
                         departmentNode += childDept;
                     }
 
@@ -538,15 +500,15 @@
                 }
 
                 // 자식 부서 없으면 직원 추가
-                var employeesInDept = employeesForApproval.filter(function (emp) {
+                let employeesInDept = employeesForApproval.filter(function (emp) {
                     return emp.dept_id === dept.dept_id;
                 });
 
                 if (employeesInDept.length > 0) {
                     departmentNode += '<ul>';
 
-                    for (var j = 0; j < employeesInDept.length; j++) {
-                        var employeeNode = createEmployeeNode(employeesInDept[j], dept.dept_name);
+                    for (let j = 0; j < employeesInDept.length; j++) {
+                        let employeeNode = createEmployeeNode(employeesInDept[j], dept.dept_name);
                         departmentNode += employeeNode;
                     }
                     departmentNode += '</ul>';
@@ -559,14 +521,14 @@
 
             // 결재라인 : 직원 노드 생성 함수
             function createEmployeeNode(emp, deptName) {
-                var employeeNode = '';
+                let employeeNode = '';
                 employeeNode += '<li><a href="#">' + deptName + ' ' + emp.emp_name + '</a></li>';
                 return employeeNode;
             }
 
             // 수신 : 조직도 트리 노드 생성 함수
             function createReceptionNode(dept) {
-                var node = {
+                let node = {
                     text: dept.dept_name,
                     dept_id: dept.dept_id,
                     selectable: false
@@ -578,7 +540,7 @@
 
             // 참조 : 조직도 트리 노드 생성 함수
             function createReferenceNode(dept) {
-                var node = {
+                let node = {
                     text: dept.dept_name,
                     dept_id: dept.dept_id,
                     selectable: false
@@ -590,12 +552,12 @@
 
             // 수신 : 조직도 트리 노드 재귀 생성 함수
             function createReceptionTree(departmentsForReception, parent_id) {
-                var tree2 = [];
+                let tree2 = [];
 
-                for (var i = 0; i < departmentsForReception.length; i++) {
+                for (let i = 0; i < departmentsForReception.length; i++) {
                     if (departmentsForReception[i].parent_dept_id === parent_id) {
-                        var node = createReceptionNode(departmentsForReception[i]);
-                        var children = createReceptionTree(departmentsForReception, departmentsForReception[i].dept_id);
+                        let node = createReceptionNode(departmentsForReception[i]);
+                        let children = createReceptionTree(departmentsForReception, departmentsForReception[i].dept_id);
 
                         if (children.length > 0) {
                             node.nodes = children;
@@ -613,12 +575,12 @@
 
             // 참조 : 조직도 트리 노드 재귀 생성 함수
             function createReferenceTree(departmentsForReception, parent_id) {
-                var tree3 = [];
+                let tree3 = [];
 
-                for (var i = 0; i < departmentsForReception.length; i++) {
+                for (let i = 0; i < departmentsForReception.length; i++) {
                     if (departmentsForReception[i].parent_dept_id === parent_id) {
-                        var node = createReferenceNode(departmentsForReception[i]);
-                        var children = createReferenceTree(departmentsForReception, departmentsForReception[i].dept_id);
+                        let node = createReferenceNode(departmentsForReception[i]);
+                        let children = createReferenceTree(departmentsForReception, departmentsForReception[i].dept_id);
 
                         if (children.length > 0) {
                             node.nodes = children;
@@ -643,8 +605,8 @@
             // // 수신참조 : 조직도 트리 노드 선택 여부 처리
             // $('#receptionTree').on('nodeSelected', function (event, data) {
             //     if (data.nodes) {
-            //         var selectable = true;
-            //         for (var i = 0; i < data.nodes.length; i++) {
+            //         let selectable = true;
+            //         for (let i = 0; i < data.nodes.length; i++) {
             //             if (data.nodes[i].selectable) {
             //                 selectable = false;
             //                 break;
@@ -660,16 +622,16 @@
 
             // 중간결재자 모달에서 부서 선택 시 input 태그에 값 삽입
             $('#midApproverTree').on('click', 'a', function () {
-                var text = $(this).text()
-                var deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
+                let text = $(this).text()
+                let deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
                 $('#midApprover').val(deptName);
                 $('#orgChartModal1').modal('hide');
             });
 
             // 최종결재자 모달에서 부서 선택 시 input 태그에 값 삽입
             $('#finalApproverTree').on('click', 'a', function () {
-                var text = $(this).text()
-                var deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
+                let text = $(this).text()
+                let deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
                 $('#finalApprover').val(deptName);
                 $('#orgChartModal2').modal('hide');
             });
@@ -693,116 +655,77 @@
 
             // 달력 초기 설정
             $(function () {
-                $('#promotionDate').datepicker({
+                $('#positionDate').datepicker({
                     format: "yyyy-mm-dd",
                     startDate: 'd',
                     autoclose: true,
                     todayHighlight: true,
                     immediateUpdate: true,
-                    title: "진급일자",
+                    title: "배정 및 보직일자",
                 });
 
             });
 
-            // $('.promotionDate').datepicker()
-
             // '행 추가' 버튼 클릭 시 처리
             function addRow() {
-                var formHtml = `
-            <div class="row" style="width:100%">
+                let formHtml = `
+                  <div class="row" style="width:100%">
                     <div class="col-md-4">
-                        <div class="col-md-3" style="clear:both;">
-                            <input type="text" class="form-control" id="exDeptName" placeholder="(기존 부서명)"
-                                style="text-align: center;" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" id="exGrade" placeholder="(기존 직급)"
-                                style="text-align: center;" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" id="exHobong" placeholder="(기존 호봉)"
-                                style="text-align: center;" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control" id="empName" placeholder="(사원명)"
-                                style="text-align: center;" readonly>
-                        </div>
+                      <div class="col-md-4" style="clear:both;">
+                        <input type="text" class="form-control" id="exDeptName" placeholder="(기존 부서명)" style="text-align: center;" readonly>
+                      </div>
+                      <div class="col-md-4">
+                        <input type="text" class="form-control" id="exDuty" placeholder="(기존 직책)" style="text-align: center;" readonly>
+                      </div>
+                      <div class="col-md-4">
+                        <input type="text" class="form-control" id="empName" placeholder="(사원명)" style="text-align: center;" readonly>
+                      </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="form-control" name="empId[]" id="empId" placeholder="(<- ajax로 출력 예정)"
-                            style="width:100%">
+                      <input type="text" class="form-control" name="empId[]" id="empId" placeholder="(<- ajax로 출력 예정)" style="width:100%">
                     </div>
                     <div class="col-md-5">
-                        <div class="col-md-4">
-                            <select class="form-select" name="grade[]" style="width:100%">
-                                <option value=null>선택하세요.</option>
-                                <option value="1">1급</option>
-                                <option value="2">2급</option>
-                                <option value="3">3급</option>
-                                <option value="4">4급</option>
-                                <option value="5">5급</option>
-                                <option value="6">6급</option>
-                                <option value="7">7급</option>
-                                <option value="8">8급</option>
-                                <option value="9">9급</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select" name="hobong[]" style="width:100%">
-                                <option value=null>선택하세요.</option>
-                                <option value="1">1호봉</option>
-                                <option value="2">2호봉</option>
-                                <option value="3">3호봉</option>
-                                <option value="4">4호봉</option>
-                                <option value="5">5호봉</option>
-                                <option value="6">6호봉</option>
-                                <option value="7">7호봉</option>
-                                <option value="8">8호봉</option>
-                                <option value="9">9호봉</option>
-                                <option value="10">10호봉</option>
-                                <option value="11">11호봉</option>
-                                <option value="12">12호봉</option>
-                                <option value="13">13호봉</option>
-                                <option value="14">14호봉</option>
-                                <option value="15">15호봉</option>
-                                <option value="16">16호봉</option>
-                                <option value="17">17호봉</option>
-                                <option value="18">18호봉</option>
-                                <option value="19">19호봉</option>
-                                <option value="20">20호봉</option>
-                                <option value="21">21호봉</option>
-                                <option value="22">22호봉</option>
-                                <option value="23">23호봉</option>
-                                <option value="24">24호봉</option>
-                                <option value="25">25호봉</option>
-                                <option value="26">26호봉</option>
-                                <option value="27">27호봉</option>
-                                <option value="28">28호봉</option>
-                                <option value="29">29호봉</option>
-                                <option value="30">30호봉</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control promotionDate" id="promotionDate"  name="promotionDate" placeholder="일자를 선택하세요.">
-                        </div>
+                      <div class="col-md-4">
+                        <select class="form-select" name="dept[]" style="width:100%">
+                          <option value=null>선택하세요.</option>
+                          <option value="기획운영과">기획연수부-기획운영과</option>
+                          <option value="공공언어과">기획연수부-공공언어과</option>
+                          <option value="교육연수과">기획연수부-교육연수과</option>
+                          <option value="어문연구과">어문연구실-어문연구과</option>
+                          <option value="언어정보과">어문연구실-언어정보과</option>
+                          <option value="한국어진흥과">어문연구실-한국어진흥과</option>
+                          <option value="특수언어진흥과">어문연구실-특수언어진흥과</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <input type="text" class="form-control" name="duty[]" style="width:100%" placeholder="직책을 입력하세요.">
+                      </div>
+                      <div class="col-md-4">
+                        <input type="text" class="form-control positionDate" id="positionDate"  name="positionDate" placeholder="일자를 선택하세요.">
+                      </div>
                     </div>
                     <div class="col-md-1"></div>
                   </div>
                 `;
-                document.querySelector('#promotion-container').insertAdjacentHTML('beforeend', formHtml);
+                document.querySelector('#position-container').insertAdjacentHTML('beforeend', formHtml);
 
                 // 행 추가 시 추가된 폼에 대한 달력 처리
-                $(document).find("input[name=promotionDate]").removeClass('hasDatepicker').datepicker({
+                $(document).find("input[name=positionDate]").removeClass('hasDatepicker').datepicker({
                     format: "yyyy-mm-dd",
                     startDate: 'd',
                     autoclose: true,
                     todayHighlight: true,
                     immediateUpdate: true,
-                    title: "진급일자",
+                    title: "배정 및 보직일자",
                 }).on("changeDate", function (e) {
-                    var promotionDate = e.format('yyyy-mm-dd');
+                    let positionDate = e.format('yyyy-mm-dd');
                     $(this).datepicker('hide');
                 });
+            }
+
+            function submitForm(){
+
+
             }
 
         </script>
