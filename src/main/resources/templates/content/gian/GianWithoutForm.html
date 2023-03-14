@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -210,16 +210,17 @@
                     style="width: 100%"></textarea>
             </div>
             <!-- 조직도 모달 -->
-            <div class="modal fade" id="receptionModal" tabindex="-1" role="dialog" aria-labelledby="deptModalLabel">
+            <div class="modal fade" id="receptionModal" tabindex="-1" role="dialog"
+                aria-labelledby="receiverDeptModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="deptModalLabel">수신 부서를 모두 선택하세요.</h4>
+                            <h4 class="modal-title" id="receiverDeptModalLabel">수신 부서를 모두 선택하세요.</h4>
                         </div>
                         <div class="modal-body">
-                            <diemployeev id="receptionTree">
+                            <div id="receptionTree"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -241,16 +242,17 @@
                     style="width: 100%"></textarea>
             </div>
             <!-- 조직도 모달 -->
-            <div class="modal fade" id="referenceModal" tabindex="-1" role="dialog" aria-labelledby="deptModalLabel">
+            <div class="modal fade" id="referenceModal" tabindex="-1" role="dialog"
+                aria-labelledby="referenceDeptModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="deptModalLabel">참조 부서를 모두 선택하세요.</h4>
+                            <h4 class="modal-title" id="referenceDeptModalLabel">참조 부서를 모두 선택하세요.</h4>
                         </div>
                         <div class="modal-body">
-                            <diemployeev id="referenceTree">
+                            <div id="referenceTree"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -270,10 +272,65 @@
             </div>
         </div>
 
-        <div style="clear:both; height: 100px;"> <!-- 기본 폼 : 임시저장 및 제출 -->
+        <div style="clear:both; height: 100px;">
             <br>
             <div style="float: right; margin:10px; padding:10px;">
-                <button class="add-temp-gian" onclick="submitForm()">기안시작</button>
+
+                <!-- '기안시작' 버튼 누르면 입력내용 확인용 모달 창이 호출, 모달 창에서 입력한값 확인 후 확인 시 controller로 넘기기 시도 -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">
+                    입력 값 확인 후 기안 시작하기
+                </button>
+            </div>
+
+            <!-- 모달 부분 -->
+            <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="submitModalLabel">입력한 내용 확인</h3>
+                        </div>
+                        <div class="modal-body">
+
+                            <table class="table table-bordered" style="text-align:center;">
+                                <tr>
+                                    <td style="width:80px;"></td>
+                                    <th colspan="3">기안자</th>
+                                    <th colspan="3">중간 결재자</th>
+                                    <th colspan="3">최종 결재자</th>
+                                </tr>
+                                <tr>
+                                    <td>결재라인</td>
+                                    <td th:text="${userId}"></td>
+                                    <td th:text="${draftMember2}"></td>
+                                    <td th:text="${draftMember3}"</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>제목</td>
+                                    <td th:text="${subject}"></td>
+                                </tr>
+                                <tr>
+                                    <td>지방출장 횟수</td>
+                                    <th colspan="3" >(지방 단기출장 수)</th>
+                                    <td colspan="3" >(지방 장기출장 수)</td>
+                                </tr>
+                                <tr>
+                                    <td>합산일수</td>
+                                    <th colspan="3" >(당일출장 합산)</th>
+                                    <td colspan="3" >(장기출장 합산)</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                            <button type="button" class="btn btn-primary" onclick="submitForm()">기안 시작</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -338,6 +395,7 @@
 
             // 기본 DOM 구성
             $(function () {
+
                 let tree1 = createOrgChartForApproval(departmentsForApproval, employeesForApproval);
                 $('#midApproverTree').append(tree1);
                 $('#finalApproverTree').append(tree1);
@@ -515,6 +573,8 @@
             }
 
 
+
+
             // 중간결재자 모달에서 부서 선택 시 input 태그에 값 삽입
             $('#midApproverTree').on('click', 'a', function () {
                 let text = $(this).text()
@@ -604,18 +664,30 @@
                 });
             }
 
-            function submitForm(){
+            let submitModalBody = document.getElementById("submitModalBody");
 
-                let draftTitle = document.getElementById("subject");
+            $('#submitModal').on('shown.bs.modal', function () {
+                document.getElementById("draftDocument").innerText = '0';
+                document.getElementById("subject").innerText = document.getElementById("subject").value;
+                document.getElementById("gianAttachments").innerText = document.getElementById("gianAttachments").value;
+                document.getElementById("draftMember2").innerText = document.getElementById("midApprover").value;
+                document.getElementById("draftMember3").innerText = document.getElementById("finalApprover").value;
+            });
+
+
+            function submitForm() {
+
+                document.getElementById("subject").innerText = document.getElementById("subject").getAttribute("id");
+
                 let draftDocument = '0';
                 let gianAttachments = document.getElementById("approval-attachment");
                 let draftmember2 = document.getElementById("midApprover");
                 let draftmember3 = document.getElementById("finalApprover");
 
-                if(draftTitle.trim() === "") {
-                    alert ("제목을 입력하세요!");
+                if (draftTitle.trim() === "") {
+                    alert("제목을 입력하세요!");
                     return;
-                } else if(draftmember2.trim() === "") {
+                } else if (draftmember2.trim() === "") {
                     alert("중간 결재자가 없습니다!");
                     return;
                 } else if (draftmember3.trim() === "") {
@@ -624,9 +696,30 @@
                 }
 
                 let form = document.getElementById("")
-
-
             }
+
+
+        // function submitForm() {
+        //
+        //     let draftTitle = document.getElementById("subject").;
+        //     let draftDocument = '0';
+        //     let gianAttachments = document.getElementById("approval-attachment");
+        //     let draftmember2 = document.getElementById("midApprover");
+        //     let draftmember3 = document.getElementById("finalApprover");
+        //
+        //     if (draftTitle.trim() === "") {
+        //         alert("제목을 입력하세요!");
+        //         return;
+        //     } else if (draftmember2.trim() === "") {
+        //         alert("중간 결재자가 없습니다!");
+        //         return;
+        //     } else if (draftmember3.trim() === "") {
+        //         alert("최종 결재자가 없습니다!");
+        //         return;
+        //     }
+        //
+        //     let form = document.getElementById("")
+        // }
 
 
         </script>
