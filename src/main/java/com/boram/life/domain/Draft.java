@@ -1,10 +1,14 @@
 package com.boram.life.domain;
 
+import com.boram.life.draft.dto.AttachmentsDTO;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -34,5 +38,6 @@ public class Draft {
     private String draftMember2;
     @Column(name = "draft_member3")
     private String draftMember3;
-
+    @OneToMany(mappedBy = "attachmentId")
+    private List<Attachments> attachmentsList = new ArrayList<>();
 }

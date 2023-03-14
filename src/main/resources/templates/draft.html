@@ -70,24 +70,18 @@
                     <th>문서번호</th>
                     <th>제 목</th>
                     <th>첨부파일</th>
-                    <th>결재의견</th>
                     <th>작성일</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>   
-                    <td>02123</td>
-                    <td>인사기안</td>
-                    <td>O</td>
-                    <td>0</td>
-                    <td>2023-02-08</td>
-                  </tr>
-                  <tr>
-                    <td>04223</td>
-                    <td>기안</td>
-                    <td>O</td>
-                    <td>0</td>
-                    <td>2023-03-08</td>
+                  <!-- 각 DraftDTO 마다 하나의 행을 생성 -->
+                  <!-- draftId, draftTitle, attachments, draftDate 필드를 사용 -->
+                  <tr th:each="draft : ${drafts}">
+                    <td th:text="${draft.draftId}"></td>
+                    <td th:text="${draft.draftTitle}"></td>
+                    <!-- attachments 필드가 null 이 아닐 경우 'O', null 일 경우 'X' 출력 -->
+                    <td th:text="${draft.attachments != null ? 'O' : 'X'}"></td>
+                    <td th:text="${draft.draftDate}"></td>
                   </tr>
                 </tbody>
               </table>

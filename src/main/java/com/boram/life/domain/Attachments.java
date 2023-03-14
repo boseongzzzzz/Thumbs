@@ -1,15 +1,14 @@
 package com.boram.life.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Attachments {
     @Id @GeneratedValue
     @Column(name = "attachment_id")
@@ -20,4 +19,11 @@ public class Attachments {
     private String attachmentUuidName;
     @Column(name = "attachment_save_path")
     private String attachmentSavePath;
+    @ManyToOne
+    @JoinColumn(name = "draft_id")
+    private Draft draft;
+
+    public Attachments(String attachmentUuidName) {
+        this.attachmentUuidName = attachmentUuidName;
+    }
 }
