@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.persistence.EntityManager;
@@ -40,7 +41,8 @@ public class DraftTests {
         attachments1.setAttachmentUuidName("첨부파일1");
         draft.getAttachmentsList().add(attachments1);
         draft.setDraftDate(new Date());
-        System.out.println("draft =========================================== " + draft);
+//        System.out.println("draft =========================================== " + draft);
+
         draftRepository.save(draft);
 
 
@@ -51,10 +53,10 @@ public class DraftTests {
 
 
         // then
-//        Draft actualDraft = draftRepository.findById(1323121232L).orElse(null);
-//        assertEquals("제목1", actualDraft.getDraftTitle());
-//        assertEquals(1, actualDraft.getAttachmentsList().size());
-//        assertEquals("첨부파일1", actualDraft.getAttachmentsList().get(0).getAttachmentUuidName());
+        Draft actualDraft = draftRepository.findById(1323121232L).orElse(null);
+        assertEquals("제목1", actualDraft.getDraftTitle());
+        assertEquals(1, actualDraft.getAttachmentsList().size());
+        assertEquals("첨부파일1", actualDraft.getAttachmentsList().get(0).getAttachmentUuidName());
 
     }
 }
