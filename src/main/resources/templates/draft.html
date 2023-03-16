@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/approval.css">
@@ -69,6 +69,7 @@
                   <tr>
                     <th>문서번호</th>
                     <th>제 목</th>
+                    <th>기안자</th>
                     <th>첨부파일</th>
                     <th>작성일</th>
                   </tr>
@@ -76,13 +77,14 @@
                 <tbody>
                   <!-- 각 DraftDTO 마다 하나의 행을 생성 -->
                   <!-- draftId, draftTitle, attachments, draftDate 필드를 사용 -->
-                  <tr th:each="draft : ${drafts}">
-                    <td th:text="${draft.draftId}"></td>
-                    <td th:text="${draft.draftTitle}"></td>
+<!--                  <tr th:each="draft : ${drafts}">-->
+<!--                    <td th:text="${draft.draftId}"></td>-->
+<!--                    <td th:text="${draft.draftTitle}"></td>-->
+<!--                    <td th:text="${draft.memberName}"></td>-->
                     <!-- attachments 필드가 null 이 아닐 경우 'O', null 일 경우 'X' 출력 -->
-                    <td th:text="${draft.attachments != null ? 'O' : 'X'}"></td>
-                    <td th:text="${draft.draftDate}"></td>
-                  </tr>
+<!--                    <td th:text="${draft.attachmentUuidName != null ? 'O' : 'X'}"></td>-->
+<!--                    <td th:text="${draft.draftDate}"></td>-->
+<!--                  </tr>-->
                 </tbody>
               </table>
             </form>

@@ -1,4 +1,4 @@
-package com.boram.life.draft.repository;
+package com.boram.life.aprvlDocuments.repository;
 
 import org.springframework.stereotype.Repository;
 

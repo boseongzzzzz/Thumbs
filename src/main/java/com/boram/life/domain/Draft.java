@@ -1,6 +1,5 @@
 package com.boram.life.domain;
 
-import com.boram.life.draft.dto.AttachmentsDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+
 public class Draft {
     @Id @GeneratedValue
     @Column(name = "draft_id")
@@ -23,7 +23,7 @@ public class Draft {
     @Column(name = "draft_date")
     private Date draftDate;
     @Column(name = "draft_status")
-    private String draftStatus;
+    private int draftStatus;
     @Column(name = "draft_final_approve")
     private Date draftFinalApprove;
     @OneToOne(fetch = FetchType.LAZY)
@@ -40,4 +40,21 @@ public class Draft {
     private String draftMember3;
     @OneToMany(mappedBy = "attachmentId")
     private List<Attachments> attachmentsList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Draft{" +
+                "draftId=" + draftId +
+                ", draftTitle='" + draftTitle + '\'' +
+                ", draftDetails='" + draftDetails + '\'' +
+                ", draftDate=" + draftDate +
+                ", draftStatus=" + draftStatus +
+                ", draftFinalApprove=" + draftFinalApprove +
+                ", DraftReject=" + DraftReject +
+                ", document=" + document +
+                ", draftMember1=" + draftMember1 +
+                ", draftMember2='" + draftMember2 + '\'' +
+                ", draftMember3='" + draftMember3 + '\'' +
+                '}';
+    }
 }

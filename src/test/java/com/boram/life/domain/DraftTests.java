@@ -1,28 +1,22 @@
 package com.boram.life.domain;
 
-import com.boram.life.draft.repository.DraftRepository;
-import com.boram.life.draft.service.DraftService;
-
+import com.boram.life.aprvlDocuments.repository.DraftRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
-
-
 import static org.junit.Assert.assertEquals;
 
-
-@DataJpaTest
+@Rollback(value = false)
+@Slf4j
+@Transactional
+@SpringBootTest
 public class DraftTests {
-
-//    @Autowired
-//    private DraftService draftService;
 
     @PersistenceContext
     EntityManager em;
@@ -36,8 +30,8 @@ public class DraftTests {
         Draft draft = new Draft();
         Attachments attachments1 = new Attachments();
 
-        draft.setDraftId(1323121232L);
-        draft.setDraftTitle("제목1");
+       // draft.setDraftId(1323121232L);
+        draft.setDraftTitle("테스트기안1");
         attachments1.setAttachmentUuidName("첨부파일1");
         draft.getAttachmentsList().add(attachments1);
         draft.setDraftDate(new Date());
@@ -53,8 +47,8 @@ public class DraftTests {
 
 
         // then
-        Draft actualDraft = draftRepository.findById(1323121232L).orElse(null);
-        assertEquals("제목1", actualDraft.getDraftTitle());
+        Draft actualDraft = draftRepository.findById(10L).orElse(null);
+        assertEquals("테스트기안1", actualDraft.getDraftTitle());
         assertEquals(1, actualDraft.getAttachmentsList().size());
         assertEquals("첨부파일1", actualDraft.getAttachmentsList().get(0).getAttachmentUuidName());
 

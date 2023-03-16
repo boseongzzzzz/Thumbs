@@ -19,9 +19,9 @@ public class Attachments {
     private String attachmentUuidName;
     @Column(name = "attachment_save_path")
     private String attachmentSavePath;
-    @ManyToOne
-    @JoinColumn(name = "draft_id")
-    private Draft draft;
+//    @ManyToOne
+//    @JoinColumn(name = "draft_id")
+//    private Draft draft;
 
 //    public Attachments(String attachmentUuidName) {
 //        this.attachmentUuidName = attachmentUuidName;
