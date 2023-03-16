@@ -4,8 +4,6 @@ import com.boram.life.gian.dto.GianDTO;
 import com.boram.life.gian.service.GianService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
-@RequestMapping(value = "/gian")
+@RequestMapping("/gian")
 public class GianController {
 
     private static final Logger log = LoggerFactory.getLogger(GianController.class);
@@ -28,28 +26,35 @@ public class GianController {
     public String goPositionGian(Authentication authentication, Model model){
         long userId = Long.parseLong(authentication.getName());
         model.addAttribute("userId", gianService.selectUserTag(userId));
-        return "PositionGian";
+        return "content/gian/PositionGian";
     }
 
     @GetMapping("/promotion-gian")
     public String goPromotionGian(Authentication authentication, Model model){
         long userId = Long.parseLong(authentication.getName());
         model.addAttribute("userId", gianService.selectUserTag(userId));
-        return "PromotionGian";
+        return "content/gian/PromotionGian";
     }
 
     @GetMapping("/punishment-gian")
     public String goPunishmentGian(Authentication authentication, Model model){
         long userId = Long.parseLong(authentication.getName());
         model.addAttribute("userId", gianService.selectUserTag(userId));
-        return "PunishmentGian";
+        return "content/gian/PunishmentGian";
     }
 
     @GetMapping("/common-gian")
-    public String goCommonGian(Authentication authentication, Model model){
-        long userId = Long.parseLong(authentication.getName());
-        model.addAttribute("userId", gianService.selectUserTag(userId));
-        return "GianWithoutForm";
+    public ModelAndView goCommonGian(Authentication authentication, ModelAndView mv){
+//        long userId = Long.parseLong(authentication.getName());   <-- 로그인 시 id로 "user"가 들어와서 NumberFormatException이 발생
+//        log.info("[gianService] authentication.getName() : " + authentication.getName() );
+//        mv.addObject("userId", gianService.selectUserTag(userId));
+
+        // 안되니까 일단 임시로 값 세팅
+        // userId로 '부서'+'직급'+'이름'을 가져왔다고 가정하고 addOject
+        mv.addObject("userId", "인사부 주임 김보성");
+        mv.setViewName("content/gian/GianWithoutForm.html");
+
+        return mv;
     }
 
 
