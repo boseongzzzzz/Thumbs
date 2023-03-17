@@ -56,11 +56,11 @@ public class Documents {
     private Date documentApprovalDate;
 
     // 문서 반려 사항
-    @OneToOne(mappedBy = "rejectNo")
+    @OneToOne(mappedBy = "rejectDocument")
     private Reject documentReject;
 
     // 문서 첨부파일
-    @OneToMany(mappedBy = "attachmentNo")
+    @OneToMany(mappedBy = "documentAttached")
     private List<Attachments> attachmentsList;
 
 }

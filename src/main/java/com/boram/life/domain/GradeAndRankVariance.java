@@ -44,7 +44,7 @@ public class GradeAndRankVariance {
 
     // 변동 일자
     @Column(name = "variance_date")
-    private Date  promotionDate;
+    private Date  varianceDate;
 
     // 변동 근거 (= 진급 명령 문서)
     @ManyToOne

@@ -42,14 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
                 .and()
                 .csrf().disable();
+
     }
 
 
     /* 시큐리티 설정을 무시할 정적 리소스를 등록 (resources 안의 static 폴더 내부의 정적리소스 유형 무시) */
     @Bean
-    public WebSecurityCustomizer configure(){
+    public static WebSecurityCustomizer webSecurityCustomizer(){
 
-        return (web) -> web.ignoring().antMatchers("/css/**, /image/**, /js/**, /video/** ");
+        return (web) -> web.ignoring().antMatchers("/css/**", "/image/**", "/js/**");
 
     }
 
@@ -65,16 +66,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 인사부 계정 임시 설정
                 .and()
-                .withUser("insa1").password("{noop}insa1").roles("INSA")
+                .withUser("1111").password("{noop}1111").roles("INSA")
 
                 .and()
-                .withUser("insa2").password("{noop}insa2").roles("INSA")
+                .withUser("2222").password("{noop}2222").roles("INSA")
 
                 .and()
-                .withUser("insa3").password("{noop}insa3").roles("INSA")
+                .withUser("3333").password("{noop}3333").roles("INSA")
 
                 .and()
-                .withUser("user").password("{noop}user").roles("EMPLOYEE");
+                .withUser("4444").password("{noop}4444").roles("EMPLOYEE");
 
 
     }
