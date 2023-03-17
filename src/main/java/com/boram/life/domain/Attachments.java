@@ -1,12 +1,14 @@
 package com.boram.life.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Attachments {
 
 

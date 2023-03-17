@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/css/approval.css">
+	<link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+</head>
+<body>
+	<header>
+		<div class="header-left">
+			
+		</div>
+		<div class="header-right">
+			<nav>
+				<ul>
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Account</a></li>
+					<li><a href="#">Logout</a></li>
+				</ul>
+			</nav> 
+		</div>
+	</header>
+	<aside>
+    <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
+    <nav>
+    <h2 style="color: rgba(0, 0, 0, 0.33)">&nbsp;&nbsp;결재</h2>
+    <hr />
+    <ul>
+      <li><a href="#"><h3>&nbsp;진행 문서함</h3></a>
+        <ul>
+          <li><a href="#">　　　- 기안</a></li>
+          <li><a href="#">　　　- 결재</a></li>
+          <li><a href="#">　　　- 참조</a></li>
+      </ul> 
+      </li>
+      <li><a href="#"><h3>&nbsp;완료 문서함</h3></a>
+                  <ul>
+                      <li><a href="#">　　　- 기안 완료</a></li>
+                      <li><a href="#">　　　- 결재 완료</a></li>
+                      <li><a href="#">　　　- 공람 완료</a></li>
+                      <li><a href="#">　　　- 저장 문서</a></li>
+                  </ul> 
+              </li>
+      <li><a href="#"><h3>&nbsp;임시저장</h3></a>
+        <ul>
+        <li><a href="#">　　　- 기안 문서</a></li>
+        <li><a href="#">　　　- 반려 문서</a></li>
+      </li>
+        </ul>
+      </li>
+    </ul>
+    </nav>
+	</aside>
+    <main>
+      <h1 style="margin-right: 1200px; color : rgb(21, 34, 106)">진행 문서함</h1>
+      <div style="display: flex">
+        <div class="card" style="flex: 1">
+          <h2 style="color: rgba(76, 76, 121, 0.993);">기 안</h2>
+          <div class="inner-card">
+            <form>
+              <br />
+              <table>
+                <thead>
+                  <tr>
+                    <th>문서번호</th>
+                    <th>문서유형</th>
+                    <th>제 목</th>
+                    <th>기안자</th>
+                    <th>첨부파일</th>
+                    <th>작성일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 각 DraftDTO 마다 하나의 행을 생성 -->
+                  <!-- draftId, draftTitle, attachments, draftDate 필드를 사용 -->
+                  <tr th:each="draft : ${drafts}" >
+                    <td th:text="${draft.draftId}"></td>
+                    <td th:text="${draft.documentsName}"></td>
+                    <td th:text="${draft.draftTitle}"></td>
+                    <td th:text="${draft.memberName}"></td>
+                    <!-- attachments 필드가 null 이 아닐 경우 'O', null 일 경우 'X' 출력 -->
+                    <td th:text="${draft.attachmentUuidName != null ? 'O' : 'X'}"></td>
+                    <td th:utext="${#dates.format(draft.draftDate, 'yyyy년MM월dd일 　HH:mm')}"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+	</main>
+</body>
+</html>

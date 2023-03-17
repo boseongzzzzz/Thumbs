@@ -5,20 +5,24 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @Rollback(value = false)
 @Slf4j
 @Transactional
-@RequiredArgsConstructor
+@SpringBootTest
 class MemberTest {
 
-    MemberRepository memberRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
     @PersistenceContext
     EntityManager em;
@@ -42,6 +46,6 @@ class MemberTest {
 
         //then
 
-//        assertEquals(member1, member);
+        assertEquals(member1, member);
     }
 }
