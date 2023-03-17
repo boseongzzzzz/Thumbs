@@ -104,6 +104,8 @@
             outline: none;
             border-color: #116be8d6;
          }
+
+
          @media screen and (min-width: 100px) {
             main {
                max-width: 3000px;

@@ -31,7 +31,8 @@ public class GianController {
 
     @GetMapping("/promotion-gian")
     public String goPromotionGian(Authentication authentication, Model model){
-        long userId = Long.parseLong(authentication.getName());
+//        long userId = Long.parseLong(authentication.getName());
+        long userId = 1L;
         model.addAttribute("userId", gianService.selectUserTag(userId));
         return "content/gian/PromotionGian";
     }
