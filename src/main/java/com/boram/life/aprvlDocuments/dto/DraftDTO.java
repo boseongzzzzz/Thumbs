@@ -27,9 +27,11 @@ public class DraftDTO {
     private String draftMember2;
     private String draftMember3;
     private String attachmentUuidName;
+    private String documentsName;
 
-    public DraftDTO(Long draftId, String draftTitle, String memberName, String attachmentUuidName, Date draftDate) {
+    public DraftDTO(Long draftId, String documentsName, String draftTitle, String memberName, String attachmentUuidName, Date draftDate) {
         this.draftId = draftId;
+        this.documentsName = documentsName;
         this.draftTitle = draftTitle;
         this.draftDate = draftDate;
         this.memberName = memberName;

@@ -13,8 +13,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DraftRepository extends JpaRepository<Draft, Long> {
-    @Query("SELECT new com.boram.life.aprvlDocuments.dto.DraftDTO(d.draftId, d.draftTitle, m.memberName, a.attachmentUuidName, d.draftDate) " +
-            "FROM Draft d JOIN d.draftMember1 m LEFT JOIN d.attachmentsList a " +
+    @Query("SELECT new com.boram.life.aprvlDocuments.dto.DraftDTO(d.draftId, f.documentsName, d.draftTitle, m.memberName, a.attachmentUuidName, d.draftDate) " +
+            "FROM Draft d JOIN d.draftMember1 m LEFT JOIN d.attachmentsList a JOIN d.document f " +
             "WHERE d.draftStatus = 2")
     List<DraftDTO> findAllByDraftStatus(@Param("d.draftStatus") int draftStatus);
+
+    
 }
