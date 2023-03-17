@@ -15,16 +15,16 @@ public class Member {
     // 회원 번호 (SEQ), 회원 DB상 입력순번
     @GeneratedValue
     @Column(name = "member_no")
-    private Long MemberNo;
+    private Long memberNo;
 
     // 회원 아이디 (사번으로 부여된 아이디, 사번을 SEQ로 할 수 없어서 새로 만듦)
     @Id
     @Column(name = "member_id")
-    private Long MemberId;
+    private Long memberId;
 
     // 회원 비밀번호
     @Column(name = "member_pw")
-    private String MemberPw;
+    private String memberPw;
 
 
 
@@ -32,15 +32,15 @@ public class Member {
 
     // 회원 이름 : 개명 시, 관리자가 관리자 페이지에서 수정
     @Column(name = "member_name")
-    private String MemberName;
+    private String memberName;
 
     // 회원 성별 : 성전환 시, 관리자가 관리자 페이지에서 수정
     @Column(name = "member_gender")
-    private String MemberGender;
+    private String memberGender;
 
     // 회원 주민등록번호
     @Column(name = "member_reg_no")
-    private String MemberRegNo;
+    private String memberRegNo;
 
     // 회원 권한 : 권한 변경 시, 관리자가 관리자 페이지에서 수정
     @ManyToOne(fetch = FetchType.LAZY)
@@ -53,14 +53,14 @@ public class Member {
 
     // 회원 이메일
     @Column(name = "member_email")
-    private String MemberEmail;
+    private String memberEmail;
 
     // 회원 주소
     @Column(name = "member_address")
-    private String MemberAddress;
+    private String memberAddress;
 
     // 회원 소개
     @Column(name = "member_introduction")
-    private String MemberIntroduction;
+    private String memberIntroduction;
 
 }

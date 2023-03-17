@@ -15,26 +15,26 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class DraftDTO {
-    private Long draftId;
-    private String draftTitle;
-    private String draftDetails;
-    private Date draftDate;
-    private String draftStatus;
-    private Date draftFinalApprove;
-    private Reject DraftReject;
+    private Long documentNo;
+    private String documentTitle;
+    private String documentDetails;
+    private Date documentDraftDate;
+    private String documentStatus;
+    private Date documentFinalApprove;
+    private Reject documentReject;
     private Documents document;
-    private String memberName;
-    private String draftMember2;
-    private String draftMember3;
+    private String approvalMember1;
+    private String approvalMember2;
+    private String approvalMember3;
     private String attachmentUuidName;
-    private String documentsName;
+    private String formName;
 
-    public DraftDTO(Long draftId, String documentsName, String draftTitle, String memberName, String attachmentUuidName, Date draftDate) {
-        this.draftId = draftId;
-        this.documentsName = documentsName;
-        this.draftTitle = draftTitle;
-        this.draftDate = draftDate;
-        this.memberName = memberName;
+    public DraftDTO(Long documentNo, String formName, String documentTitle, String approvalMember1, String attachmentUuidName, Date documentDraftDate) {
+        this.documentNo = documentNo;
+        this.formName = formName;
+        this.documentTitle = documentTitle;
+        this.documentDraftDate = documentDraftDate;
+        this.approvalMember1 = approvalMember1;
         this.attachmentUuidName = attachmentUuidName;
     }
 }

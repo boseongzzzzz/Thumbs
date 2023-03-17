@@ -1,6 +1,6 @@
 package com.boram.life.aprvlDocuments.dto;
 
-import com.boram.life.domain.Draft;
+import com.boram.life.domain.Documents;
 import lombok.*;
 
 @Getter
@@ -18,5 +18,5 @@ public class AttachmentsDTO {
 
     private String attachmentSavePath;
 
-    private Draft draft;
+    private Documents attachedToDocument;
 }

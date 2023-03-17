@@ -24,15 +24,15 @@ public class Documents {
     // 문서 1결재자 (=기안자)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member ApprovalMember1;
+    private Member approvalMember1;
 
     // 문서 2결재자 (=중간결재자)
     @Column(name = "document_Member2")
-    private String ApprovalMember2;
+    private String approvalMember2;
 
     // 문서 3결재자 (=최종결재자)
     @Column(name = "document_member3")
-    private String ApprovalMember3;
+    private String approvalMember3;
 
     // 문서 제목
     @Column(name = "document_title")
@@ -43,8 +43,9 @@ public class Documents {
     private String documentDetails;
 
     // 문서 상태
+    // 1=기안중, 2=...? (정해서 쓰면 됩니다)
     @Column(name = "document_status")
-    private String documentStatus;
+    private Long documentStatus;
 
     // 문서 기안 일자
     @Column(name = "document_draft_date")
@@ -60,6 +61,6 @@ public class Documents {
 
     // 문서 첨부파일
     @OneToMany(mappedBy = "attachmentNo")
-    private List<Attachments> documentAttachments;
+    private List<Attachments> attachmentsList;
 
 }

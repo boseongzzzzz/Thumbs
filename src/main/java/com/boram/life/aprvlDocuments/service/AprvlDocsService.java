@@ -1,6 +1,6 @@
 package com.boram.life.aprvlDocuments.service;
 
-import com.boram.life.domain.Draft;
+import com.boram.life.domain.Documents;
 import com.boram.life.aprvlDocuments.dto.DraftDTO;
 import com.boram.life.aprvlDocuments.repository.DraftRepository;
 import org.modelmapper.ModelMapper;
