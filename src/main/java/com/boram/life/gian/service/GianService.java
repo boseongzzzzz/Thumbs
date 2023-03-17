@@ -1,7 +1,7 @@
 package com.boram.life.gian.service;
 
 import com.boram.life.api.FileUploadUtil;
-import com.boram.life.domain.Draft;
+import com.boram.life.domain.Documents;
 import com.boram.life.gian.dto.GianDTO;
 import com.boram.life.gian.repository.GianRepository;
 import com.boram.life.gian.repository.PositionRepository;
@@ -52,33 +52,33 @@ public class GianService {
         log.info("[GianService] registGian 메소드 시작 : 입력한 기안 폼을 DB에 등록하는 프로세스 시작");
         log.info("[GianService] GianDTO (사용자가 입력한 폼 내용) : " + gianDTO);
 
-        gianDTO.setDraftMember1(memberRepository.findMember(Long.valueOf(authentication.getName())));
+        gianDTO.setApprovalMember1(memberRepository.findMember(Long.valueOf(authentication.getName())));
 
         // 1. 필수요소 체크 및 처리
-        if (gianDTO.getDraftTitle()==null){
+        if (gianDTO.getDocumentTitle()==null){
             return "제목을 입력해주세요!";
 
-//        } else if (gianDTO.getDraftDetails()==null) {
+//        } else if (gianDTO.getDocumentDetails()==null) {
 //            return "내용을 입력해주세요!"; <- 내용이 배열로 들어오는 것도 있고 해서 일단 주석화.
 
-        } else if (gianDTO.getDraftMember1()==null) {
+        } else if (gianDTO.getApprovalMember1()==null) {
             return "기안자가 지정되지 않았습니다! (로그인을 확인해보세요)";
 
-        } else if (gianDTO.getDraftMember2()==null) {
+        } else if (gianDTO.getApprovalMember2()==null) {
             return "중간 결재자가 지정되지 않았습니다!";
 
-        } else if (gianDTO.getDraftMember3()==null) {
+        } else if (gianDTO.getApprovalMember3()==null) {
             return "최종 결재자가 지정되지 않았습니다!";
 
-        } else if (gianDTO.getDocument().getDocumentsId()==1){
+        } else if (gianDTO.getForm().getFormNo()==1){
             // 문서 형식에 따른 처리 1
             // 문서형식1은 아마 보직(position)
 
-        } else if (gianDTO.getDocument().getDocumentsId()==2){
+        } else if (gianDTO.getForm().getFormNo()==2){
             // 문서 형식에 따른 처리 2
             // 문서형식2는 아마 진급(promotion)
 
-        } else if (gianDTO.getDocument().getDocumentsId()==3){
+        } else if (gianDTO.getForm().getFormNo()==3){
             // 문서 형식에 따른 처리 3
             // 문서형식3은 아마 징계(punishment)
         }
@@ -98,7 +98,7 @@ public class GianService {
 
             log.info("[GianService] 첨부파일명 : " + replaceFileName);
 
-            Draft newGian = modelMapper.map(gianDTO, Draft.class);
+            Documents newGian = modelMapper.map(gianDTO, Documents.class);
 
             gianRepository.save(newGian);
 
@@ -120,7 +120,7 @@ public class GianService {
         String position = positionRepository.getReferenceById(Integer.valueOf((int)userId)).getPositionDepartment().getDeptName();
 
         //멤버의 '직책'를 가져오는 메소드
-        String grade = positionRepository.getReferenceById(Integer.valueOf((int)userId)).getPositionRank();
+        String grade = positionRepository.getReferenceById(Integer.valueOf((int)userId)).getPositionDuty();
 
         // 멤버의 '이름'을 가져오는 메소드 (* 현재 사용하지 않음)
         String name = memberRepository.findMember(userId).getMemberName();

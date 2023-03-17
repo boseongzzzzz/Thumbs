@@ -3,21 +3,33 @@ package com.boram.life.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
 public class Attachments {
+
+
+    // 첨부파일 번호 (SEQ)
     @Id @GeneratedValue
-    @Column(name = "attachment_id")
-    private Long attachmentId;
+    @Column(name = "attachment_no")
+    private Long attachmentNo;
+
+    // 첨부파일 본명
     @Column(name = "attachment_origin_name")
     private String attachmentOriginName;
+
+    // 첨부파일 UUID명
     @Column(name = "attachment_uuid_name")
     private String attachmentUuidName;
+
+    // 첨부파일 저장경로
     @Column(name = "attachment_save_path")
     private String attachmentSavePath;
+
+    // 첨부파일이 딸린 문서
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "document_no")
+    private Documents documentAttached;
+
 }

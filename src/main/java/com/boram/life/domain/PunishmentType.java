@@ -10,12 +10,15 @@ import javax.persistence.Id;
 
 @Entity
 @Getter @Setter
-public class Promotion {
+public class PunishmentType {
+
+    // 징계종류 번호 (SEQ)
     @Id @GeneratedValue
-    @Column(name = "promotion_id")
-    private Long promotionId;
-    @Column(name = "promotion_position")
-    private String promotionPosition;
-    @Column(name = "promotion_standard")
-    private String promotionStandard;
+    @Column(name = "punishment_type_no")
+    private Long punishmentTypeNo;
+
+    // 징계종류 이름
+    @Column(name = "punishment_type_name")
+    private Long punishmentTypeName;
+
 }

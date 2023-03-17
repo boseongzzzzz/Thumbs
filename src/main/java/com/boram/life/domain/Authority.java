@@ -9,11 +9,17 @@ import javax.persistence.*;
 @Getter @Setter
 @Table(name = "AUTHORITY")
 public class Authority {
+
+    // 권한 번호 (SEQ)
     @Id @GeneratedValue
-    @Column(name = "auth_num")
-    private Long authNum;
+    @Column(name = "auth_no")
+    private Long authNo;
+
+    // 권한 이름
     @Column(name = "auth_name")
     private String authName;
-    @Column(name = "auth_cotent")
+
+    // 권한 내용(어떤 권한인지 묘사)
+    @Column(name = "auth_content")
     private String authContent;
 }

@@ -8,13 +8,18 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter
 public class Department {
-    @Id @GeneratedValue
-    @Column(name = "dept_id")
-    private Long deptId;
 
+    // 부서 번호 (SEQ)
+    @Id @GeneratedValue
+    @Column(name = "dept_no")
+    private Long deptNo;
+
+    // 부서 이름
     @Column(name = "dept_name")
     private String deptName;
 
-    @Column(name = "dept_phone")
-    private String deptPhone;
+    // 상위(참조) 부서 (: null일 시 스스로 상위부서가 되고, 숫자가 들어오면 해당 숫자를 deptNo로 가지는 부서의 하위부서로 편성됨)
+    @Column(name = "dept_reference")
+    private Long deptRef;
+
 }

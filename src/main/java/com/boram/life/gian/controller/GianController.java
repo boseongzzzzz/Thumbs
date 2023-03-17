@@ -46,13 +46,18 @@ public class GianController {
 
     @GetMapping("/common-gian")
     public ModelAndView goCommonGian(Authentication authentication, ModelAndView mv){
+
+        // userId로 '부서'+'직급'+'이름'을 가져오기 : 로그인 시 id가 사번이 들어와야 하는데 user로만 로그인 가능해서 안됨
 //        long userId = Long.parseLong(authentication.getName());   <-- 로그인 시 id로 "user"가 들어와서 NumberFormatException이 발생
 //        log.info("[gianService] authentication.getName() : " + authentication.getName() );
 //        mv.addObject("userId", gianService.selectUserTag(userId));
 
-        // 안되니까 일단 임시로 값 세팅
         // userId로 '부서'+'직급'+'이름'을 가져왔다고 가정하고 addOject
         mv.addObject("userId", "인사부 주임 김보성");
+
+        // 조직도를 위한 조직 세팅
+
+
         mv.setViewName("content/gian/GianWithoutForm.html");
 
         return mv;
