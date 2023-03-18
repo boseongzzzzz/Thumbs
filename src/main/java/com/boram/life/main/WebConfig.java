@@ -15,6 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/","classpath:/templates/");
+
     }
 
     // 웹 페이지 전역에서 발생하는 오류에 대해 인터셉트해 처리하는 설정
@@ -22,4 +23,5 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new WebpageException());
     }
+
 }

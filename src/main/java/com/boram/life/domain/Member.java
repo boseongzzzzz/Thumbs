@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 
 @Entity
@@ -52,9 +53,21 @@ public class Member {
     @Column(name = "member_status")
     private Long memberStatus;
 
+    // 입사일 : 회사 밖에서 사람이 들어온 날 (회사 내부에서 사람이 도는 '배정'과는 별개)
+    @Column(name = "join_date")
+    private Date joinDate;
+
+    // 퇴사일 : 회사 밖으로 사람이 나간 날  (정직, 휴직 등 회사 내부인인 상황이 유지되는 징계와는 별개)
+    @Column(name = "resign_date")
+    private Date resignDate;
+
 
 
     /* 추가 정보, 개별 회원이 마이페이지에서 수정 가능한 정보 */
+
+    // 회원 사진
+    @OneToOne(mappedBy = "pictureMember")
+    private Picture memberPicture;
 
     // 회원 이메일
     @Column(name = "member_email")

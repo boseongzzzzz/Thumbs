@@ -3,6 +3,8 @@ package com.boram.life.admin.dto;
 import com.boram.life.domain.Authority;
 import lombok.*;
 
+import java.sql.Date;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -25,5 +27,9 @@ public class EssentialMemberInfoDTO {
     private Authority authority;
 
     private Long memberStatus;
+
+    private Date joinDate;
+
+    private Date resignDate;
 
 }

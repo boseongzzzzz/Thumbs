@@ -29,6 +29,10 @@ public class Attachments {
     @Column(name = "attachment_save_path")
     private String attachmentSavePath;
 
+    // 첨부파일 유효(=삭제되지 않음) 여부
+    @Column(name = "attachment_is_valid")
+    private boolean isValid;
+
     // 첨부파일이 딸린 문서
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "document_no")

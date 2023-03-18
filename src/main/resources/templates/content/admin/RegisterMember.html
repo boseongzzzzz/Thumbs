@@ -6,730 +6,467 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/header.css">
-    <link rel="stylesheet" type="text/css" href="../css/approval.html">
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
-    <link rel="stylesheet" type="text/css" href="../css/Gian.css">
+    <link rel="stylesheet" type="text/css" href="../css/Manage.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js">
+
     </script>
 
-    <style>
-        /* 결재라인 트리 스타일 */
-        #tree li {
-            list-style-type: none;
-            margin-left: 10px;
-            position: relative;
-        }
 
-        #tree li:before {
-            content: "";
-            position: absolute;
-            top: -7px;
-            bottom: 0;
-            left: -14px;
-            border-left: 1px solid #ccc;
-            width: 1px;
-        }
-
-        #tree li:last-child:before {
-            height: 30px;
-        }
-
-        #tree li:after {
-            content: "";
-            position: absolute;
-            top: -7px;
-            bottom: 0;
-            left: -14px;
-            border-top: 1px solid #ccc;
-            width: 15px;
-        }
-
-        #tree li a {
-            text-decoration: none;
-            color: #333;
-        }
-    </style>
-
-    <title>배정 및 보직 기안하기</title>
+    <title>관리자 페이지</title>
 </head>
 
 <body>
-    <header>
-        <div class="header-left">
-
-        </div>
-        <div class="header-right">
-            <nav>
-                <ul>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Account</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <aside>
-        <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
-        <nav>
-            <h2 style="color: rgba(0, 0, 0, 0.33)">&nbsp;&nbsp;결재</h2>
-            <ul>
-                <li><a href="#">
-                        <h3>&nbsp;진행 문서함</h3>
-                    </a>
-                    <ul>
-                        <li><a href="#">　　　- 기안</a></li>
-                        <li><a href="#">　　　- 결재</a></li>
-                        <li><a href="#">　　　- 참조</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <h3>&nbsp;완료 문서함</h3>
-                    </a>
-                    <ul>
-                        <li><a href="#">　　　- 기안 완료</a></li>
-                        <li><a href="#">　　　- 결재 완료</a></li>
-                        <li><a href="#">　　　- 공람 완료</a></li>
-                        <li><a href="#">　　　- 저장 문서</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">
-                        <h3>&nbsp;임시저장</h3>
-                    </a>
-                    <ul>
-                        <li><a href="#">　　　- 기안 문서</a></li>
-                        <li><a href="#">　　　- 반려 문서</a></li>
-                </li>
-            </ul>
-            </li>
-            </ul>
-        </nav>
-    </aside>
-    <main>
-        <div style="height: 100px; margin:10px; padding:10px"> <!-- 기본 폼 : 선택한 서식 및 현재 작업을 알려주는 헤드라인 -->
-            <h1>'배정 및 보직' 문서 기안하기</h1>
-        </div>
-
-        <div label="결재라인" style="height: 110px; border:1px solid lightgray; margin:10px; padding:10px; width:100%">
-
-            <!-- 기본 폼 : 결재라인 추가 -->
-            <div style="float:left; margin:10px; width: 8%;">결재라인　:</div>
-
-            <div class="form-group" style="float:left; margin:10px; width:40%;">
-                <div style="width:20%;">
-                    <label for="midApprover">중간 결재자 :</label>
-                </div>
-                <div style="clear:both; float:left; width:100%;">
-                    <div style="float:left; margin:10px; width:60%;">
-                        <input type="text" class="form-control" id="midApprover" name="midApprover"
-                            placeholder="중간 결재자를 선택하세요." readonly="">
-                    </div>
-                    <div style="float:left; margin:10px; width:20%;">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#orgChartModal1">선택하기
-                        </button>
-                    </div>
-                </div>
-                <!-- 중간 결재자를 위한 조직도 모달 -->
-                <div class="modal fade" id="orgChartModal1" role="dialog" data-backdrop="false">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">중간(2차) 결재자를 선택하세요.</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div id="midApproverTree"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<header>
+    <div style="width:100%; float:right;">
+        <div style="float: right; margin-right: 20px">
+            <div style="float: left; margin-right: 30px">
+                <h4 th:text="'관리자 계정 `'+ ${userId} +'` 로그인 중...'"></h4>
+            </div>
+            <div style="float: right;">
+                <a href="/logout"><h4 style="font-weight: bold;">로그아웃</h4></a>
             </div>
 
-            <div class="form-group" style="float:left; margin:10px; width:40%;">
-                <div style="width:20%;">
-                    <label for="finalApprover">최종 결재자 :</label>
-                </div>
-                <div style="clear:both; float:left; width:100%;">
-                    <div style=" float:left; margin:10px; width:60%;">
-                        <input type="text" class="form-control" id="finalApprover" name="finalApprover"
-                            placeholder="최종 결재자를 선택하세요." readonly="">
-                    </div>
-                    <div style="float:left; margin:10px; width:20%;">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#orgChartModal2">선택하기
-                        </button>
-                    </div>
-                </div>
-                <!-- 최종 결재자를 위한 조직도 모달 -->
-                <div class="modal fade" id="orgChartModal2" role="dialog" data-backdrop="false">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">최종(3차) 결재자를 선택하세요.</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div id="finalApproverTree"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+    </div>
+</header>
+<aside>
+    <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
+    <div style="margin: 0px auto; text-align: center;">
+        <div style="padding: 10px;">
+            <h3>사원 관리</h3>
+            <div style="margin: 10px; padding: 10px; clear: both;">
+                <span><a href="/manage/register-member">신규 사원 추가</a></span><br><br>
+                <span><a href="#">사원 정보 변경</a></span><br><br>
+                <span><a href="#">사원 권한 변경</a></span><br><br>
+            </div>
+            <h3>부서 관리</h3>
+            <div style="margin: 10px; padding: 10px; clear: both;">
+                <span><a href="#">부서 편집</a></span><br><br>
+            </div>
+            <h3>문서 관리</h3>
+            <div style="margin: 10px; padding: 10px; clear: both;">
+                <span><a href="#">문서 복구</a></span><br><br>
             </div>
         </div>
+    </div>
+</aside>
+<main>
+    <div style="height: 100px; margin:10px; padding:10px"> <!-- 기본 폼 : 선택한 서식 및 현재 작업을 알려주는 헤드라인 -->
+        <h1>신규 사원 추가</h1>
+    </div>
 
-        <div label="제목"
-            style="clear:both; height: 70px; border:1px solid lightgray; margin:10px; padding:10px; width:100%;">
-            <!-- 기본 폼 : 제목-->
-            <div sytle="float:left;">
-                <div style="float:left; margin:10px; width:8%;">제　　목　:</div>
-                <div style="float:left; margin:10px; width:88%;"><input type="text" name="draftTitle" id="draftTitle"
-                        placeholder="제목을 입력하세요." style="width:100%">
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        <form id="newMember" action="/manage/register-member" method="post">
 
-        <div style="clear:both; border:1px solid lightgray; margin:10px; padding:10px; width:100%;">
-            <!-- 보직 전용 폼 : 관련 내용 -->
-            <div style="padding:10px">
-                <h3>배정 및 보직 대상자</h3>
-            </div>
-            <div class="container" style="clear:both;">
-                <div class="row" style="width:100%">
-                    <div class="col-md-4" style="clear:both; border:1px solid lightgray; padding:10px;">
-                        <div class="col-md-12" style="height:70px; text-align: center;">
-                            <h3>(~ 에서)</h3>
-                        </div>
-                        <div class="col-md-4" style="clear:both; text-align: center;">부 서 명</div>
-                        <div class="col-md-4" style="text-align: center;">직　　책</div>
-                        <div class="col-md-4" style="text-align: center;">이　　름</div>
-                    </div>
-                    <div class="col-md-2" style="text-align: center; position: relative;">
-                        <div style="position:absolute; left:35%; bottom:0px;">
-                            <h5>대상자 <br> 사원번호</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-5" style="clear:both; border:1px solid lightgray; padding:10px;">
-                        <div class="col-md-12" style="height:70px; text-align: center;">
-                            <h3>(~ 으로)</h3>
-                        </div>
-                        <div class="col-md-4" style="clear:both; text-align: center;">부 서 명</div>
-                        <div class="col-md-4" style="text-align: center;">직　　책</div>
-                        <div class="col-md-4" style="text-align: center;">배정일자</div>
-                    </div>
-                    <div class="col-md-1">
-                        <button type="button" class="btn btn-secondary" onclick="addRow()"
-                            style="position:absolute; bottom:0px;">행 추가 (+)
-                        </button>
-                        <!-- <button class="add-row-button" style="position:absolute; bottom:0px;">행 추가 (+)</button> -->
-                    </div>
-                </div>
-                <div id="position-container">
-                    <div class="row" style="width:100%">
-                        <div class="col-md-4">
-                            <div class="col-md-4" style="clear:both;">
-                                <input type="text" class="form-control" id="exDeptName" placeholder="(기존 부서명)"
-                                    style="text-align: center;" readonly>
-                            </div>
+            <fieldset>
+                <!--                <legend>Essential Information</legend>-->
+                <div style="clear: both; height: 620px; clear:both; border:1px solid lightgray; margin:10px; padding:50px; width:100%;">
+                    <h2>필수 입력 사항</h2><br>
+                    <div style="clear:both; border:1px solid lightgray; margin:10px; padding:30px; width:48%;">
+                        <div style="clear:both; display: flex; width: 100%;">
                             <div class="col-md-4">
-                                <input type="text" class="form-control" id="exDuty" placeholder="(기존 직책)"
-                                    style="text-align: center;" readonly>
+                                <label for="memberId" style="text-align: center; font-size: 15px;">사원 번호 (아이디) :</label>
                             </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" id="empName" placeholder="(사원명)"
-                                    style="text-align: center;" readonly>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" id="memberId" name="essential.memberId"
+                                       placeholder="( 숫자만 입력 가능합니다. )"
+                                       style="text-align: center; display: inline-block;" required>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="empId[]" id="empId"
-                                placeholder="(<- ajax로 출력 예정)" style="width:100%">
-                        </div>
-                        <div class="col-md-5">
+                        <br>
+                        <div style="clear: both; display: flex; width: 100%;">
                             <div class="col-md-4">
-                                <select class="form-select" name="dept[]" style="width:100%">
-                                    <option value=null>선택하세요.</option>
-                                    <option value="기획운영과">기획연수부-기획운영과</option>
-                                    <option value="공공언어과">기획연수부-공공언어과</option>
-                                    <option value="교육연수과">기획연수부-교육연수과</option>
-                                    <option value="어문연구과">어문연구실-어문연구과</option>
-                                    <option value="언어정보과">어문연구실-언어정보과</option>
-                                    <option value="한국어진흥과">어문연구실-한국어진흥과</option>
-                                    <option value="특수언어진흥과">어문연구실-특수언어진흥과</option>
+                                <label for="memberPw" style="text-align: center; font-size: 15px;">비밀번호 :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="memberPw" name="essential.memberPw"
+                                       placeholder="비밀번호를 입력하세요."
+                                       style="text-align: center; display: inline-block;" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberPwCon" style="text-align: center; font-size: 15px;">비밀번호 확인 :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="memberPwCon" name="essential.memberPwCon"
+                                       placeholder="(위의 비밀번호와 같아야 합니다.)"
+                                       style="text-align: center; display: inline-block;" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both;">
+                        <div style="float:left; border:1px solid lightgray; margin:10px; padding:30px; width:48%;">
+                            <div style="clear: both; display: flex; width: 100%;">
+                                <div class="col-md-4">
+                                    <label for="memberName" style="text-align: center; font-size: 15px;">이름 :</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="memberName" name="essential.memberName"
+                                           placeholder="이름을 입력하세요."
+                                           style="text-align: center; display: inline-block;" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="clear: both; display: flex; width: 100%;">
+                                <div class="col-md-4">
+                                    <label for="memberGender" style="text-align: center; font-size: 15px;">성별 :</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-select" name="essential.memberGender" id="memberGender"
+                                            style="text-align: center; height: 30px; width:100%;" required>
+                                        <option value="">선택하세요.</option>
+                                        <option value="F">여성</option>
+                                        <option value="M">남성</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div style="clear:both; display: flex; width: 100%;">
+                                <div class="col-md-4">
+                                    <label for="memberRegNo" style="text-align: center; font-size: 15px;">주민등록번호
+                                        :</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="number" class="form-control" id="memberRegNo"
+                                           name="essential.memberRegNo"
+                                           placeholder="( - 제외, 숫자만 입력 하세요. )"
+                                           style="text-align: center; display: inline-block;" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="float: right; border:1px solid lightgray; margin:10px; padding:30px; width:48%;">
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="authority" style="text-align: center; font-size: 15px;">권한 설정 :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-select" id="authority" name="essential.authority"
+                                        style="text-align: center; height: 30px; width:100%;" required>
+                                    <option value="">선택하세요.</option>
+                                    <option value="EMPLOYEE">일반 사원</option>
+                                    <option value="DOCU">문서 담당자</option>
+                                    <option value="INSA">인사 담당자</option>
+                                    <option value="ADMIN">프로그램 관리자</option>
                                 </select>
                             </div>
+                        </div>
+                        <br>
+                        <div style="clear: both; display: flex; width: 100%;">
                             <div class="col-md-4">
-                                <input type="text" class="form-control" name="duty[]" style="width:100%"
-                                    placeholder="직책을 입력하세요.">
+                                <label for="memberStatus" style="text-align: center; font-size: 15px;">상태 설정 :</label>
                             </div>
+                            <div class="col-md-8">
+                                <select class="form-select" id="memberStatus" name="essential.memberStatus"
+                                        style="text-align: center; height: 30px; width:100%;" required>
+                                    <option value="">선택하세요.</option>
+                                    <option value="1">신규 사원</option>
+                                    <option value="2">복직 사원</option>
+                                    <option value="3">휴직(유급) 사원</option>
+                                    <option value="4">휴직(무급) 사원</option>
+                                    <option value="5">정직 사원</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="clear: both; display: flex; width: 100%;">
                             <div class="col-md-4">
-                                <input type="text" class="form-control" id="positionDate" name="positionDate[]"
-                                    placeholder="일자를 선택하세요.">
+                                <label for="joinDate" style="text-align: center; font-size: 15px;">입사일 :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="joinDate" name="essential.joinDate"
+                                       placeholder="일자를 선택하세요.">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
                 </div>
-            </div>
-        </div>
+            </fieldset>
+            <fieldset>
+                <!--                <legend>Additional Information</legend>-->
+                <div style="height: 430px; clear:both; border:1px solid lightgray; margin:10px; padding:50px; width:100%;">
+                    <h2>선택 입력 사항</h2>
+                    <div style="clear: both;">
+                        <div style="float:left; border:1px solid lightgray; margin:10px; padding:30px; width:48%;">
+                            <div style="clear: both; display: flex; width: 100%;">
+                                <div class="col-md-4">
+                                    <label for="memberEmail" style="text-align: center; font-size: 15px;">이메일 :</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="memberEmail"
+                                           name="additional.memberEmail" placeholder="이메일을 입력하세요."
+                                           style="text-align: center; display: inline-block;">
+                                </div>
+                            </div>
+                            <br>
+                            <div style="clear: both; display: flex; width: 100%;">
+                                <div class="col-md-4">
+                                    <label for="memberAddress" style="text-align: center; font-size: 15px;">주소 :</label>
+                                </div>
+                                <div class="col-md-8">
+                        <textarea class="form-control" id="memberAddress" name="additional.memberAddress" rows="2"
+                                  placeholder="거주지 주소를 입력하세요." style="width: 100%"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="float: right; border:1px solid lightgray; margin:10px; padding:30px; width:48%;">
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberIntroduction" style="text-align: center; font-size: 15px;">자기 소개
+                                    :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="memberIntroduction"
+                                          name="additional.memberIntroduction" rows="5"
+                                          placeholder="자기소개를 입력하세요." style="width: 100%"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 기본 폼 : 붙임문서(첨부파일) 추가 -->
+                    <div style="float:left; margin:10px; width: 100%;">
+                        <label for="file" style="font-size: 23px;">회원 사진 :</label>
+                        <br>
+                        <input type="file" style="border:none" id="file" class="img-thumbnail" accept="pictures/*">
+                    </div>
+                    <!--        &lt;!&ndash; 미리보기 &ndash;&gt; -->
+                    <!--        <div id="showImg2">-->
+                    <!--            <img id="showImg" style="width: 250px; height: 150px;">-->
+                    <!--            <br><br>-->
+                    <!--        </div>-->
 
-        <div label="수신자" style="height:110px; border:1px solid lightgray; margin:10px; padding:10px; width:100%;">
-            <!-- 기본 폼 : 수신자 추가 -->
-            <div style="float:left; margin:10px; width: 8%;">수 신 자　:</div>
-            <div style="float:left; margin:10px; width: 88%">
-                <textarea class="form-control" id="receivers" name="receivers" rows="3" data-toggle="modal"
-                    data-target="#receptionModal" placeholder="클릭하여 수신 대상자를 모두 선택하세요." readonly
-                    style="width: 100%"></textarea>
-            </div>
-            <!-- 조직도 모달 -->
-            <div class="modal fade" id="receptionModal" tabindex="-1" role="dialog" aria-labelledby="deptModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="deptModalLabel">수신 부서를 모두 선택하세요.</h4>
-                        </div>
-                        <div class="modal-body">
-                            <diemployeev id="receptionTree">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">선택</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                    </div>
                 </div>
-            </div>
-        </div>
+            </fieldset>
+        </form>
 
-        </div>
 
-        <div label="참조자" style="height:110px; border:1px solid lightgray; margin:10px; padding:10px; width:100%;">
-            <!-- 기본 폼 : 참조자 추가 -->
-            <div style="float:left; margin:10px; width: 8%;">참 조 자　:</div>
-            <div style="float:left; margin:10px; width: 88%">
-                <textarea class="form-control" id="referrers" name="referrers" rows="3" data-toggle="modal"
-                    data-target="#referenceModal" placeholder="클릭하여 참조 대상자를 모두 선택하세요." readonly=""
-                    style="width: 100%"></textarea>
-            </div>
-            <!-- 조직도 모달 -->
-            <div class="modal fade" id="referenceModal" tabindex="-1" role="dialog" aria-labelledby="deptModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="deptModalLabel">참조 부서를 모두 선택하세요.</h4>
-                        </div>
-                        <div class="modal-body">
-                            <diemployeev id="referenceTree">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">선택</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                    </div>
-                </div>
-            </div>
+        <script>
+            $('input[type=file]').on("change", (function () {
+                let formData = new FormData();
+                formData.append("file", $("#file")[0].files[0]);
 
-        </div>
-
-        <div label="붙임문서" style="height:100px; border:1px solid lightgray; margin:10px; padding:10px; width:100%;">
-            <!-- 기본 폼 : 붙임문서(첨부파일) 추가 -->
-            <div style="float:left; margin:10px; width: 8%;">
-                <label for="approval-attachment">첨부 파일:</label>
-                <input type="file" style="border:none" id="approval-attachment">
-            </div>
+                $.ajax({
+                    url: "register-member/addPicture",
+                    type: 'post',
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    data: formData,
+                    success: function (pictureMember) {
+                        alert("사진업로드에 성공하였습니다!");
+                        $('#pictureMember').val(pictureMember);
+                    }
+                    , error: function () {
+                        alert("실패하였습니다.");
+                    }
+                })
+            }));
+        </script>
+        <!-- 숨겨진 필드 -->
+        <div style="display:none">
+            <!--        <input name="refundRule" th:value="${ param.refundRule }">-->
+            <!--        <input name="tel" th:value="${ param.tel }">-->
+            <!--        <input name="pjEmail" th:value="${ param.pjEmail }">-->
+            <input name="memberPicture" id="memberPicture" th:value="${ param.memberPicture }">
         </div>
 
         <div style="clear:both; height: 100px;"> <!-- 기본 폼 : 임시저장 및 제출 -->
             <br>
             <div style="float: right; margin:10px; padding:10px;">
-                <button class="add-temp-gian" onclick="submitForm()">기안시작</button>
+                <button class="btn btn-primary" onclick="submitForm()">사원 등록</button>
             </div>
         </div>
+    </div>
 
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
-        <script
+    <script
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 
-        <script>
+    <script>
 
-            // 조직도 관련 부분 : 시작
-
-            // 결재라인을 위한 부서 데이터
-            let departmentsForApproval = [
-                { dept_id: 1, dept_name: '국립국어원장', parent_dept_id: null },
-                { dept_id: 2, dept_name: '기획연수부', parent_dept_id: 1 },
-                { dept_id: 3, dept_name: '어문연구실', parent_dept_id: 1 },
-                { dept_id: 4, dept_name: '기획운영과', parent_dept_id: 2 },
-                { dept_id: 5, dept_name: '공공언어과', parent_dept_id: 2 },
-                { dept_id: 6, dept_name: '교육연수과', parent_dept_id: 2 },
-                { dept_id: 7, dept_name: '어문연구과', parent_dept_id: 3 },
-                { dept_id: 8, dept_name: '사전팀', parent_dept_id: 7 },
-                { dept_id: 9, dept_name: '언어정보과', parent_dept_id: 3 },
-                { dept_id: 10, dept_name: '한국어진흥과', parent_dept_id: 3 },
-                { dept_id: 11, dept_name: '특수언어진흥과', parent_dept_id: 3 }
-            ];
-
-            // 수신참조를 위한 부서 데이터
-            let departmentsForReception = [
-                { dept_id: 1, dept_name: '국립국어원장', parent_dept_id: null },
-                { dept_id: 2, dept_name: '기획연수부', parent_dept_id: 1 },
-                { dept_id: 3, dept_name: '어문연구실', parent_dept_id: 1 },
-                { dept_id: 4, dept_name: '기획운영과', parent_dept_id: 2 },
-                { dept_id: 5, dept_name: '공공언어과', parent_dept_id: 2 },
-                { dept_id: 6, dept_name: '교육연수과', parent_dept_id: 2 },
-                { dept_id: 7, dept_name: '어문연구과', parent_dept_id: 3 },
-                { dept_id: 8, dept_name: '사전팀', parent_dept_id: 7 },
-                { dept_id: 9, dept_name: '언어정보과', parent_dept_id: 3 },
-                { dept_id: 10, dept_name: '한국어진흥과', parent_dept_id: 3 },
-                { dept_id: 11, dept_name: '특수언어진흥과', parent_dept_id: 3 },
-                { dept_id: 99, dept_name: '대외 발송', parent_dept_id: null }
-            ];
-
-            // 결재라인을 위한 직원 데이터
-            var employeesForApproval = [
-                { emp_id: 2, emp_name: '김보성', dept_id: 4 },
-                { emp_id: 3, emp_name: '이현구', dept_id: 4 },
-                { emp_id: 4, emp_name: '강태오', dept_id: 4 },
-                { emp_id: 5, emp_name: '신보람', dept_id: 5 },
-                { emp_id: 6, emp_name: '박준영', dept_id: 5 },
-                { emp_id: 7, emp_name: '이상목', dept_id: 5 },
-                { emp_id: 8, emp_name: '서도원', dept_id: 6 },
-                { emp_id: 9, emp_name: '장민재', dept_id: 6 },
-                { emp_id: 10, emp_name: '조성일', dept_id: 6 },
-                { emp_id: 11, emp_name: '유승제', dept_id: 8 },
-                { emp_id: 12, emp_name: '하이미', dept_id: 8 },
-                { emp_id: 13, emp_name: '디어', dept_id: 8 }
-            ];
-
-            // 기본 DOM 구성
-            $(function () {
-                let tree1 = createOrgChartForApproval(departmentsForApproval, employeesForApproval);
-                $('#midApproverTree').append(tree1);
-                $('#finalApproverTree').append(tree1);
-
-                // 수신참조 : 조직도 트리 생성 및 선택
-                let receivers = []; // 선택된 수신자 부서를 담을 배열
-                let referrers = []; // 선택된 참조자 부서를 담을 배열
-
-                $('#receptionTree').treeview({
-                    data: createReceptionTree(departmentsForReception, null),
-                    onNodeSelected: function (event, data) {
-                        if (data.selectable) { // 선택 가능한 노드인 경우
-                            // 선택된 부서를 배열에 추가
-                            receivers.push(data.text);
-
-                            // textarea 업데이트
-                            $('#receivers').val(receivers.join(', '));
-
-                            // 선택한 노드를 disable
-                            $('#receptionTree').treeview('disableNode', [data.nodeId, { silent: true }]);
-                        }
-                    }
-                });
-
-                $('#referenceTree').treeview({
-                    data: createReceptionTree(departmentsForReception, null),
-                    onNodeSelected: function (event, data) {
-                        if (data.selectable) { // 선택 가능한 노드인 경우
-                            // 선택된 부서를 배열에 추가
-                            referrers.push(data.text);
-
-                            // textarea 업데이트
-                            $('#referrers').val(referrers.join(', '));
-
-                            // 선택한 노드를 disable
-                            $('#referenceTree').treeview('disableNode', [data.nodeId, { silent: true }]);
-                        }
-                    }
-                });
-
+        // 달력 초기 설정
+        $(function () {
+            $('#joinDate').datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true,
+                todayHighlight: true,
+                immediateUpdate: true,
+                title: "입사 일자",
             });
 
-            // 결재라인 : 조직도 생성 함수
-            function createOrgChartForApproval(departmentsForApproval, employeesForApproval) {
-                let rootDept = departmentsForApproval.filter(function (dept) {
-                    return dept.parent_dept_id === null;
-                })[0];
+        });
 
-                let orgChartHtml = '<ul>';
-                orgChartHtml += createDepartmentNode(rootDept, employeesForApproval);
-                orgChartHtml += '</ul>';
 
-                return orgChartHtml;
-            }
+        // 등록 버튼 눌렀을 시 처리
+        function submitForm() {
 
-            // 결재라인 : 부서 노드 생성 함수
-            function createDepartmentNode(dept, employeesForApproval) {
-                let departmentNode = '';
-                departmentNode += '<li>';
+            let message = "";
+            let check = true;
 
-                // 부서 이름을 span 태그로 변경
-                departmentNode += '<span>' + dept.dept_name + '</span>';
-
-                // 자식 부서 추가
-                let childdepartmentsForApproval = departmentsForApproval.filter(function (subDept) {
-                    return subDept.parent_dept_id === dept.dept_id;
-                });
-
-                if (childdepartmentsForApproval.length > 0) {
-                    departmentNode += '<ul>';
-
-                    for (let i = 0; i < childdepartmentsForApproval.length; i++) {
-                        let childDept = createDepartmentNode(childdepartmentsForApproval[i], employeesForApproval);
-                        departmentNode += childDept;
-                    }
-
-                    departmentNode += '</ul>';
+            // 사원번호 null 체크
+            function checkMemberIdIsNull() {
+                let memberId = document.getElementById("memberId").value.trim();
+                if (memberId === "") {
+                    message = "사원번호를 입력해주세요.";
+                    check = false;
                 }
+                check = true;
+            }
 
-                // 자식 부서 없으면 직원 추가
-                let employeesInDept = employeesForApproval.filter(function (emp) {
-                    return emp.dept_id === dept.dept_id;
-                });
-
-                if (employeesInDept.length > 0) {
-                    departmentNode += '<ul>';
-
-                    for (let j = 0; j < employeesInDept.length; j++) {
-                        let employeeNode = createEmployeeNode(employeesInDept[j], dept.dept_name);
-                        departmentNode += employeeNode;
-                    }
-                    departmentNode += '</ul>';
+            // 사원번호 숫자값 체크
+            function checkMemberId() {
+                let memberId = document.getElementById("memberId");
+                if (isNaN(memberId.value)) {
+                    message = "사원번호는 숫자만 가능합니다.";
+                    memberId.value = "";
+                    check = false;
                 }
-
-                departmentNode += '</li>';
-
-                return departmentNode;
+                check = true;
             }
 
-            // 결재라인 : 직원 노드 생성 함수
-            function createEmployeeNode(emp, deptName) {
-                let employeeNode = '';
-                employeeNode += '<li><a href="#">' + deptName + ' ' + emp.emp_name + '</a></li>';
-                return employeeNode;
-            }
-
-            // 수신 : 조직도 트리 노드 생성 함수
-            function createReceptionNode(dept) {
-                let node = {
-                    text: dept.dept_name,
-                    dept_id: dept.dept_id,
-                    selectable: false
-                };
-
-
-                return node;
-            }
-
-            // 참조 : 조직도 트리 노드 생성 함수
-            function createReferenceNode(dept) {
-                let node = {
-                    text: dept.dept_name,
-                    dept_id: dept.dept_id,
-                    selectable: false
-                };
-
-
-                return node;
-            }
-
-            // 수신 : 조직도 트리 노드 재귀 생성 함수
-            function createReceptionTree(departmentsForReception, parent_id) {
-                let tree2 = [];
-
-                for (let i = 0; i < departmentsForReception.length; i++) {
-                    if (departmentsForReception[i].parent_dept_id === parent_id) {
-                        let node = createReceptionNode(departmentsForReception[i]);
-                        let children = createReceptionTree(departmentsForReception, departmentsForReception[i].dept_id);
-
-                        if (children.length > 0) {
-                            node.nodes = children;
-                            node.selectable = false;
-                        } else {
-                            node.selectable = true;
-                        }
-
-                        tree2.push(node);
-                    }
+            // 비밀번호 null 체크
+            function checkMemberPwIsNull() {
+                let memberPw = document.getElementById("memberPw").value.trim();
+                if (memberPw === "") {
+                    message = "비밀번호를 입력해주세요.";
+                    check = false;
                 }
-
-                return tree2;
+                check = true;
             }
 
-            // 참조 : 조직도 트리 노드 재귀 생성 함수
-            function createReferenceTree(departmentsForReception, parent_id) {
-                let tree3 = [];
-
-                for (let i = 0; i < departmentsForReception.length; i++) {
-                    if (departmentsForReception[i].parent_dept_id === parent_id) {
-                        let node = createReferenceNode(departmentsForReception[i]);
-                        let children = createReferenceTree(departmentsForReception, departmentsForReception[i].dept_id);
-
-                        if (children.length > 0) {
-                            node.nodes = children;
-                            node.selectable = false;
-                        } else {
-                            node.selectable = true;
-                        }
-
-                        tree3.push(node);
-                    }
+            // 비밀번호 동일 체크
+            function checkMemberPw() {
+                let memberPw = document.getElementById("memberPw");
+                let memberPwCon = document.getElementById("memberPwCon");
+                if (memberPw.value != memberPwCon.value) {
+                    message = "비밀번호와 비밀번호 확인란의 입력 부분이 다릅니다.";
+                    memberPw.value = "";
+                    memberPwCon.value = "";
+                    check = false;
                 }
-
-                return tree3;
+                check = true;
             }
 
-
-            // // 수신참조 : 조직도에서 수신참조부서를 모두 선택 후 '선택' 버튼을 누른 경우
-            // $('#deptSelectButton').on('click', function () {
-            //     $('#deptModal').modal('hide');
-            // });
-
-            // // 수신참조 : 조직도 트리 노드 선택 여부 처리
-            // $('#receptionTree').on('nodeSelected', function (event, data) {
-            //     if (data.nodes) {
-            //         let selectable = true;
-            //         for (let i = 0; i < data.nodes.length; i++) {
-            //             if (data.nodes[i].selectable) {
-            //                 selectable = false;
-            //                 break;
-            //             }
-            //         }
-            //         $('#receptionTree').treeview('setNodeSelected', [data.nodeId, false, { silent: true }]);
-            //         if (selectable) {
-            //             $('#receptionTree').treeview('disableNode', [data.nodeId, { silent: true }]);
-            //         }
-            //     }
-            // });
-
-
-            // 중간결재자 모달에서 부서 선택 시 input 태그에 값 삽입
-            $('#midApproverTree').on('click', 'a', function () {
-                let text = $(this).text()
-                let deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
-                $('#midApprover').val(deptName);
-                $('#orgChartModal1').modal('hide');
-            });
-
-            // 최종결재자 모달에서 부서 선택 시 input 태그에 값 삽입
-            $('#finalApproverTree').on('click', 'a', function () {
-                let text = $(this).text()
-                let deptName = text.split(' ')[0] + ' (직책) ' + text.split(' ')[1];
-                $('#finalApprover').val(deptName);
-                $('#orgChartModal2').modal('hide');
-            });
-
-
-            /* empId로 DeptName 구하는 함수 (일단은 안씀) */
-            // function getDeptNameByEmpId(empId) {
-            //     const emp = employeesForApproval.find((e) => e.emp_id === empId);
-            //     if (emp) {
-            //         const dept = departmentsForApproval.find((d) => d.dept_id === emp.dept_id);
-            //         if (dept) {
-            //             return dept.dept_name;
-            //         }
-            //     }
-            //     return null;
-            // }
-
-
-            // 조직도 관련 부분 : 끝
-
-
-            // 달력 초기 설정
-            $(function () {
-                $('#positionDate').datepicker({
-                    format: "yyyy-mm-dd",
-                    startDate: 'd',
-                    autoclose: true,
-                    todayHighlight: true,
-                    immediateUpdate: true,
-                    title: "배정 및 보직일자",
-                });
-
-            });
-
-            // '행 추가' 버튼 클릭 시 처리
-            function addRow() {
-                let formHtml = `
-                  <div class="row" style="width:100%">
-                    <div class="col-md-4">
-                      <div class="col-md-4" style="clear:both;">
-                        <input type="text" class="form-control" id="exDeptName" placeholder="(기존 부서명)" style="text-align: center;" readonly>
-                      </div>
-                      <div class="col-md-4">
-                        <input type="text" class="form-control" id="exDuty" placeholder="(기존 직책)" style="text-align: center;" readonly>
-                      </div>
-                      <div class="col-md-4">
-                        <input type="text" class="form-control" id="empName" placeholder="(사원명)" style="text-align: center;" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-                      <input type="text" class="form-control" name="empId[]" id="empId" placeholder="(<- ajax로 출력 예정)" style="width:100%">
-                    </div>
-                    <div class="col-md-5">
-                      <div class="col-md-4">
-                        <select class="form-select" name="dept[]" style="width:100%">
-                          <option value=null>선택하세요.</option>
-                          <option value="기획운영과">기획연수부-기획운영과</option>
-                          <option value="공공언어과">기획연수부-공공언어과</option>
-                          <option value="교육연수과">기획연수부-교육연수과</option>
-                          <option value="어문연구과">어문연구실-어문연구과</option>
-                          <option value="언어정보과">어문연구실-언어정보과</option>
-                          <option value="한국어진흥과">어문연구실-한국어진흥과</option>
-                          <option value="특수언어진흥과">어문연구실-특수언어진흥과</option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <input type="text" class="form-control" name="duty[]" style="width:100%" placeholder="직책을 입력하세요.">
-                      </div>
-                      <div class="col-md-4">
-                        <input type="text" class="form-control positionDate" id="positionDate"  name="positionDate" placeholder="일자를 선택하세요.">
-                      </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                  </div>
-                `;
-                document.querySelector('#position-container').insertAdjacentHTML('beforeend', formHtml);
-
-                // 행 추가 시 추가된 폼에 대한 달력 처리
-                $(document).find("input[name=positionDate]").removeClass('hasDatepicker').datepicker({
-                    format: "yyyy-mm-dd",
-                    startDate: 'd',
-                    autoclose: true,
-                    todayHighlight: true,
-                    immediateUpdate: true,
-                    title: "배정 및 보직일자",
-                }).on("changeDate", function (e) {
-                    let positionDate = e.format('yyyy-mm-dd');
-                    $(this).datepicker('hide');
-                });
+            // 이름 null 체크
+            function checkMemberNameIsNull() {
+                let memberName = document.getElementById("memberName").value.trim();
+                if (memberName === "") {
+                    message = "이름을 입력해주세요.";
+                    check = false;
+                }
+                check = true;
             }
 
-            function submitForm(){
-
-
+            // 성별 null 체크
+            function checkMemberGenderIsNull() {
+                let memberGender = document.getElementById("memberGender").value.trim();
+                if (memberGender === "") {
+                    message = "성별을 입력해주세요.";
+                    check = false;
+                }
+                check = true;
             }
 
-        </script>
-    </main>
+            // 주민번호 null 체크
+            function checkMemberRegNoIsNull() {
+                let memberRegNo = document.getElementById("memberRegNo").value.trim();
+                if (memberRegNo === "") {
+                    message = "주민번호를 입력해주세요.";
+                    check = false;
+                }
+                check = true;
+            }
+
+            // 주민번호 숫자값 체크 및 처리
+            function checkMemberRegNo() {
+                let memberRegNo = document.getElementById("memberRegNo");
+                if (isNaN(memberRegNo.value)) {
+                    message = "주민번호는 숫자만 입력하세요.";
+                    memberRegNo.value = "";
+                    check = false;
+                } else {
+                    memberRegNo.value = memberRegNo.splice(0, 6) + "-" + memberRegNo.splice(6, 7);
+                }
+                check = true;
+            }
+
+            // 권한 null 체크
+            function checkMemberAuthorityIsNull() {
+                let authority = document.getElementById("authority").value.trim();
+                if (authority === "") {
+                    message = "권한을 입력해주세요.";
+                    check = false;
+                }
+                check = true;
+            }
+
+            // 상태값 null 체크
+            function checkMemberStatusIsNull() {
+                let memberStatus = document.getElementById("memberStatus").value.trim();
+                if (memberStatus === "") {
+                    message = "회원 상태 값을 입력해주세요.";
+                    check = false;
+                }
+                check = true;
+            }
+
+            // 입사일 null 체크
+            function checkMemberJoinDateIsNull() {
+                let joinDate = document.getElementById("joinDate").value.trim();
+                if (joinDate === "") {
+                    message = "입사일 값을 입력해주세요.";
+                    check = false;
+                }
+                check = true;
+            }
+
+            // 유효성 테스트 함수 실행
+            let functions = [checkMemberIdIsNull, checkMemberId, checkMemberPwIsNull, checkMemberNameIsNull,
+                checkMemberPw, checkMemberGenderIsNull, checkMemberRegNoIsNull, checkMemberRegNo,
+                checkMemberAuthorityIsNull, checkMemberStatusIsNull, checkMemberJoinDateIsNull];
+
+            for (let i = 0; i < functions.length; i++) {
+                functions[i]();
+                if (check === false) {
+                    alert(message);
+                    break;
+                }
+                check = "allTrue";
+
+                // 모두 통과 시 드디어 값 넣고 넘겨줌
+                if (check == "allTrue") {
+                    let newMember = document.querySelector('#newMember');
+
+                    fetch(newMember.action, {
+                        method: 'POST',
+                        body: new FormData(newMember)
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                console.log('신규 사원 등록 성공!');
+                            } else {
+                                console.error('사원 등록 실패!');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+
+                }
+            }
+        }
+
+
+    </script>
+</main>
 </body>
 
 </html>

@@ -2,21 +2,20 @@ package com.boram.life.admin.controller;
 
 import com.boram.life.admin.dto.AdditionalMemberInfoDTO;
 import com.boram.life.admin.dto.EssentialMemberInfoDTO;
+import com.boram.life.admin.dto.PictureDTO;
 import com.boram.life.admin.service.AdminService;
+import com.boram.life.api.fileUpload.FileUploadService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.text.ParseException;
-import java.util.Map;
+import java.io.IOException;
+import java.util.UUID;
 
 import static java.lang.Boolean.valueOf;
 
@@ -28,9 +27,12 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    public AdminController (AdminService adminService) {
+    private final FileUploadService fileUploadService;
+
+    public AdminController (AdminService adminService, FileUploadService fileUploadService) {
 
         this.adminService = adminService;
+        this.fileUploadService = fileUploadService;
 
     }
 
@@ -53,8 +55,8 @@ public class AdminController {
 
     }
 
-    @PostMapping
-    public String registerMember(@ModelAttribute EssentialMemberInfoDTO eMemberInfo, @ModelAttribute AdditionalMemberInfoDTO aMemberInfo
+    @PostMapping("/register-member")
+    public String registerMember(@ModelAttribute("essential") EssentialMemberInfoDTO eMemberInfo, @ModelAttribute("additional") AdditionalMemberInfoDTO aMemberInfo
             , RedirectAttributes rttr) {
 
         // 필수 정보로 회원 가입
@@ -74,7 +76,17 @@ public class AdminController {
 
         }
 
-        return "redirect:/manage/register-member;";
+        return "redirect:/manage/register-member";
     }
+
+    @PostMapping("/register-member/addPicture")
+    public String addPicture(@ModelAttribute PictureDTO pictureDTO, @RequestParam("file") MultipartFile memberPicture){
+
+        fileUploadService.uploadPicture(pictureDTO, memberPicture);
+
+        return pictureDTO.getPictureUrl();
+
+    }
+
 
 }

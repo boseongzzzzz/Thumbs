@@ -1,7 +1,5 @@
 package com.boram.life.gian.service;
 
-import com.boram.life.api.FileUploadUtil;
-import com.boram.life.domain.Documents;
 import com.boram.life.gian.dto.GianDTO;
 import com.boram.life.gian.repository.GianRepository;
 import com.boram.life.gian.repository.PositionRepository;
@@ -16,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.modelmapper.ModelMapper;
 
-import java.io.IOException;
-import java.util.UUID;
 
 
 @Service
@@ -26,6 +22,7 @@ public class GianService {
     private static final Logger log = LoggerFactory.getLogger(GianService.class);
 
     private final GianRepository gianRepository;
+
     private final MemberRepository memberRepository;
 
     private final PositionRepository positionRepository;
@@ -47,7 +44,7 @@ public class GianService {
 
     // 사용자가 입력한 기안 폼을 바탕으로 데이터를 DB에 생성하고, 해당 결과를 돌려준다.
     @Transactional
-    public Object registGian(Authentication authentication, GianDTO gianDTO, MultipartFile gianAttachments) {
+    public Object registGian(Authentication authentication, GianDTO gianDTO, MultipartFile attachment) {
 
         log.info("[GianService] registGian 메소드 시작 : 입력한 기안 폼을 DB에 등록하는 프로세스 시작");
         log.info("[GianService] GianDTO (사용자가 입력한 폼 내용) : " + gianDTO);
@@ -83,33 +80,10 @@ public class GianService {
             // 문서형식3은 아마 징계(punishment)
         }
 
-        // 2. 첨부파일 처리 준비
-        String fileName = UUID.randomUUID().toString().replace("-","");
-        String replaceFileName = null;
-        int result = 0;
+        int result=0;
 
 
-        // 3. FileUploadUtil api 활용, 첨부파일 처리
-        try {
-
-            replaceFileName = FileUploadUtil.saveFile(FILE_DIR, fileName, gianAttachments);
-
-            gianDTO.setAttachmentsUrl(replaceFileName);
-
-            log.info("[GianService] 첨부파일명 : " + replaceFileName);
-
-            Documents newGian = modelMapper.map(gianDTO, Documents.class);
-
-            gianRepository.save(newGian);
-
-            result = 1;
-
-        } catch (IOException e) {
-            FileUploadUtil.deleteFile(FILE_DIR, replaceFileName);
-            throw new RuntimeException(e);
-        }
-
-        return (result > 0) ? result : "첨부파일 처리가 실패했습니다!";
+        return result;
 
     }
 

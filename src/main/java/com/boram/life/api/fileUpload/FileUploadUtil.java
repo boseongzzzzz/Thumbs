@@ -1,8 +1,10 @@
-package com.boram.life.api;
+package com.boram.life.api.fileUpload;
 
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -12,9 +14,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+@Component
 public class FileUploadUtil {
 
     private static final Logger log = LoggerFactory.getLogger(FileUploadUtil.class);
+
     public static String saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
 
         Path uploadPath = Paths.get(uploadDir);
@@ -28,8 +32,9 @@ public class FileUploadUtil {
         try(InputStream inputStream = multipartFile.getInputStream()) {
             Path filePath = uploadPath.resolve(replaceFileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+
         }catch (IOException ex){
-            throw new IOException("Could not save file: " + fileName, ex);
+            throw new IOException("파일을 저장할 수 없습니다. : " + fileName, ex);
         }
 
         return replaceFileName;
@@ -43,10 +48,12 @@ public class FileUploadUtil {
         if(!Files.exists(uploadPath)) {
             result = true;
         }
+
         try {
             Path filePath = uploadPath.resolve(fileName);
             Files.delete(filePath);
             result = true;
+
         }catch (IOException ex){
 
             log.info("Could not delete file: " + fileName, ex);
