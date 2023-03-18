@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>400 : Bad Request </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+
+        body {
+            background-color: #f8f8f8;
+        }
+
+        .error-form-wrapper {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 600px;
+            height: 550px;
+            margin: 0 auto;
+            margin-top: 200px;
+        }
+
+        .error-form-wrapper h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            margin-top: width: 80%;
+            max-width: 150px; /* 로고 이미지의 최대 너비 */
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-form-wrapper">
+                <div style="margin-top: 30px">
+                    <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
+                    <div style="text-align: center; margin: 45px;">
+                        <h2>잘못된 요청입니다.</h2>
+                        <br>
+                        <h5>자세한 사항은 관리자에게 문의하세요.</h5>
+                        <h5>( 오류 코드 : 400 Bad Request )</h5>
+                    </div>
+                    <div style="margin-top: 50px; text-align: center">
+                        <button class="btn btn-primary" onclick="goBack()">이전 페이지로 돌아가기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+</html>

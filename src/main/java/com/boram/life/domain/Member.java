@@ -47,9 +47,14 @@ public class Member {
     @JoinColumn(name = "auth_num")
     private Authority authority;
 
+    // 회원 상태
+    // 1:신규, 2:근무, 3:휴직(유급), 4:휴직(무급), 5:정직(봉급:2/3), 6:퇴사, 7:은퇴(정년)
+    @Column(name = "member_status")
+    private Long memberStatus;
 
 
-    /* 부가 정보, 개별 회원이 마이페이지에서 수정 가능한 정보 */
+
+    /* 추가 정보, 개별 회원이 마이페이지에서 수정 가능한 정보 */
 
     // 회원 이메일
     @Column(name = "member_email")

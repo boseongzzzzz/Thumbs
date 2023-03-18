@@ -22,8 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // ...antPatterns("웹페이지")에 대한 접근은 .hasRole("권한")이 있어야 가능, 혹은 .hasAnyRole("권한1", "권한2") 둘 중 하나의 권한이 있어야 가능.
 
-                // 관리자 페이지(/manager)에 대한 권한 설정
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                // 관리자 페이지(/manage)에 대한 권한 설정
+                .antMatchers("/manage/**").hasRole("ADMIN")
 
                 // 인사명령 결재문서(/gian/(인사명령)) 기안에 대한 권한 설정
                 .antMatchers("/gian/position-gian").hasAnyRole("ADMIN", "INSA")
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public static WebSecurityCustomizer webSecurityCustomizer(){
 
-        return (web) -> web.ignoring().antMatchers("/css/**", "/image/**", "/js/**");
+        return (web) -> web.ignoring().antMatchers("/css/**", "/image/**", "/js/**", "/error/**");
 
     }
 
