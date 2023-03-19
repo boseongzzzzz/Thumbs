@@ -27,11 +27,11 @@ public class Documents {
     private Member approvalMember1;
 
     // 문서 2결재자 (=중간결재자)
-    @Column(name = "document_Member2")
+    @Column(name = "approval_member2")
     private String approvalMember2;
 
     // 문서 3결재자 (=최종결재자)
-    @Column(name = "document_member3")
+    @Column(name = "approval_member3")
     private String approvalMember3;
 
     // 문서 제목
@@ -41,6 +41,14 @@ public class Documents {
     // 문서 내용
     @Column(name = "document_details")
     private String documentDetails;
+
+    // 수신자
+    @Column(name ="document_receivers")
+    private String documentReceivers;
+
+    // 참조자
+    @Column(name = "document_referrers")
+    private String documentReferrers;
 
     // 문서 상태
     // 1=기안중, 2=...? (정해서 쓰면 됩니다)
