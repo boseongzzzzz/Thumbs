@@ -27,6 +27,11 @@ public class AprvlDocsService {
         return drafts.stream().map(draft -> modelMapper.map(draft, DraftDTO.class)).collect(Collectors.toList());
     }
 
+
+    public DraftDTO getSelectedDraft(Long documentNo) {
+        Documents document = draftRepository.findByDocumentNo(documentNo);
+        return modelMapper.map(document, DraftDTO.class);
+    }
 }
 
 

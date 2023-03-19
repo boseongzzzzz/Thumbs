@@ -18,5 +18,6 @@ public interface DraftRepository extends JpaRepository<Documents, Long> {
             "WHERE d.documentStatus = 2")
     List<DraftDTO> findAllByDraftStatus(@Param("d.draftStatus") int draftStatus);
 
+    Documents findByDocumentNo(Long documentNo);
     
 }

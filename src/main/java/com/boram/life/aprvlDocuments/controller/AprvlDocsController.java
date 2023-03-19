@@ -34,9 +34,12 @@ public class AprvlDocsController {
         return "/content/aprvlDocuments/draft";
     }
 
-//    @GetMapping("startGian")
-//    public String getSelectedDraft();
-//    return ""
+    @GetMapping("/{documentNo}")
+    public String showSelectedDraft(@PathVariable Long documentNo, Model model) {
+        DraftDTO draftDTO = draftService.getSelectedDraft(documentNo);
+        model.addAttribute("draftDTO", draftDTO);
+        return "/content/aprvlDocuments/DocumentIng";
+    }
 
 
 }
