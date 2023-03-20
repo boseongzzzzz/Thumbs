@@ -18,13 +18,32 @@
 		<div class="header-right">
 			<nav>
 				<ul>
-					<li><a href="#">Dashboard</a></li>
-					<li><a href="#">Account</a></li>
-					<li><a href="#">Logout</a></li>
-				</ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="/aprvlDocuments/myPage">마이페이지</a></li>
+          <li><a href="#">조직도</a></li>
+          <li><a href="/aprvlDocuments/draft">결재</a></li>
+          <li><a href="#">근무/휴가</a></li>
+          <li><a href="/pay">급여</a></li>
+          <li><a href="/manage">관리자</a></li>
+          <li><a href="/logout">로그아웃</a></li>
+        </ul>
 			</nav> 
 		</div>
 	</header>
+  <script>
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        // remove active class from all links
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+        // add active class to clicked link
+        event.target.classList.add('active');
+      });
+    });
+  </script>
 	<aside>
     <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
     <nav>
@@ -33,9 +52,9 @@
     <ul>
       <li><a href="#"><h3>&nbsp;진행 문서함</h3></a>
         <ul>
-          <li><a href="#">　　　- 기안</a></li>
-          <li><a href="#">　　　- 결재</a></li>
-          <li><a href="#">　　　- 참조</a></li>
+          <li><a href="/aprvlDocuments/draft" class="sidebar-link">　　　- 기안</a></li>
+          <li><a href="/aprvlDocuments/approval" class="sidebar-link">　　　- 결재</a></li>
+          <li><a href="#" class="sidebar-link">　　　- 참조</a></li>
       </ul> 
       </li>
       <li><a href="#"><h3>&nbsp;완료 문서함</h3></a>
@@ -69,8 +88,8 @@
                   <tr>
                     <th>문서번호</th>
                     <th>문서유형</th>
+                    <th>문서상태</th>
                     <th>제 목</th>
-                    <th>기안자</th>
                     <th>첨부파일</th>
                     <th>작성일</th>
                   </tr>
@@ -78,11 +97,15 @@
                 <tbody>
                   <!-- 각 DraftDTO 마다 하나의 행을 생성 -->
                   <!-- draftId, draftTitle, attachments, draftDate 필드를 사용 -->
-                  <tr th:each="draft : ${drafts}" >
+                  <tr th:each="draft : ${draftList}" th:onclick="'javascript:location.href=\'/documents/'+${draft.draftId}+'\'">
                     <td th:text="${draft.draftId}"></td>
                     <td th:text="${draft.documentsName}"></td>
+                    <td>
+                      <span th:if="${draft.documentStatus == 1}">임시저장</span>
+                      <span th:if="${draft.documentStatus == 2}">중간결재중</span>
+                      <span th:if="${draft.documentStatus == 3}">최종결재중</span>
+                    </td>
                     <td th:text="${draft.draftTitle}"></td>
-                    <td th:text="${draft.memberName}"></td>
                     <!-- attachments 필드가 null 이 아닐 경우 'O', null 일 경우 'X' 출력 -->
                     <td th:text="${draft.attachmentUuidName != null ? 'O' : 'X'}"></td>
                     <td th:utext="${#dates.format(draft.draftDate, 'yyyy년MM월dd일 　HH:mm')}"></td>

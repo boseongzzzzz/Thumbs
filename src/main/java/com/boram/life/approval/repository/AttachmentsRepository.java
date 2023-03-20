@@ -1,4 +1,4 @@
-package com.boram.life.aprvlDocuments.repository;
+package com.boram.life.approval.repository;
 
 import org.springframework.stereotype.Repository;
 

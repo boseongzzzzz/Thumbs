@@ -1,4 +1,4 @@
-package com.boram.life.aprvlDocuments.dto;
+package com.boram.life.approval.dto;
 
 import com.boram.life.domain.Documents;
 import lombok.*;
