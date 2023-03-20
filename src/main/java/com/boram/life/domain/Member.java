@@ -51,7 +51,7 @@ public class Member {
     private String memberRegNo;
 
     // 회원 권한 : 권한 변경 시, 관리자가 관리자 페이지에서 수정
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "auth_num")
     private Authority authority;
 

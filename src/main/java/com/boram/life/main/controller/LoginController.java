@@ -28,8 +28,9 @@ public class LoginController {
 
     @GetMapping("/index")
     public String showIndex(){
-        return "/index";
+        return "index";
     }
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         // 스프링 시큐리티 기본 제공 메소드(logout)를 사용한 로그아웃 처리

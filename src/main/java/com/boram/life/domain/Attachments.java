@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "attachment")
+@Table(name = "attachments")
 public class Attachments {
 
 
