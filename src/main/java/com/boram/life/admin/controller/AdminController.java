@@ -49,7 +49,12 @@ public class AdminController {
 
     // 회원 등록(가입)
     @GetMapping("/register-member")
-    public String registerMember(){
+    public String registerMember(Authentication authentication, Model model){
+
+        // 유저 아이디 가져오기
+        String userId = authentication.getName();
+
+        model.addAttribute("userId", userId);
 
         return "content/admin/RegisterMember";
 
@@ -59,21 +64,46 @@ public class AdminController {
     public String registerMember(@ModelAttribute("essential") EssentialMemberInfoDTO eMemberInfo, @ModelAttribute("additional") AdditionalMemberInfoDTO aMemberInfo
             , RedirectAttributes rttr) {
 
-        // 필수 정보로 회원 가입
-        int result = adminService.registerMember(eMemberInfo, aMemberInfo);
+        log.info("[AdminController] HTML 폼에서 넘어온 값 확인 ===================================");
+        log.info("[AdminController] 필수정보(essential) eMemberInfo : " + eMemberInfo);
+        log.info("[AdminController] 부가정보(additional) aMemberInfo : " + aMemberInfo);
 
-        if (result == 1) {
+        // 추가 정보 확인값
+        boolean checkAdditionalInfo = false;
 
-            rttr.addFlashAttribute("message", "회원 등록에 성공하였습니다! (추가 정보 제외)");
+        // 1. 필수 정보로 회원 가입
+        if(checkAdditionalInfo==false && eMemberInfo!=null){
 
-        } else if (result == 2) {
+//            int result = adminService.registerMember(eMemberInfo);
 
-            rttr.addFlashAttribute("message", "회원 등록 및 추가 정보 입력 에 성공하였습니다!");
+        }
 
-        } else {
+        // 2. 추가 정보로 회원정보 추가
+        // 2-1. 추가 정보 (aMemberInfo)에 값이 있는지 확인
+        if(aMemberInfo.getMemberId()!=null){
+            if(aMemberInfo.getMemberEmail()!=null || aMemberInfo.getMemberAddress()!=null || aMemberInfo.getMemberIntroduction()!=null){
+                checkAdditionalInfo = true;
+            }
+        }
 
-            rttr.addFlashAttribute("message", "회원 등록에 실패하였습니다.");
+        // 2-1. 추가 정보 추가
+        if(checkAdditionalInfo==true && eMemberInfo!=null){
 
+            int result = adminService.registerMember(eMemberInfo, aMemberInfo);
+
+            if (result == 1) {
+
+                rttr.addFlashAttribute("message", "회원 등록에 성공하였습니다! (추가 정보 제외)");
+
+            } else if (result == 2) {
+
+                rttr.addFlashAttribute("message", "회원 등록 및 추가 정보 입력 에 성공하였습니다!");
+
+            } else {
+
+                rttr.addFlashAttribute("message", "회원 등록에 실패하였습니다.");
+
+            }
         }
 
         return "redirect:/manage/register-member";

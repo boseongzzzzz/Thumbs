@@ -24,12 +24,12 @@ public class EssentialMemberInfoDTO {
 
     private String memberRegNo;
 
-    private Authority authority;
+    private String memberAuthority;
 
     private Long memberStatus;
 
-    private Date joinDate;
+    private Date memberJoinDate;
 
-    private Date resignDate;
+    private Date memberResignDate;
 
 }
