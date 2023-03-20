@@ -3,13 +3,11 @@ package com.boram.life.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@Table(name = "form")
 public class Form {
 
     // 문서형식 번호

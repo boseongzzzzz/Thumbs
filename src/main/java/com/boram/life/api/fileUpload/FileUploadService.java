@@ -118,7 +118,7 @@ public class FileUploadService {
 
             Member member = modelMapper.map(pictureDTO, Member.class);
 
-            memberRepository.saveMember(member);
+            memberRepository.save(member);
 
             result = 1;
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/approval.css">
 	<link rel="stylesheet" type="text/css" href="/css/header.css">
-    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+	<link rel="stylesheet" type="text/css" href="/css/sidebar.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -18,10 +18,15 @@
 		<div class="header-right">
 			<nav>
 				<ul>
-					<li><a href="#">Dashboard</a></li>
-					<li><a href="#">Account</a></li>
-					<li><a href="#">Logout</a></li>
-				</ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="/aprvlDocuments/myPage">마이페이지</a></li>
+          <li><a href="#">조직도</a></li>
+          <li><a href="/aprvlDocuments/draft">결재</a></li>
+          <li><a href="#">근무/휴가</a></li>
+          <li><a href="/pay">급여</a></li>
+          <li><a href="/manage">관리자</a></li>
+          <li><a href="/logout">로그아웃</a></li>
+        </ul>
 			</nav> 
 		</div>
 	</header>
@@ -33,10 +38,10 @@
     <ul>
       <li><a href="#"><h3>&nbsp;진행 문서함</h3></a>
         <ul>
-          <li><a href="#">　　　- 기안</a></li>
-          <li><a href="#">　　　- 결재</a></li>
+          <li><a href="/aprvlDocuments/draft">　　　- 기안</a></li>
+          <li><a href="/aprvlDocuments/approval">　　　- 결재</a></li>
           <li><a href="#">　　　- 참조</a></li>
-      </ul> 
+      </ul>
       </li>
       <li><a href="#"><h3>&nbsp;완료 문서함</h3></a>
                   <ul>
@@ -44,7 +49,7 @@
                       <li><a href="#">　　　- 결재 완료</a></li>
                       <li><a href="#">　　　- 공람 완료</a></li>
                       <li><a href="#">　　　- 저장 문서</a></li>
-                  </ul> 
+                  </ul>
               </li>
       <li><a href="#"><h3>&nbsp;임시저장</h3></a>
         <ul>
@@ -60,7 +65,7 @@
       <h1 style="margin-right: 1200px; color : rgb(21, 34, 106)">진행 문서함</h1>
       <div style="display: flex">
         <div class="card" style="flex: 1">
-          <h2 style="color: rgba(76, 76, 121, 0.993);">기 안</h2>
+          <h2 style="color: rgba(76, 76, 121, 0.993);">결 재</h2>
           <div class="inner-card">
             <form>
               <br />
@@ -68,29 +73,30 @@
                 <thead>
                   <tr>
                     <th>문서번호</th>
+                    <th>문서유형</th>
+                    <th>문서상태</th>
                     <th>제 목</th>
-                    <th>생산부서</th>
+                    <th>기안자</th>
                     <th>첨부파일</th>
-                    <th>결재의견</th>
                     <th>작성일</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>   
-                    <td>02123</td>
-                    <td>인사기안</td>
-                    <td>기획운영과</td>
-                    <td>O</td>
-                    <td>0</td>
-                    <td>2023-02-08</td>
-                  </tr>
-                  <tr>
-                    <td>04223</td>
-                    <td>기안</td>
-                    <td>공공언어과</td>
-                    <td>O</td>
-                    <td>0</td>
-                    <td>2023-03-08</td>
+                  <!-- 각 DraftDTO 마다 하나의 행을 생성 -->
+                  <!-- draftId, draftTitle, attachments, draftDate 필드를 사용 -->
+                  <tr th:each="draft : ${draftList}" th:onclick="'javascript:location.href=\'/documents/'+${draft.draftId}+'\'">
+                    <td th:text="${draft.draftId}"></td>
+                    <td th:text="${draft.documentsName}"></td>
+                    <td>
+                      <span th:if="${draft.documentStatus == 1}">임시저장</span>
+                      <span th:if="${draft.documentStatus == 2}">중간결재중</span>
+                      <span th:if="${draft.documentStatus == 3}">최종결재중</span>
+                    </td>
+                    <td th:text="${draft.documentTitle}"></td>
+                    <td th:text="${draft.memberName}"></td>
+                    <!-- attachments 필드가 null 이 아닐 경우 'O', null 일 경우 'X' 출력 -->
+                    <td th:text="${draft.attachmentUuidName != null ? 'O' : 'X'}"></td>
+                    <td th:utext="${#dates.format(draft.draftDate, 'yyyy년MM월dd일 　HH:mm')}"></td>
                   </tr>
                 </tbody>
               </table>

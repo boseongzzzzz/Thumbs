@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@Table(name="reject")
 public class Reject {
 
     // 반려 번호 (SEQ)

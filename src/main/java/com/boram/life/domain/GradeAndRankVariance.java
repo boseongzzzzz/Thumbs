@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Entity
 @Getter @Setter
+@Table(name = "grade_and_rank_variance")
 public class GradeAndRankVariance {
 
     /* 계급(Grade) 과 호봉(Rank) 변동(Variance)

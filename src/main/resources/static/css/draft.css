@@ -116,3 +116,7 @@
         background-color: #f5f5f5;
   }
   
+  .sidebar-link.active {
+    background-color: rgba(86, 105, 141, 0.992);
+    font-weight: bold;
+  }

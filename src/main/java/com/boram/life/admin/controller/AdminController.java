@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.util.UUID;
 
-import static java.lang.Boolean.valueOf;
 
 @Controller
 @RequestMapping("/manage")
@@ -49,7 +46,12 @@ public class AdminController {
 
     // 회원 등록(가입)
     @GetMapping("/register-member")
-    public String registerMember(){
+    public String registerMember(Authentication authentication, Model model){
+
+        // 유저 아이디 가져오기
+        String userId = authentication.getName();
+
+        model.addAttribute("userId", userId);
 
         return "content/admin/RegisterMember";
 
@@ -59,8 +61,37 @@ public class AdminController {
     public String registerMember(@ModelAttribute("essential") EssentialMemberInfoDTO eMemberInfo, @ModelAttribute("additional") AdditionalMemberInfoDTO aMemberInfo
             , RedirectAttributes rttr) {
 
-        // 필수 정보로 회원 가입
-        int result = adminService.registerMember(eMemberInfo, aMemberInfo);
+        log.info("[AdminController] HTML 폼에서 넘어온 값 확인 ===================================");
+        log.info("[AdminController] 필수정보(essential) eMemberInfo : " + eMemberInfo);
+        log.info("[AdminController] 부가정보(additional) aMemberInfo : " + aMemberInfo);
+
+        // 추가 정보 확인값
+        boolean checkAdditionalInfo = false;
+
+        // 트랜잭션 결과값
+        int result = 0;
+
+        // 1. 필수 정보로 회원 가입
+        if(checkAdditionalInfo==false && eMemberInfo!=null){
+
+            result = adminService.registerMember(eMemberInfo);
+
+        }
+
+        // 2. 추가 정보로 회원정보 추가 : 추가 정보 (aMemberInfo)에 값이 있는지 확인
+        if(aMemberInfo.getMemberId()!=null){
+
+            if(aMemberInfo.getMemberEmail()!=null || aMemberInfo.getMemberAddress()!=null || aMemberInfo.getMemberIntroduction()!=null){
+                checkAdditionalInfo = true;
+            }
+        }
+
+        // 2-1. 추가 정보 추가
+        if(checkAdditionalInfo==true && eMemberInfo!=null){
+
+            result = adminService.registerMember(eMemberInfo, aMemberInfo);
+
+        }
 
         if (result == 1) {
 
@@ -76,11 +107,17 @@ public class AdminController {
 
         }
 
+
         return "redirect:/manage/register-member";
     }
 
+
     @PostMapping("/register-member/addPicture")
     public String addPicture(@ModelAttribute PictureDTO pictureDTO, @RequestParam("file") MultipartFile memberPicture){
+
+        log.info("[AdminController] 사진 등록 프로세스 시작 ======================================");
+        log.info("[AdminController] 사진 등록 대상 유저 정보 : " + pictureDTO);
+        log.info("[AdminController] 등록할 사진 정보 : " + memberPicture);
 
         fileUploadService.uploadPicture(pictureDTO, memberPicture);
 

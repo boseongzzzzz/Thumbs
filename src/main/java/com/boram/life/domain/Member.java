@@ -1,6 +1,8 @@
 package com.boram.life.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,8 +11,15 @@ import java.sql.Date;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="member")
 public class Member {
 
+    public Member(Long memberId, String memberPw){
+        this.memberId = memberId;
+        this.memberPw = memberPw;
+    }
     /* 회원가입 및 로그인 정보 */
 
     // 회원 번호 (SEQ), 회원 DB상 입력순번
@@ -27,8 +36,6 @@ public class Member {
     @Column(name = "member_pw")
     private String memberPw;
 
-
-
     /* 필수 기본정보, 관리자가 관리자 페이지에서 수정해야 하는 정보 */
 
     // 회원 이름 : 개명 시, 관리자가 관리자 페이지에서 수정
@@ -44,7 +51,7 @@ public class Member {
     private String memberRegNo;
 
     // 회원 권한 : 권한 변경 시, 관리자가 관리자 페이지에서 수정
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "auth_num")
     private Authority authority;
 
@@ -61,13 +68,15 @@ public class Member {
     @Column(name = "resign_date")
     private Date resignDate;
 
-
-
     /* 추가 정보, 개별 회원이 마이페이지에서 수정 가능한 정보 */
 
     // 회원 사진
     @OneToOne(mappedBy = "pictureMember")
     private Picture memberPicture;
+
+    // 회원 서명
+    @OneToOne(mappedBy = "signatureMember")
+    private Signature memberSignature;
 
     // 회원 이메일
     @Column(name = "member_email")

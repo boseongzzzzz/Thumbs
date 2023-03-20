@@ -28,9 +28,10 @@ class MemberTest {
     EntityManager em;
 
     @Test
-    public void 맴버_도메인_테스트(){
+    public void domain_test(){
         //given
         Member member1 = new Member();
+        member1.setMemberId(2345L);
         member1.setMemberPw("1234");
         member1.setMemberAddress("서울특별시 강남구");
         member1.setMemberGender("여성");
@@ -40,7 +41,7 @@ class MemberTest {
         member1.setMemberIntroduction("안녕하세요. 처음 뵙겠습니다.");
 
         //when
-        memberRepository.saveMember(member1);
+        memberRepository.save(member1);
 
         Member member = em.find(Member.class, member1.getMemberId());
 
