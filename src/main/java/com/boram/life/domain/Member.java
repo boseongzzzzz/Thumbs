@@ -1,6 +1,8 @@
 package com.boram.life.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,8 +11,14 @@ import java.sql.Date;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
 
+    public Member(Long memberId, String memberPw){
+        this.memberId = memberId;
+        this.memberPw = memberPw;
+    }
     /* 회원가입 및 로그인 정보 */
 
     // 회원 번호 (SEQ), 회원 DB상 입력순번
@@ -26,8 +34,6 @@ public class Member {
     // 회원 비밀번호
     @Column(name = "member_pw")
     private String memberPw;
-
-
 
     /* 필수 기본정보, 관리자가 관리자 페이지에서 수정해야 하는 정보 */
 
@@ -60,8 +66,6 @@ public class Member {
     // 퇴사일 : 회사 밖으로 사람이 나간 날  (정직, 휴직 등 회사 내부인인 상황이 유지되는 징계와는 별개)
     @Column(name = "resign_date")
     private Date resignDate;
-
-
 
     /* 추가 정보, 개별 회원이 마이페이지에서 수정 가능한 정보 */
 
