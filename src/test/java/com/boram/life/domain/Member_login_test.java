@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -21,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Slf4j
 @Transactional
+@Rollback(value = false)
 public class Member_login_test {
 
     @Autowired
@@ -34,18 +36,15 @@ public class Member_login_test {
 
     @BeforeEach
     public void setUp() {
-        Member user1 = new Member(102910L, passwordEncoder.encode("pass01"));
-        Member user2 = new Member(1029107L, passwordEncoder.encode("pass02"));
+        Member user1 = new Member(1234L, passwordEncoder.encode("pass01"));
 
         memberRepository.save(user1);
-        memberRepository.save(user2);
     }
     @Test
     public void findByUsernameTest() {
-        Long memberId = 102910L;
+        Long memberId = 1234L;
         log.info("memberId : ", memberId);
         Optional<Member> memberId1 = memberRepository.findByMemberId(String.valueOf(memberId));
-        log.info("memberId1 : ", memberId1);
         assertEquals(memberId, memberId1.get().getMemberId());
         assertTrue(passwordEncoder.matches("pass01", memberId1.get().getMemberPw()));
     }

@@ -1,4 +1,4 @@
-package com.boram.life.main;
+package com.boram.life.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.domain.EntityScan;

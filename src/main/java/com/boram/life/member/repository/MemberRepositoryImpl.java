@@ -27,6 +27,7 @@ public class MemberRepositoryImpl implements MemberRepository{
         TypedQuery<Member> query = em.createQuery("SELECT m FROM Member m WHERE m.memberId = :memberId", Member.class);
         query.setParameter("memberId", Long.parseLong(username));
         List<Member> result = query.getResultList();
+
         return result.isEmpty() ? Optional.empty() : Optional.of(result.get(0));
     }
 

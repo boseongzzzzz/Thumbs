@@ -1,4 +1,4 @@
-package com.boram.life.main;
+package com.boram.life.config;
 
 import com.boram.life.member.service.MemberService;
 import lombok.NoArgsConstructor;
