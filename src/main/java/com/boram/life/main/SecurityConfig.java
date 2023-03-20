@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public static WebSecurityCustomizer webSecurityCustomizer(){
 
-        return (web) -> web.ignoring().antMatchers("/css/**", "/image/**", "/js/**", "/error/**");
+        return (web) -> web.ignoring().antMatchers("/css/**", "/image/**", "/js/**", "/error/**", "/pictures/**", "/attachments/**");
 
     }
 
