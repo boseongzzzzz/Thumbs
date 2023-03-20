@@ -19,7 +19,7 @@ public class DraftDTO {
     private String documentTitle;
     private String documentDetails;
     private Date documentDraftDate;
-    private String documentStatus;
+    private Long documentStatus;
     private Date documentFinalApprove;
     private Reject documentReject;
     private Documents document;
@@ -30,24 +30,34 @@ public class DraftDTO {
     private String formName;
     private String documentReceivers;
     private String documentReferrers;
+    private String signatureUuidName;
 
-    public DraftDTO(Long documentNo, String formName, String documentTitle, String approvalMember1, String attachmentUuidName, Date documentDraftDate) {
+    public DraftDTO(Long documentNo, String formName, Long documentStatus, String documentTitle, String attachmentUuidName, Date documentDraftDate) {
         this.documentNo = documentNo;
         this.formName = formName;
+        this.documentStatus = documentStatus;
         this.documentTitle = documentTitle;
         this.documentDraftDate = documentDraftDate;
-        this.approvalMember1 = approvalMember1;
         this.attachmentUuidName = attachmentUuidName;
     }
 
-    public DraftDTO(Long documentNo, String documentTitle, String documentDetails, String approvalMember1, String documentReceivers, String documentReferrers) {
+    public DraftDTO(Long documentNo, String documentTitle, String documentDetails, String approvalMember1, String documentReceivers, String documentReferrers, String signatureUuidName) {
         this.documentNo = documentNo;
         this.documentTitle = documentTitle;
         this.documentDetails = documentDetails;
         this.approvalMember1 = approvalMember1;
         this.documentReceivers = documentReceivers;
         this.documentReferrers = documentReferrers;
+        this.signatureUuidName = signatureUuidName;
+    }
+
+    public DraftDTO(Long documentNo, String formName, Long documentStatus, String documentTitle, String approvalMember1, String attachmentUuidName, Date documentDraftDate) {
+        this.documentNo = documentNo;
+        this.formName = formName;
+        this.documentStatus = documentStatus;
+        this.documentTitle = documentTitle;
+        this.documentDraftDate = documentDraftDate;
+        this.approvalMember1 = approvalMember1;
+        this.attachmentUuidName = attachmentUuidName;
     }
 }
-
-

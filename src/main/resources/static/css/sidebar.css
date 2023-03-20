@@ -44,3 +44,7 @@ aside .logo {
 	  width: 100%;
 	}
 }
+.sidebar-link.active {
+	background-color: rgba(86, 105, 141, 0.992);
+	font-weight: bold;
+  }

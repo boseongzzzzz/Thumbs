@@ -51,7 +51,7 @@ public class Documents {
     private String documentReferrers;
 
     // 문서 상태
-    // 1=기안중, 2=...? (정해서 쓰면 됩니다)
+    // 1=기안중, 2 = 1결재완료, 3 = 2결재완료, 4 = 3결재완료, 5 = 반려, 6 = 회수, 7 = 발송완료  
     @Column(name = "document_status")
     private Long documentStatus;
 
