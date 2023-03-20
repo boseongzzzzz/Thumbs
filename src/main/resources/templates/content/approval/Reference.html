@@ -74,11 +74,9 @@
                   <tr>
                     <th>문서번호</th>
                     <th>문서유형</th>
-                    <th>문서상태</th>
                     <th>제 목</th>
-                    <th>기안자</th>
                     <th>첨부파일</th>
-                    <th>작성일</th>
+                    <th>결재완료일</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,13 +85,7 @@
                   <tr th:each="draft : ${draftList}" th:onclick="'javascript:location.href=\'/documents/'+${draft.draftId}+'\'">
                     <td th:text="${draft.draftId}"></td>
                     <td th:text="${draft.documentsName}"></td>
-                    <td>
-                      <span th:if="${draft.documentStatus == 1}">임시저장</span>
-                      <span th:if="${draft.documentStatus == 2}">중간결재중</span>
-                      <span th:if="${draft.documentStatus == 3}">최종결재중</span>
-                    </td>
-                    <td th:text="${draft.draftTitle}"></td>
-                    <td th:text="${draft.memberName}"></td>
+                    <td th:text="${draft.documentTitle}"></td>
                     <!-- attachments 필드가 null 이 아닐 경우 'O', null 일 경우 'X' 출력 -->
                     <td th:text="${draft.attachmentUuidName != null ? 'O' : 'X'}"></td>
                     <td th:utext="${#dates.format(draft.draftDate, 'yyyy년MM월dd일 　HH:mm')}"></td>

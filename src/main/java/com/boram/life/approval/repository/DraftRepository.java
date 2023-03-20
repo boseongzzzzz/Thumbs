@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DraftRepository extends JpaRepository<Documents, Long> {
-    @Query("SELECT new com.boram.life.approval.dto.DraftDTO(d.documentNo, f.formName, d.documentStatus, d.documentTitle, m.memberName, a.attachmentUuidName, d.documentDraftDate) " +
+    @Query("SELECT new com.boram.life.approval.dto.DraftDTO(d.documentNo, f.formName, d.documentStatus, d.documentTitle, a.attachmentUuidName, d.documentDraftDate) " +
             "FROM Documents d JOIN d.approvalMember1 m LEFT JOIN d.attachmentsList a JOIN d.form f " +
             "WHERE d.documentStatus IN (1,2,3) AND m.memberName = :memberName")
     List<DraftDTO> findAllByDraftStatusAndMemberName(@Param("memberName") String memberName);

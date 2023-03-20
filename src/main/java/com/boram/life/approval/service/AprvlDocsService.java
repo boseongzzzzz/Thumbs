@@ -3,6 +3,7 @@ package com.boram.life.approval.service;
 import com.boram.life.domain.Documents;
 import com.boram.life.approval.dto.DraftDTO;
 import com.boram.life.approval.repository.DraftRepository;
+import com.boram.life.domain.Position;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,6 +35,8 @@ public class AprvlDocsService {
         return drafts.stream().map(draft -> modelMapper.map(draft, DraftDTO.class)).collect(Collectors.toList());
     }
 
+    // 진행문서함 -참조
+
     public DraftDTO getSelectedDraft(Long documentNo) {
         Documents document = draftRepository.findByDocumentNo(documentNo);
         return modelMapper.map(document, DraftDTO.class);
@@ -46,7 +49,11 @@ public class AprvlDocsService {
         document.setDocumentDetails(draftDTO.getDocumentDetails());
         document.setDocumentReceivers(draftDTO.getDocumentReceivers());
         document.setDocumentReferrers(draftDTO.getDocumentReferrers());
-
+//        // receipt 필드의 값을 document의 approvalMember1의 positionDepartment 값으로 설정
+//        Position position = document.getApprovalMember1().getPositionMember().getPositionDepartment();
+//        document.setReceipt(position.getDeptName());
+//        // receipt2 필드의 값을 documentNo 값으로 설정
+//        document.setReceipt2(String.valueOf(documentNo));
         draftRepository.save(document);
     }
 

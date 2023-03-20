@@ -2,6 +2,7 @@ package com.boram.life.approval.controller;
 
 import com.boram.life.approval.dto.DraftDTO;
 import com.boram.life.approval.service.AprvlDocsService;
+import com.boram.life.domain.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,9 +43,22 @@ public class AprvlDocsController {
         return "/content/approval/approval";
     }
 
+    // 진행문서함 -참조
+
+
+    // 완료문서함 - 기안 완료
+
+
     @GetMapping("/{documentNo}")
     public String showSelectedDraft(@PathVariable Long documentNo, Model model) {
         DraftDTO draftDTO = draftService.getSelectedDraft(documentNo);
+        // approvalMember1의 positionDepartment 값을 receipt 필드에 할당
+//        Position position = draftDTO.getDocument().getApprovalMember1().getPositionMember().getPositionDepartment();
+//        draftDTO.setReceipt(position.getDeptName());
+
+        // documentNo 값을 receipt2 필드에 할당
+        draftDTO.setReceipt2(String.valueOf(documentNo));
+
         model.addAttribute("draftDTO", draftDTO);
         return "/content/approval/DocumentIng";
     }

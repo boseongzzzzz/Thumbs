@@ -28,6 +28,8 @@ public class DraftDTO {
     private String documentReceivers;
     private String documentReferrers;
     private String signatureUuidName;
+    private String receipt;
+    private String receipt2;
 
     public DraftDTO(Long documentNo, String formName, Long documentStatus, String documentTitle, String attachmentUuidName, Date documentDraftDate) {
         this.documentNo = documentNo;
@@ -56,5 +58,13 @@ public class DraftDTO {
         this.documentDraftDate = documentDraftDate;
         this.approvalMember1 = approvalMember1;
         this.attachmentUuidName = attachmentUuidName;
+    }
+
+    public DraftDTO(Long documentNo, String documentTitle, Date documentFinalApprove, String attachmentUuidName, String formName) {
+        this.documentNo = documentNo;
+        this.documentTitle = documentTitle;
+        this.documentFinalApprove = documentFinalApprove;
+        this.attachmentUuidName = attachmentUuidName;
+        this.formName = formName;
     }
 }
