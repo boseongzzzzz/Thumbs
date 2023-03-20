@@ -48,4 +48,6 @@ public class Member_login_test {
         assertEquals(memberId, memberId1.get().getMemberId());
         assertTrue(passwordEncoder.matches("pass01", memberId1.get().getMemberPw()));
     }
+
+
 }

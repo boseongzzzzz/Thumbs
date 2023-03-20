@@ -1,29 +1,52 @@
 package com.boram.life.main.controller;
 
+import com.boram.life.domain.Member;
 import com.boram.life.login.LoginService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
     private final LoginService loginService;
 
-    @PostMapping("/login")
-    public String loginPost(String username, String password) {
-        // 로그인 처리
-        return (loginService.loginProcessing(Long.parseLong(username), password)) ? "redirect:/index" : "/error";
-    }
+    private final Logger log = LoggerFactory.getLogger(LoginService.class);
+
     @GetMapping("/login")
     public String showLoginForm(){
         return "login";
+    }
+    @PostMapping("/login/do")
+    public String loginPost(String username, String password, Model model) {
+
+        log.info("[LoginController] 받은 값 : " + username + " / " + password);
+        System.out.println("[LoginController] 받은 값 : " + username + " / " + password);
+
+        // 로그인 처리
+        boolean result = loginService.loginProcessing(Long.parseLong(username), password);
+        log.info("[LoginController] 로그인 시도 결과 : " + result);
+        System.out.println("[LoginController] 로그인 시도 결과 : " + result);
+
+        if (result == true) {
+            return "redirect:/index";
+        } else {
+            model.addAttribute("loginFail", true);
+            return "login";
+        }
     }
 
     @GetMapping("/index")
