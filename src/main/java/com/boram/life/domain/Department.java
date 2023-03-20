@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@Table(name="department")
 public class Department {
 
     // 부서 번호 (SEQ)

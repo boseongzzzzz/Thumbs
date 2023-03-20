@@ -8,6 +8,7 @@ import java.sql.Date;
 
 @Entity
 @Getter @Setter
+@Table(name="vacation")
 public class Vacation {
 
     // 휴가 번호 (SEQ)

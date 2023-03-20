@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@Table(name = "authority")
 public class Authority {
 
     // 권한 번호 (SEQ)

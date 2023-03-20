@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@Table(name = "documents")
 public class Documents {
 
     // 문서 번호 (SEQ), '기안(draft)'과 완성된 '문서(document)'를 따로 나누지 않고 하나의 entity로 관리함.

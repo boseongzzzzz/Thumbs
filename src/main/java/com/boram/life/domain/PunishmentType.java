@@ -3,13 +3,11 @@ package com.boram.life.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@Table(name="punishment_type")
 public class PunishmentType {
 
     // 징계종류 번호 (SEQ)

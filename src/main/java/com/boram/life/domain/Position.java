@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Entity
 @Getter @Setter
+@Table(name="position")
 public class Position {
 
     // 배정 번호 (SEQ)

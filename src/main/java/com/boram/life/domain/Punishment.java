@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Entity
 @Getter @Setter
+@Table(name="punishment")
 public class Punishment {
 
     // 징계 번호 (SEQ)

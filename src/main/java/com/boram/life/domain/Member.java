@@ -13,6 +13,7 @@ import java.sql.Date;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="member")
 public class Member {
 
     public Member(Long memberId, String memberPw){

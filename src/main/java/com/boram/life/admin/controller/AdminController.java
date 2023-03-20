@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.util.UUID;
 
-import static java.lang.Boolean.valueOf;
 
 @Controller
 @RequestMapping("/manage")
@@ -71,16 +68,19 @@ public class AdminController {
         // 추가 정보 확인값
         boolean checkAdditionalInfo = false;
 
+        // 트랜잭션 결과값
+        int result = 0;
+
         // 1. 필수 정보로 회원 가입
         if(checkAdditionalInfo==false && eMemberInfo!=null){
 
-//            int result = adminService.registerMember(eMemberInfo);
+            result = adminService.registerMember(eMemberInfo);
 
         }
 
-        // 2. 추가 정보로 회원정보 추가
-        // 2-1. 추가 정보 (aMemberInfo)에 값이 있는지 확인
+        // 2. 추가 정보로 회원정보 추가 : 추가 정보 (aMemberInfo)에 값이 있는지 확인
         if(aMemberInfo.getMemberId()!=null){
+
             if(aMemberInfo.getMemberEmail()!=null || aMemberInfo.getMemberAddress()!=null || aMemberInfo.getMemberIntroduction()!=null){
                 checkAdditionalInfo = true;
             }
@@ -89,28 +89,35 @@ public class AdminController {
         // 2-1. 추가 정보 추가
         if(checkAdditionalInfo==true && eMemberInfo!=null){
 
-            int result = adminService.registerMember(eMemberInfo, aMemberInfo);
+            result = adminService.registerMember(eMemberInfo, aMemberInfo);
 
-            if (result == 1) {
-
-                rttr.addFlashAttribute("message", "회원 등록에 성공하였습니다! (추가 정보 제외)");
-
-            } else if (result == 2) {
-
-                rttr.addFlashAttribute("message", "회원 등록 및 추가 정보 입력 에 성공하였습니다!");
-
-            } else {
-
-                rttr.addFlashAttribute("message", "회원 등록에 실패하였습니다.");
-
-            }
         }
+
+        if (result == 1) {
+
+            rttr.addFlashAttribute("message", "회원 등록에 성공하였습니다! (추가 정보 제외)");
+
+        } else if (result == 2) {
+
+            rttr.addFlashAttribute("message", "회원 등록 및 추가 정보 입력 에 성공하였습니다!");
+
+        } else {
+
+            rttr.addFlashAttribute("message", "회원 등록에 실패하였습니다.");
+
+        }
+
 
         return "redirect:/manage/register-member";
     }
 
+
     @PostMapping("/register-member/addPicture")
     public String addPicture(@ModelAttribute PictureDTO pictureDTO, @RequestParam("file") MultipartFile memberPicture){
+
+        log.info("[AdminController] 사진 등록 프로세스 시작 ======================================");
+        log.info("[AdminController] 사진 등록 대상 유저 정보 : " + pictureDTO);
+        log.info("[AdminController] 등록할 사진 정보 : " + memberPicture);
 
         fileUploadService.uploadPicture(pictureDTO, memberPicture);
 
