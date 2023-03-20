@@ -4,10 +4,13 @@ import com.boram.life.admin.dto.AdditionalMemberInfoDTO;
 import com.boram.life.admin.dto.EssentialMemberInfoDTO;
 import com.boram.life.admin.repository.ManageMemberRepository;
 import com.boram.life.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class AdminService {
     private static final Logger log = LoggerFactory.getLogger(AdminService.class);
 
@@ -23,11 +27,7 @@ public class AdminService {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AdminService(ManageMemberRepository manageMemberRepository, ModelMapper modelMapper) {
-
-        this.manageMemberRepository = manageMemberRepository;
-        this.modelMapper = modelMapper;
-    }
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // 필수 정보로 회원가입
     @Transactional
@@ -42,6 +42,7 @@ public class AdminService {
 
             // 필수 정보 등록
             Member registerMember = modelMapper.map(eMemberInfo, Member.class);
+            registerMember.setMemberPw(bCryptPasswordEncoder.encode(eMemberInfo.getMemberPw()));
             manageMemberRepository.save(registerMember);
 
             result = 1;
@@ -62,10 +63,9 @@ public class AdminService {
 
     // 부가 정보로 업데이트
     @Transactional
-    public int registerMember(EssentialMemberInfoDTO eMemberInfo, AdditionalMemberInfoDTO aMemberInfo) {
+    public int registerMember(AdditionalMemberInfoDTO aMemberInfo) {
 
         log.info("[AdminService] 회원 등록(추가정보) 메소드 시작 ===================================");
-        log.info("[AdminService] 회원 필수 정보 : " + eMemberInfo);
         log.info("[AdminService] 회원 부가 정보 : " + aMemberInfo);
 
         int result = 0;

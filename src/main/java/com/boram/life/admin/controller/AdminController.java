@@ -49,21 +49,19 @@ public class AdminController {
     public String registerMember(Authentication authentication, Model model){
 
         // 유저 아이디 가져오기
-        String userId = authentication.getName();
+//        String userId = authentication.getName();
 
-        model.addAttribute("userId", userId);
+//        model.addAttribute("userId", userId);
 
         return "content/admin/RegisterMember";
 
     }
 
-    @PostMapping("/register-member")
-    public String registerMember(@ModelAttribute("essential") EssentialMemberInfoDTO eMemberInfo, @ModelAttribute("additional") AdditionalMemberInfoDTO aMemberInfo
-            , RedirectAttributes rttr) {
+    @PostMapping("/register-member/ess")
+    public String registerMember(@ModelAttribute("essential") EssentialMemberInfoDTO eMemberInfo, RedirectAttributes rttr) {
 
         log.info("[AdminController] HTML 폼에서 넘어온 값 확인 ===================================");
         log.info("[AdminController] 필수정보(essential) eMemberInfo : " + eMemberInfo);
-        log.info("[AdminController] 부가정보(additional) aMemberInfo : " + aMemberInfo);
 
         // 추가 정보 확인값
         boolean checkAdditionalInfo = false;
@@ -78,6 +76,36 @@ public class AdminController {
 
         }
 
+        if (result == 1) {
+
+            rttr.addFlashAttribute("message", "회원 등록에 성공하였습니다! (추가 정보 제외)");
+
+        } else if (result == 2) {
+
+            rttr.addFlashAttribute("message", "회원 등록 및 추가 정보 입력 에 성공하였습니다!");
+
+        } else {
+
+            rttr.addFlashAttribute("message", "회원 등록에 실패하였습니다.");
+
+        }
+
+
+        return "redirect:/manage/register-member";
+    }
+
+    @PostMapping("/register-member/add")
+    public String registerMember(@ModelAttribute("additional") AdditionalMemberInfoDTO aMemberInfo, RedirectAttributes rttr) {
+
+        log.info("[AdminController] HTML 폼에서 넘어온 값 확인 ===================================");
+        log.info("[AdminController] 부가정보(additional) aMemberInfo : " + aMemberInfo);
+
+        // 추가 정보 확인값
+        boolean checkAdditionalInfo = false;
+
+        // 트랜잭션 결과값
+        int result = 0;
+
         // 2. 추가 정보로 회원정보 추가 : 추가 정보 (aMemberInfo)에 값이 있는지 확인
         if(aMemberInfo.getMemberId()!=null){
 
@@ -87,9 +115,9 @@ public class AdminController {
         }
 
         // 2-1. 추가 정보 추가
-        if(checkAdditionalInfo==true && eMemberInfo!=null){
+        if(checkAdditionalInfo==true && aMemberInfo!=null){
 
-            result = adminService.registerMember(eMemberInfo, aMemberInfo);
+            result = adminService.registerMember(aMemberInfo);
 
         }
 

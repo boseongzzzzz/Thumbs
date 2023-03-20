@@ -27,9 +27,6 @@ public class LoginService {
     public boolean loginProcessing(Long memberId, String memberPw){
 
         Member member = memberRepository.findByMemberId(memberId.toString()).get();
-//        em.persist(member);
-//        member.setMemberPw(bCryptPasswordEncoder.encode(member.getMemberPw()));
-//        em.getTransaction().commit();
 
         return bCryptPasswordEncoder.matches(memberPw, member.getMemberPw());
 

@@ -23,7 +23,8 @@ public class Member {
     /* 회원가입 및 로그인 정보 */
 
     // 회원 번호 (SEQ), 회원 DB상 입력순번
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq")
+    @SequenceGenerator(name="member_seq", sequenceName="member_seq", allocationSize=1)
     @Column(name = "member_no")
     private Long memberNo;
 
