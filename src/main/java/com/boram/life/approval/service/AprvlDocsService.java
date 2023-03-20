@@ -1,15 +1,13 @@
-package com.boram.life.aprvlDocuments.service;
+package com.boram.life.approval.service;
 
 import com.boram.life.domain.Documents;
-import com.boram.life.aprvlDocuments.dto.DraftDTO;
-import com.boram.life.aprvlDocuments.repository.DraftRepository;
+import com.boram.life.approval.dto.DraftDTO;
+import com.boram.life.approval.repository.DraftRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service

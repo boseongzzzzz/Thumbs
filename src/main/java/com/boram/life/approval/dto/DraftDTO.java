@@ -1,13 +1,10 @@
-package com.boram.life.aprvlDocuments.dto;
+package com.boram.life.approval.dto;
 
-import com.boram.life.domain.Attachments;
 import com.boram.life.domain.Documents;
-import com.boram.life.domain.Member;
 import com.boram.life.domain.Reject;
 import lombok.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter

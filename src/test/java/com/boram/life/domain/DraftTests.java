@@ -1,6 +1,6 @@
 package com.boram.life.domain;
 
-import com.boram.life.aprvlDocuments.repository.DraftRepository;
+import com.boram.life.approval.repository.DraftRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
