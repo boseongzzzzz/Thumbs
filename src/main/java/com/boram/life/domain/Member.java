@@ -69,6 +69,10 @@ public class Member {
     @OneToOne(mappedBy = "pictureMember")
     private Picture memberPicture;
 
+    // 회원 서명
+    @OneToOne(mappedBy = "signatureMember")
+    private Signature memberSignature;
+
     // 회원 이메일
     @Column(name = "member_email")
     private String memberEmail;

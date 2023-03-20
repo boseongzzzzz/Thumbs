@@ -8,6 +8,7 @@ group = 'com.boram'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -28,11 +29,11 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-    testImplementation 'org.projectlombok:lombok:1.18.22'
-    testImplementation 'junit:junit:4.13.1'
-    runtimeOnly 'com.h2database:h2'
+	testImplementation 'org.projectlombok:lombok:1.18.22'
+	testImplementation 'junit:junit:4.13.1'
+	runtimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
+	runtimeOnly 'com.mysql:mysql-connector-java:11.0.15'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
@@ -41,7 +42,6 @@ dependencies {
 	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 	implementation 'org.springframework.security:spring-security-web:5.7.6'
 	implementation 'org.springframework.security:spring-security-config:5.7.6'
-
 
 }
 
