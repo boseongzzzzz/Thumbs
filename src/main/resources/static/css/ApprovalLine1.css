@@ -110,6 +110,11 @@
       margin-left: 0;
     }
   }
+
+  main * {
+    pointer-events: none;
+    user-select: none;
+  }
   
   /* 로고 이미지 */
   .logo-image {

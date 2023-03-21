@@ -23,5 +23,6 @@ public interface DraftRepository extends JpaRepository<Documents, Long> {
     List<DraftDTO> findAllByApprovalMember(@Param("memberName") String memberName);
 
     Documents findByDocumentNo(Long documentNo);
-    
+
+
 }

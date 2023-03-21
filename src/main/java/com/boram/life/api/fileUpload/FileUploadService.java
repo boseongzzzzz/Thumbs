@@ -46,6 +46,11 @@ public class FileUploadService {
     @Value("http://localhost:8080/pictures")
     private String PICTURE_FILE_URL;
 
+    // 멤버 사인파일 처리 경로
+    @Value("src/main/resources/static/pictures")
+    private String SIGNATURE_FILE_DIR;
+    @Value("http://localhost:8080/pictures")
+    private String SIGNATURE_FILE_URL;
 
     @Autowired
     public FileUploadService (FileUploadUtil fileUploadUtil, MemberRepository memberRepository,

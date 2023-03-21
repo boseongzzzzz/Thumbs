@@ -3,7 +3,6 @@ package com.boram.life.approval.service;
 import com.boram.life.domain.Documents;
 import com.boram.life.approval.dto.DraftDTO;
 import com.boram.life.approval.repository.DraftRepository;
-import com.boram.life.domain.Position;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,11 +11,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class AprvlDocsService {
+public class ApprovalService {
     private final DraftRepository draftRepository;
     private final ModelMapper modelMapper;
 
-    public AprvlDocsService(DraftRepository draftRepository) {
+    public ApprovalService(DraftRepository draftRepository) {
         this.draftRepository = draftRepository;
         this.modelMapper = new ModelMapper();
     }
@@ -33,6 +32,11 @@ public class AprvlDocsService {
         List<DraftDTO> drafts = draftRepository.findAllByApprovalMember(memberName);
         System.out.println("drafts =0000000000000 " + drafts);
         return drafts.stream().map(draft -> modelMapper.map(draft, DraftDTO.class)).collect(Collectors.toList());
+    }
+
+    public DraftDTO getDocumentById(Long documentNo) {
+        Documents document = draftRepository.findById(documentNo).orElse(null);
+        return modelMapper.map(document, DraftDTO.class);
     }
 
     // 진행문서함 -참조

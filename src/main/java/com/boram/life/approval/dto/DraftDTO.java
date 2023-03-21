@@ -19,7 +19,6 @@ public class DraftDTO {
     private Long documentStatus;
     private Date documentFinalApprove;
     private Reject documentReject;
-    private Documents document;
     private String approvalMember1;
     private String approvalMember2;
     private String approvalMember3;
@@ -28,8 +27,6 @@ public class DraftDTO {
     private String documentReceivers;
     private String documentReferrers;
     private String signatureUuidName;
-    private String receipt;
-    private String receipt2;
 
     public DraftDTO(Long documentNo, String formName, Long documentStatus, String documentTitle, String attachmentUuidName, Date documentDraftDate) {
         this.documentNo = documentNo;

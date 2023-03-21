@@ -1,8 +1,7 @@
 package com.boram.life.approval.controller;
 
 import com.boram.life.approval.dto.DraftDTO;
-import com.boram.life.approval.service.AprvlDocsService;
-import com.boram.life.domain.Position;
+import com.boram.life.approval.service.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +11,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/approval")
-public class AprvlDocsController {
-
-    private final AprvlDocsService draftService;
+public class ApprovalController {
 
     @Autowired
-    public AprvlDocsController(AprvlDocsService draftService) {
-        this.draftService = draftService;
+    private ApprovalService approvalService;
+
+    @Autowired
+    public ApprovalController(ApprovalService approvalService) {
+        this.approvalService = approvalService;
     }
 
     // 진행문서함 -기안
@@ -26,10 +26,22 @@ public class AprvlDocsController {
     public String findAllByDraftStatusAndMemberName(Model model,
                                @ModelAttribute("memberName") String memberName) {
         System.out.println("model ========================== " + model);
-        List<DraftDTO> drafts = draftService.findAllByDraftStatusAndMemberName(memberName);
+        List<DraftDTO> drafts = approvalService.findAllByDraftStatusAndMemberName(memberName);
         System.out.println("drafts =>>>>>>>>>>>>>>>>>>> " + drafts);
         model.addAttribute("draftList", drafts);
         return "/content/approval/draft";
+    }
+
+    // 리스트에서 클릭한 문서 상세페이지 이동(읽기전용)
+    @GetMapping("/documents/{documentNo}")
+    public String getApprovalLine(@PathVariable Long documentNo, Model model) {
+        // 문서를 읽기 전용으로 가져오는 코드 작성
+        DraftDTO draftDTO = approvalService.getDocumentById(documentNo);
+
+        // 문서를 모델에 추가하여 ApprovalLine1.html에 전달
+        model.addAttribute("draftDTO", draftDTO);
+
+        return "/content/approval/ApprovalLine1";
     }
 
     // 진행문서함 -결재
@@ -37,7 +49,7 @@ public class AprvlDocsController {
     public String findAllByApprovalMember(Model model,
                                @ModelAttribute("memberName") String memberName) {
         System.out.println("model ========================== " + model);
-        List<DraftDTO> drafts = draftService.findAllByApprovalMember(memberName);
+        List<DraftDTO> drafts = approvalService.findAllByApprovalMember(memberName);
         System.out.println("drafts =>>>>>>>>>>>>>>>>>>> " + drafts);
         model.addAttribute("draftList", drafts);
         return "/content/approval/approval";
@@ -51,7 +63,7 @@ public class AprvlDocsController {
 
     @GetMapping("/{documentNo}")
     public String showSelectedDraft(@PathVariable Long documentNo, Model model) {
-        DraftDTO draftDTO = draftService.getSelectedDraft(documentNo);
+        DraftDTO draftDTO = approvalService.getSelectedDraft(documentNo);
         model.addAttribute("draftDTO", draftDTO);
         return "/content/approval/DocumentIng";
     }
@@ -60,9 +72,9 @@ public class AprvlDocsController {
     @PostMapping("/{documentNo}")
     public String saveSelectedDraft(@PathVariable Long documentNo, @ModelAttribute DraftDTO draftDTO) {
         // 받은 form 데이터를 바탕으로 db에 저장
-        draftService.saveSelectedDraft(documentNo, draftDTO);
+        approvalService.saveSelectedDraft(documentNo, draftDTO);
         // db에 저장된 documentStatus 업데이트
-        draftService.updateDocumentStatus(documentNo, 2L);
+        approvalService.updateDocumentStatus(documentNo, 2L);
         // 다음 페이지로 이동
         return "redirect:/approval/draft";
     }
