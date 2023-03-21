@@ -52,13 +52,6 @@ public class AprvlDocsController {
     @GetMapping("/{documentNo}")
     public String showSelectedDraft(@PathVariable Long documentNo, Model model) {
         DraftDTO draftDTO = draftService.getSelectedDraft(documentNo);
-        // approvalMember1의 positionDepartment 값을 receipt 필드에 할당
-//        Position position = draftDTO.getDocument().getApprovalMember1().getPositionMember().getPositionDepartment();
-//        draftDTO.setReceipt(position.getDeptName());
-
-        // documentNo 값을 receipt2 필드에 할당
-        draftDTO.setReceipt2(String.valueOf(documentNo));
-
         model.addAttribute("draftDTO", draftDTO);
         return "/content/approval/DocumentIng";
     }

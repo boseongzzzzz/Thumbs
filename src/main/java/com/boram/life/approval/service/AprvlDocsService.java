@@ -49,11 +49,6 @@ public class AprvlDocsService {
         document.setDocumentDetails(draftDTO.getDocumentDetails());
         document.setDocumentReceivers(draftDTO.getDocumentReceivers());
         document.setDocumentReferrers(draftDTO.getDocumentReferrers());
-//        // receipt 필드의 값을 document의 approvalMember1의 positionDepartment 값으로 설정
-//        Position position = document.getApprovalMember1().getPositionMember().getPositionDepartment();
-//        document.setReceipt(position.getDeptName());
-//        // receipt2 필드의 값을 documentNo 값으로 설정
-//        document.setReceipt2(String.valueOf(documentNo));
         draftRepository.save(document);
     }
 
