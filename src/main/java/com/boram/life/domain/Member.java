@@ -53,8 +53,8 @@ public class Member {
 
     // 회원 권한 : 권한 변경 시, 관리자가 관리자 페이지에서 수정
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "auth_num")
-    private Authority authority;
+    @JoinColumn(name = "role_name")
+    private Authorities authorities;
 
     // 회원 상태
     // 1:신규, 2:근무, 3:휴직(유급), 4:휴직(무급), 5:정직(봉급:2/3), 6:퇴사, 7:은퇴(정년)

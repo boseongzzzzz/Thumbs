@@ -1,6 +1,6 @@
 package com.boram.life.admin.dto;
 
-import com.boram.life.domain.Authority;
+import com.boram.life.domain.Authorities;
 import lombok.*;
 
 import java.sql.Date;
