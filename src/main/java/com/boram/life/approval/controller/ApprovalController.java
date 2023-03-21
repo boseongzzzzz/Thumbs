@@ -37,7 +37,6 @@ public class ApprovalController {
     public String getApprovalLine(@PathVariable Long documentNo, Model model) {
         // 문서를 읽기 전용으로 가져오는 코드 작성
         DraftDTO draftDTO = approvalService.getDocumentById(documentNo);
-
         // 문서를 모델에 추가하여 ApprovalLine1.html에 전달
         model.addAttribute("draftDTO", draftDTO);
 
