@@ -1,5 +1,6 @@
 package com.boram.life.config;
 
+import com.boram.life.login.LoginFailureHandler;
 import com.boram.life.login.LoginSuccessHandler;
 import com.boram.life.member.service.MemberService;
 import lombok.NoArgsConstructor;
@@ -33,8 +34,13 @@ public class SecurityConfig {
     @Autowired
     private final LoginSuccessHandler authenticationSuccessHandler;
 
-    @Autowired
-    private final AuthenticationFailureHandler authenticationFailureHandler;
+//    @Autowired
+//    private final AuthenticationFailureHandler authenticationFailureHandler;
+
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new LoginFailureHandler();
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -50,6 +56,7 @@ public class SecurityConfig {
 
                 // 기본 접근 허용 경로
                 .mvcMatchers("/login/**", "/css/**", "/image/**", "/js/**", "/error/**", "/pictures/**", "/attachments/**").permitAll()
+
 
                 // 관리자 페이지(/manage)에 대한 권한 설정
                 .antMatchers("/manage/**").hasAuthority("ADMIN")
@@ -71,7 +78,7 @@ public class SecurityConfig {
                 .loginPage("/login") // 로그인 페이지 경로
                 .loginProcessingUrl("/login/do") // 로그인 처리 URL
                 .successHandler(authenticationSuccessHandler)  // 로그인 성공 처리 핸들러
-                .failureHandler(authenticationFailureHandler); // 로그인 실패 처리 핸들러
+                .failureHandler(authenticationFailureHandler()); // 로그인 실패 처리 핸들러
 
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // 로그아웃

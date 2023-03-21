@@ -52,7 +52,7 @@ public class AdminController {
 //        String userId = authentication.getName();
 
 //        model.addAttribute("userId", userId);
-
+        log.info("[AdminController] HTML 폼에서 넘어온 값 확인1111111111111111111111111 ");
         return "content/admin/RegisterMember";
 
     }

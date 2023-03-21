@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/login/do")
-    public String loginPost(String username, String password, Model model) {
+    public String loginPost(String username, String password, Model model, RedirectAttributes rttr) {
 
         log.info("[LoginController] 받은 값 : " + username + " / " + password);
         System.out.println("[LoginController] 받은 값 : " + username + " / " + password);
@@ -44,7 +45,8 @@ public class LoginController {
         if (result == true) {
             return "redirect:/index";
         } else {
-            model.addAttribute("loginFail", true);
+//            model.addAttribute("loginFail", true);
+            rttr.addFlashAttribute("loginFail", "아이디, 비밀번호가 틀렸습니다.");
             return "login";
         }
     }
