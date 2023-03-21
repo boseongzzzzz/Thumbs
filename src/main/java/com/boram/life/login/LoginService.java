@@ -28,6 +28,8 @@ public class LoginService {
 
         Member member = memberRepository.findByMemberId(memberId.toString()).get();
 
+        System.out.println("member.getMemberPw() : " + member.getMemberPw());
+
         return bCryptPasswordEncoder.matches(memberPw, member.getMemberPw());
 
     }
