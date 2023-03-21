@@ -52,8 +52,8 @@
     <ul>
       <li><a href="#"><h3>&nbsp;진행 문서함</h3></a>
         <ul>
-          <li><a href="/aprvlDocuments/draft" class="sidebar-link">　　　- 기안</a></li>
-          <li><a href="/aprvlDocuments/approval" class="sidebar-link">　　　- 결재</a></li>
+          <li><a href="/approval/draft" class="sidebar-link">　　　- 기안</a></li>
+          <li><a href="/approval/approval" class="sidebar-link">　　　- 결재</a></li>
           <li><a href="#" class="sidebar-link">　　　- 참조</a></li>
       </ul> 
       </li>
@@ -97,8 +97,8 @@
                 <tbody>
                   <!-- 각 DraftDTO 마다 하나의 행을 생성 -->
                   <!-- draftId, draftTitle, attachments, draftDate 필드를 사용 -->
-                  <tr th:each="draft : ${draftList}" th:onclick="'javascript:location.href=\'/documents/'+${draft.draftId}+'\'">
-                    <td th:text="${draft.draftId}"></td>
+                  <tr th:each="draft : ${draftList}" th:onclick="'javascript:location.href=\'/documents/'+${draft.documentNo}+'\'">
+                    <td th:text="${draft.documentNo}"></td>
                     <td th:text="${draft.documentsName}"></td>
                     <td>
                       <span th:if="${draft.documentStatus == 1}">임시저장</span>
@@ -108,7 +108,7 @@
                     <td th:text="${draft.documentTitle}"></td>
                     <!-- attachments 필드가 null 이 아닐 경우 'O', null 일 경우 'X' 출력 -->
                     <td th:text="${draft.attachmentUuidName != null ? 'O' : 'X'}"></td>
-                    <td th:utext="${#dates.format(draft.draftDate, 'yyyy년MM월dd일 　HH:mm')}"></td>
+                    <td th:utext="${#dates.format(draft.documentDraftDate, 'yyyy년MM월dd일 　HH:mm')}"></td>
                   </tr>
                 </tbody>
               </table>
