@@ -19,9 +19,9 @@
 			<nav>
 				<ul>
           <li><a href="#">홈</a></li>
-          <li><a href="/aprvlDocuments/myPage">마이페이지</a></li>
+          <li><a href="/approval/myPage">마이페이지</a></li>
           <li><a href="#">조직도</a></li>
-          <li><a href="/aprvlDocuments/draft">결재</a></li>
+          <li><a href="/approval/draft">결재</a></li>
           <li><a href="#">근무/휴가</a></li>
           <li><a href="/pay">급여</a></li>
           <li><a href="/manage">관리자</a></li>
@@ -97,9 +97,9 @@
                 <tbody>
                   <!-- 각 DraftDTO 마다 하나의 행을 생성 -->
                   <!-- draftId, draftTitle, attachments, draftDate 필드를 사용 -->
-                  <tr th:each="draft : ${draftList}" th:onclick="'javascript:location.href=\'/documents/'+${draft.documentNo}+'\'">
+                  <tr th:each="draft : ${draftList}">
                     <td th:text="${draft.documentNo}"></td>
-                    <td th:text="${draft.documentsName}"></td>
+                    <td th:text="${draft.formName}"></td>
                     <td>
                       <span th:if="${draft.documentStatus == 1}">임시저장</span>
                       <span th:if="${draft.documentStatus == 2}">중간결재중</span>

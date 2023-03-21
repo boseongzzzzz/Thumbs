@@ -3,6 +3,7 @@ package com.boram.life.approval.controller;
 import com.boram.life.approval.dto.DraftDTO;
 import com.boram.life.approval.service.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +23,18 @@ public class ApprovalController {
     }
 
     // 진행문서함 -기안
-    @GetMapping("draft")
-    public String findAllByDraftStatusAndMemberName(Model model,
-                               @ModelAttribute("memberName") String memberName) {
-        System.out.println("model ========================== " + model);
-        List<DraftDTO> drafts = approvalService.findAllByDraftStatusAndMemberName(memberName);
+    @GetMapping("/draft")
+    public String findAllByDraftStatusAndMemberName(Model model, Authentication authentication)
+//                               @PathVariable("memberName") String memberName)
+                               {
+        long userId = Long.parseLong(authentication.getName());
+        String loginUserName = approvalService.selectUserTag(userId);
+        model.addAttribute("memberName", loginUserName);
+        System.out.println("memberName ========================== " + loginUserName);
+        List<DraftDTO> drafts = approvalService.findAllByDraftStatusAndMemberName(loginUserName);
         System.out.println("drafts =>>>>>>>>>>>>>>>>>>> " + drafts);
         model.addAttribute("draftList", drafts);
-        return "/content/approval/draft";
+        return "content/approval/draft";
     }
 
     // 리스트에서 클릭한 문서 상세페이지 이동(읽기전용)
@@ -60,7 +65,7 @@ public class ApprovalController {
     // 완료문서함 - 기안 완료
 
 
-    @GetMapping("/{documentNo}")
+    @GetMapping("/documentIng/{documentNo}")
     public String showSelectedDraft(@PathVariable Long documentNo, Model model) {
         DraftDTO draftDTO = approvalService.getSelectedDraft(documentNo);
         model.addAttribute("draftDTO", draftDTO);

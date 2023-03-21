@@ -42,6 +42,7 @@ public class LoginController {
         System.out.println("[LoginController] 로그인 시도 결과 : " + result);
 
         if (result == true) {
+            model.addAttribute("userId", username);
             return "redirect:/index";
         } else {
             model.addAttribute("loginFail", true);
