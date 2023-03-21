@@ -89,16 +89,16 @@ public class GianService {
 
     // 로그인한 유저 정보로 1결재자(=기안자)의 정보를 가져와 리턴하는 메소드 ("부서"+"직책"+"이름")
     public String selectUserTag(long userId) {
-
-        //멤버의 '부서'를 가져오는 메소드
-        String position = positionRepository.getReferenceById(Integer.valueOf((int)userId)).getPositionDepartment().getDeptName();
-
-        //멤버의 '직책'를 가져오는 메소드
-        String grade = positionRepository.getReferenceById(Integer.valueOf((int)userId)).getPositionDuty();
+//
+//        //멤버의 '부서'를 가져오는 메소드
+//        String position = positionRepository.getReferenceById(Integer.valueOf((int)userId)).getPositionDepartment().getDeptName();
+//
+//        //멤버의 '직책'를 가져오는 메소드
+//        String grade = positionRepository.getReferenceById(Integer.valueOf((int)userId)).getPositionDuty();
 
         // 멤버의 '이름'을 가져오는 메소드 (* 현재 사용하지 않음)
         String name = memberRepository.findByMemberId(String.valueOf(userId)).get().getMemberName();
 
-        return position + " " + grade + " " + name;
+        return name;
     }
 }
