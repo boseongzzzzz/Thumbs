@@ -39,14 +39,33 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        // 1. 기본 설정
         http.csrf().disable()
-            .cors().disable()
-            .formLogin().disable()
-            .headers().frameOptions().disable();
+                .cors().disable()
+                .formLogin().disable()
+                .headers().frameOptions().disable();
 
+        // 2. 권한 설정
         http.authorizeRequests()
-                .mvcMatchers("/login/**", "/css/**", "/image/**", "/js/**", "/error/**", "/pictures/**", "/attachments/**").permitAll() // 접근 허용할 경로들
-                .anyRequest().authenticated(); // 이외 요청은 인증 요청
+
+                // 기본 접근 허용 경로
+                .mvcMatchers("/login/**", "/css/**", "/image/**", "/js/**", "/error/**", "/pictures/**", "/attachments/**").permitAll()
+
+                // 관리자 페이지(/manage)에 대한 권한 설정
+                .antMatchers("/manage/**").hasRole("ADMIN")
+
+                // 인사명령 결재문서(/gian/(인사명령)) 기안에 대한 권한 설정
+                // 1:일반사원, 2:문서담당자, 3:인사담당자, 4:프로그램관리자
+                .antMatchers("/gian/position-gian").hasAnyRole("ADMIN", "INSA")
+                .antMatchers("/gian/promotion-gian").hasAnyRole("ADMIN", "INSA")
+                .antMatchers("/gian/punishment-gian").hasAnyRole("ADMIN", "INSA")
+
+                // 마이페이지(/myPage)에 대한 권한 설정
+                .antMatchers("/myPage/**").hasAnyRole("EMPLOYEE", "DOCU", "INSA")
+
+                // 이외에, 언급되지 않은 모든 페이지는 인증 요청됨
+                .anyRequest().authenticated();
+
 
         http.formLogin()
                 .loginPage("/login") // 로그인 페이지 경로
@@ -74,7 +93,6 @@ public class SecurityConfig {
         return http.build();
     }
 }
-
 
 
 //}
@@ -144,7 +162,6 @@ public class SecurityConfig {
 //                .and()
 //                .withUser("4444").password("{noop}4444").roles("EMPLOYEE");
 //    }
-
 
 
 //    @Override

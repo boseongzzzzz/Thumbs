@@ -25,7 +25,7 @@ public class MemberService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 String.valueOf(member.getMemberId()),
                 member.getMemberPw(),
-                Collections.singletonList(new SimpleGrantedAuthority(member.getAuthority().getAuthName()))
+                Collections.singletonList(new SimpleGrantedAuthority(member.getAuthorities().getRoleName()))
         );
     }
 
