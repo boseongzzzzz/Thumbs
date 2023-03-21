@@ -1,14 +1,19 @@
 package com.boram.life.approval.service;
 
+import com.boram.life.admin.controller.AdminController;
+import com.boram.life.approval.dto.ApprovalDTO;
 import com.boram.life.domain.Documents;
 import com.boram.life.approval.dto.DraftDTO;
 import com.boram.life.approval.repository.DraftRepository;
 import com.boram.life.gian.repository.PositionRepository;
 import com.boram.life.member.repository.MemberRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +23,7 @@ public class ApprovalService {
     private final ModelMapper modelMapper;
     private final PositionRepository positionRepository;
     private final MemberRepository memberRepository;
-
+    private final Logger log = LoggerFactory.getLogger(AdminController.class);
     public ApprovalService(DraftRepository draftRepository, PositionRepository positionRepository, MemberRepository memberRepository) {
         this.positionRepository = positionRepository;
         this.memberRepository = memberRepository;
@@ -47,9 +52,11 @@ public class ApprovalService {
 
     // 진행문서함 -참조
 
-    public DraftDTO getSelectedDraft(Long documentNo) {
+    public ApprovalDTO getSelectedDraft(Long documentNo) {
+        log.info("ApprovalDTO >>>>>>>>>>>>>>>>>>>>>");
         Documents document = draftRepository.findByDocumentNo(documentNo);
-        return modelMapper.map(document, DraftDTO.class);
+        log.info("document >>>>>>>>>>>>>>>>>>>>>" + document);
+        return modelMapper.map(document, ApprovalDTO.class);
     }
 
     public void saveSelectedDraft(Long documentNo, DraftDTO draftDTO) {

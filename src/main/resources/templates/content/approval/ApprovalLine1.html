@@ -62,19 +62,19 @@
         <img src="/image/koreanLogo.jpg" alt="koreanLogo.jpg" class="logo-image">
         <div class="label-container">
           <label for="receiver" style="width: 8%;">수신 </label>
-          <textarea itemid="receiverText" rows="2" id="receiver" name="receiver" th:text="${DraftDTO.documentReceivers}">
+          <textarea itemid="receiverText" rows="2" id="receiver" name="receiver" th:text="${draftDTO.documentReceivers}">
           </textarea>  
         </div>
         <div class="label-container2">
           <label for="title" style="width: 8%;">제목 </label>
-          <textarea itemid="titleText" rows="1" id="title" name="title" th:text="${DraftDTO.documentTitle}">
+          <textarea itemid="titleText" rows="1" id="title" name="title" th:text="${draftDTO.documentTitle}">
         </textarea>
         </div>
         <br>
         <hr />
         
         <div class="text-area-container">
-            <textarea name="text" id="editor" th:text="${DraftDTO.documentDetails}"></textarea>
+            <textarea name="text" id="editor" th:text="${draftDTO.documentDetails}"></textarea>
             <script>
             ClassicEditor.create( document.querySelector( '#editor' ), { 
                 language: "ko",

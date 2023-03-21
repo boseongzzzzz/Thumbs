@@ -5,10 +5,10 @@
 	<link rel="stylesheet" type="text/css" href="/css/approval.css">
 	<link rel="stylesheet" type="text/css" href="/css/header.css">
     <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<header>
@@ -116,6 +116,14 @@
           </div>
         </div>
       </div>
+        <script>
+            $("#listArea tbody").on('click', 'tr td:not(:first-child)', function(){
+
+                const no = this.parentNode.children[1].innerText;
+                location.href = "/ApprovalLine1/{documentNo}=" + no;
+
+            })
+        </script>
 	</main>
 </body>
 </html>
