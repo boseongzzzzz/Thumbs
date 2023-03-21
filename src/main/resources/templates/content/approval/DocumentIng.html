@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/css/DocumentIng.css">
+	<link rel="stylesheet" type="text/css" href="/css/header.css">
+	<link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nanum+Gothic:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+</head>
+<body>
+	<header>
+		<div class="header-left">			
+		</div>
+		<div class="header-right">
+			<nav>
+				<ul>
+                    <li><a href="#">홈</a></li>
+                    <li><a href="/myPage">마이페이지</a></li>
+                    <li><a href="#">조직도</a></li>
+                    <li><a href="#">결재</a></li>
+                    <li><a href="#">근무/휴가</a></li>
+                    <li><a href="/pay">급여</a></li>
+                    <li><a href="/manage">관리자</a></li>
+                    <li><a href="/logout">로그아웃</a></li>
+                </ul>
+			</nav>
+		</div>
+	</header>
+	<aside>
+        <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
+        <nav>
+        <h2 style="color: rgba(0, 0, 0, 0.33)">&nbsp;&nbsp;결재</h2>
+        <ul>
+          <li><a href="#"><h3>&nbsp;진행 문서함</h3></a>
+            <ul>
+              <li><a href="/approval/draft">　　　- 기안</a></li>
+              <li><a href="#">　　　- 결재</a></li>
+              <li><a href="#">　　　- 참조</a></li>
+          </ul> 
+          </li>
+          <li><a href="#"><h3>&nbsp;완료 문서함</h3></a>
+                      <ul>
+                          <li><a href="#">　　　- 기안 완료</a></li>
+                          <li><a href="#">　　　- 결재 완료</a></li>
+                          <li><a href="#">　　　- 공람 완료</a></li>
+                          <li><a href="#">　　　- 저장 문서</a></li>
+                      </ul> 
+          </li>
+          <li><a href="#"><h3>&nbsp;임시저장</h3></a>
+            <ul>
+            <li><a href="#">　　　- 기안 문서</a></li>
+            <li><a href="#">　　　- 반려 문서</a></li>
+          </li>
+            </ul>
+          
+        </nav>
+
+        </aside>
+	<main class="flex-container">
+        <img src="/image/koreanLogo.jpg" alt="koreanLogo.jpg" class="logo-image">
+        <div class="label-container">
+          <label for="receiver" style="width: 8%;">수신 </label>
+          <textarea itemid="receiverText" rows="2" id="receiver" name="receiver" th:text="${approvalDTO.documentReceivers}">
+          </textarea>  
+        </div>
+        <div class="label-container2">
+          <label for="title" style="width: 8%;">제목 </label>
+          <textarea itemid="titleText" rows="1" id="title" name="title" th:text="${approvalDTO.documentTitle}">
+        </textarea>
+        </div>
+        <br>
+        <hr />
+        
+        <div class="text-area-container">
+            <textarea name="text" id="editor" th:text="${approvalDTO.documentDetails}"></textarea>
+            <script>
+            ClassicEditor.create( document.querySelector( '#editor' ), { 
+                language: "ko",
+            } );
+            </script>
+        </div>
+        <h1>국 립 국 어 원 장</h1>
+        <br>
+        <br>
+        <hr style="border: solid 8px rgb(113, 113, 113);"/>
+        <br>
+        <div class="box-container">
+            <div class="box-group">
+                <input class="box2" id="line1" style="font-size: 1rem;" th:value="${approvalDTO.approvalMember1.getMemberName()}"></input>
+                <input class="box2" id="signature" style="font-weight: bold;" type="text" 
+                       name="signature" >
+                </input>
+            </div>
+            <div class="box-group2">
+                <input class="box"></input>
+                <input class="box" style="font-weight: bold;"></input>
+            </div>
+            <div class="box-group3">
+                <input class="box"></input>
+                <input class="box" style="font-weight: bold;"></input>
+                <input class="box1" id="today"></input>
+            </div>
+        </div>  
+        <script>
+            const today = new Date().toISOString().substr(0, 10); // 오늘 날짜를 YYYY-MM-DD 형식으로 반환
+            document.getElementById("today").value = today; // input 요소에 오늘 날짜를 넣음
+        </script>
+        <br>
+        <br>
+        <div class="referrer-container">
+            <div class="label-container3">
+                <label for="referrer">참조자</label>
+                <input type="text" id="referrer" name="referrer" class="input-text" th:text="${approvalDTO.documentReferrers}">
+            </div>
+            <div class="label-container3">
+                <label for="receipt">시행</label>
+                <input type="text" id="receipt" name="receipt" class="input-text3">
+                <input type="text" id="receipt2" name="receipt" class="input-text3">
+                <label for="implm" style="margin-left: 100px;">접수</label>
+                <input type="text" id="implm" name="implm" class="input-text4">
+            </div>    
+        </div> 
+        <br>
+        <div class="detail">(우) 07511 서울특별시 강서구 금낭화로 154(방화동 827)
+            홈페이지 주소: www.korean.go.kr</div>
+        <div class="detail">대표 전화: 02-2669-9775</div>
+        <br>
+        <br>
+    </main>
+    <footer>
+		<a href="이전페이지주소"><button class="previous-button">이전</button></a>
+        <button class="storage-button">임시저장</button>
+        <form id="myForm" action="/drafts/save/{documentNo}" method="POST">
+		    <button class="complete-button" onclick="submitForm()">완료</button>
+            <script>
+                function submitForm() {
+                    // form 데이터를 서버에 전송합니다
+                    document.getElementById("documentNo").submit();
+                }
+            </script>
+        </form>
+	</footer>
+</body>
+</html>
