@@ -34,12 +34,6 @@ public class Member_login_test {
     @PersistenceContext
     private EntityManager em;
 
-    @BeforeEach
-    public void setUp() {
-        Member user1 = new Member(1234L, passwordEncoder.encode("pass01"));
-
-        memberRepository.save(user1);
-    }
     @Test
     public void findByUsernameTest() {
         Long memberId = 1234L;
@@ -48,6 +42,4 @@ public class Member_login_test {
         assertEquals(memberId, memberId1.get().getMemberId());
         assertTrue(passwordEncoder.matches("pass01", memberId1.get().getMemberPw()));
     }
-
-
 }
