@@ -38,8 +38,9 @@ public class AdminController {
 
         // 유저 아이디 가져오기
         String userId = authentication.getName();
+        adminService.selectUserName(Long.parseLong(userId));
 
-        model.addAttribute("userId", userId);
+        model.addAttribute("userName", userId);
 
         return "content/admin/AdminMain";
     }

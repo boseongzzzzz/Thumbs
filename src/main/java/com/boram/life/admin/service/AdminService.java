@@ -4,6 +4,7 @@ import com.boram.life.admin.dto.AdditionalMemberInfoDTO;
 import com.boram.life.admin.dto.EssentialMemberInfoDTO;
 import com.boram.life.admin.repository.ManageMemberRepository;
 import com.boram.life.domain.Member;
+import com.boram.life.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -28,11 +29,19 @@ public class AdminService {
 
     private final ModelMapper modelMapper;
 
+    private final MemberRepository memberRepository;
+
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     EntityManager em;
+
+    // 멤버의 '이름'을 가져오는 메소드
+    public String selectUserName(long userId) {
+        String name = memberRepository.findByMemberId(String.valueOf(userId)).get().getMemberName();
+        return name;
+    }
 
     // 필수 정보로 회원가입
     @Transactional

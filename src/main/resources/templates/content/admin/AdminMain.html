@@ -24,7 +24,7 @@
     <div style="width:100%; float:right;">
         <div style="float: right; margin-right: 20px">
             <div style="float: left; margin-right: 30px">
-                <h4 th:text="'관리자 계정 `'+ ${userId} +'` 로그인 중...'"></h4>
+                <h4 th:text="'관리자 계정 `'+ ${userName} +'` 로그인 중...'"></h4>
             </div>
             <div style="float: right;">
                 <a href="/logout"><h4 style="font-weight: bold;">로그아웃</h4></a>
@@ -34,7 +34,7 @@
     </div>
 </header>
 <aside>
-    <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
+    <a href="/"><img class="logo" src="/image/THUMBS.png" alt="THUMBS.png"></a>
     <div style="margin: 0px auto; text-align: center;">
         <div style="padding: 10px;">
             <h3>사원 관리</h3>

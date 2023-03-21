@@ -27,20 +27,19 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-left">
+<header>
+    <div style="width:100%; float:right;">
+        <div style="float: right; margin-right: 20px">
+            <div style="float: left; margin-right: 30px">
+                <h4 th:text="'관리자 계정 `'+ ${userName} +'` 로그인 중...'"></h4>
+            </div>
+            <div style="float: right;">
+                <a href="/logout"><h4 style="font-weight: bold;">로그아웃</h4></a>
+            </div>
 
         </div>
-        <div class="header-right">
-            <nav>
-                <ul>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Account</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    </div>
+</header>
     <aside>
         <img class="logo" src="/image/THUMBS.png" alt="THUMBS.png">
         <nav>
@@ -101,7 +100,7 @@
         <div style="margin:10px; padding:10px">
             <br>
             <span style="font-size: 20px;">&#42; </span>
-            <span id="nickname" th:text="${ department }" style="font-weight: bold; font-size: 20px;"></span>
+            <span id="nickname" style="font-weight: bold; font-size: 20px;"></span>
             <span style="font-size: 20px;"> 의 출타 현황 : </span>
             <div style="height: 20px;"></div>
             <div class="charts" style="clear: both;">
@@ -137,9 +136,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="employee : ${employees}">
-                                <td th:text="${employee.title}">(직급)</td>
-                                <td th:text="${employee.yearsOfService}">(호봉)</td>
+                            <tr>
+                                <td>(직급)</td>
+                                <td>(호봉)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -156,17 +155,17 @@
                         </tr>
                         <tr>
                             <td>총 수</td>
-                            <th colspan="3" th:text="${annualLeave.total}">(총 연가 수)</th>
+                            <th colspan="3"">(총 연가 수)</th>
                             <th colspan="3">-</th>
                         </tr>
                         <tr>
                             <td>사용함</td>
-                            <th colspan="3" th:text="${annualLeave.used}">(사용한 연가 수)</th>
-                            <td th:text="${specialLeave.used}">(사용한 특별휴가 수)</td>
+                            <th colspan="3">(사용한 연가 수)</th>
+                            <td>(사용한 특별휴가 수)</td>
                         </tr>
                         <tr>
                             <td>사용하지 않음</td>
-                            <th colspan="3" th:text="${annualLeave.remaining}">(남은 연가 수)</th>
+                            <th colspan="3">(남은 연가 수)</th>
                             <th colspan="3">-</th>
                         </tr>
                     </table>
@@ -182,18 +181,18 @@
                         </tr>
                         <tr>
                             <td>총 횟수</td>
-                            <th colspan="3" th:text="${dayTrip.number}">(총 당일출장 수)</th>
-                            <th colspan="3" th:text="${longTrip.number}">(총 장기출장 수)</th>
+                            <th colspan="3">(총 당일출장 수)</th>
+                            <th colspan="3">(총 장기출장 수)</th>
                         </tr>
                         <tr>
                             <td>지방출장 횟수</td>
-                            <th colspan="3" th:text="${dayTrip.local}">(지방 단기출장 수)</th>
-                            <td colspan="3" th:text="${longTrip.local}">(지방 장기출장 수)</td>
+                            <th colspan="3">(지방 단기출장 수)</th>
+                            <td colspan="3">(지방 장기출장 수)</td>
                         </tr>
                         <tr>
                             <td>합산일수</td>
-                            <th colspan="3" th:text="${dayTrip.sum}">(당일출장 합산)</th>
-                            <td colspan="3" th:text="${longTrip.sum}">(장기출장 합산)</td>
+                            <th colspan="3">(당일출장 합산)</th>
+                            <td colspan="3">(장기출장 합산)</td>
                         </tr>
                     </table>
                 </div>
@@ -220,15 +219,15 @@
                     </thead>
                     <tbody>
                     <!-- 승인 대기중인 현황을 최신 순으로 나열 -->
-                    <tr th:each="vacation : ${vacations}" th:if="${not #lists.isEmpty(vacations)}">
-                        <td th:text="${vacation.type}"></td>
-                        <td th:text="${vacation.days}"></td>
-                        <td th:text="${vacation.startDate}"></td>
-                        <td th:text="${vacation.endDate}"></td>
-                        <td th:text="${vacation.isApproved}"></td>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <!-- 승인 대기중인 내역이 없는 경우 -->
-                    <tr th:if="${#lists.isEmpty(vacations)}">
+                    <tr">
                         <td colspan="5"> 출타 예정 내역이 없습니다.</td>
                     </tr>
                     </tbody>
@@ -248,14 +247,14 @@
                     </thead>
                     <tbody>
                         <!-- 나의 휴가 현황을 최신 순으로 나열 -->
-                        <tr th:each="vacation : ${vacations}" th:if="${not #lists.isEmpty(vacations)}">
-                            <td th:text="${vacation.type}"></td>
-                            <td th:text="${vacation.days}"></td>
-                            <td th:text="${vacation.startDate}"></td>
-                            <td th:text="${vacation.endDate}"></td>
+                        <tr>
+                            <td</td>
+                            <td</td>
+                            <td</td>
+                            <td</td>
                         </tr>
                         <!-- 나의 휴가 내역이 없는 경우 -->
-                        <tr th:if="${#lists.isEmpty(vacations)}">
+                        <tr>
                             <td colspan="4"> 출타(휴가+출장) 내역이 없습니다.</td>
                         </tr>
                     </tbody>
