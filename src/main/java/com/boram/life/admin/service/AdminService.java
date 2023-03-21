@@ -9,11 +9,13 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +30,9 @@ public class AdminService {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    EntityManager em;
 
     // 필수 정보로 회원가입
     @Transactional
@@ -95,6 +100,8 @@ public class AdminService {
                     if (aMemberInfo.getMemberIntroduction() != null) {
                         updateMember.setMemberIntroduction(aMemberInfo.getMemberIntroduction());
                     }
+
+                    em.persist(updateMember);
 
                     result = 2;
 

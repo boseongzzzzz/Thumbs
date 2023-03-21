@@ -52,16 +52,16 @@ public class SecurityConfig {
                 .mvcMatchers("/login/**", "/css/**", "/image/**", "/js/**", "/error/**", "/pictures/**", "/attachments/**").permitAll()
 
                 // 관리자 페이지(/manage)에 대한 권한 설정
-                .antMatchers("/manage/**").hasRole("ADMIN")
+                .antMatchers("/manage/**").hasAuthority("ADMIN")
 
                 // 인사명령 결재문서(/gian/(인사명령)) 기안에 대한 권한 설정
                 // 1:일반사원, 2:문서담당자, 3:인사담당자, 4:프로그램관리자
-                .antMatchers("/gian/position-gian").hasAnyRole("ADMIN", "INSA")
-                .antMatchers("/gian/promotion-gian").hasAnyRole("ADMIN", "INSA")
-                .antMatchers("/gian/punishment-gian").hasAnyRole("ADMIN", "INSA")
+                .antMatchers("/gian/position-gian").hasAnyAuthority("ADMIN", "INSA")
+                .antMatchers("/gian/promotion-gian").hasAnyAuthority("ADMIN", "INSA")
+                .antMatchers("/gian/punishment-gian").hasAnyAuthority("ADMIN", "INSA")
 
                 // 마이페이지(/myPage)에 대한 권한 설정
-                .antMatchers("/myPage/**").hasAnyRole("EMPLOYEE", "DOCU", "INSA")
+                .antMatchers("/myPage/**").hasAnyAuthority("EMPLOYEE", "DOCU", "INSA")
 
                 // 이외에, 언급되지 않은 모든 페이지는 인증 요청됨
                 .anyRequest().authenticated();

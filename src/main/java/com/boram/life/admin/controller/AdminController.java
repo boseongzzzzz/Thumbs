@@ -78,15 +78,12 @@ public class AdminController {
 
         if (result == 1) {
 
-            rttr.addFlashAttribute("message", "회원 등록에 성공하였습니다! (추가 정보 제외)");
+            rttr.addFlashAttribute("message", "회원 등록(가입)에 성공하였습니다! (추가 정보 제외)");
 
-        } else if (result == 2) {
-
-            rttr.addFlashAttribute("message", "회원 등록 및 추가 정보 입력 에 성공하였습니다!");
 
         } else {
 
-            rttr.addFlashAttribute("message", "회원 등록에 실패하였습니다.");
+            rttr.addFlashAttribute("message", "회원 등록(가입)에 실패하였습니다.");
 
         }
 
