@@ -1,6 +1,8 @@
 package com.boram.life.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -72,4 +74,15 @@ public class Documents {
     @OneToMany(mappedBy = "documentAttached")
     private List<Attachments> attachmentsList;
 
+    public Documents() {
+    }
+
+    public Documents(Long documentNo, Form form, Long documentStatus, String documentTitle, List<Attachments> attachmentsList, Date documentDraftDate) {
+        this.documentNo = documentNo;
+        this.form = form;
+        this.documentStatus = documentStatus;
+        this.documentTitle = documentTitle;
+        this.documentDraftDate = documentDraftDate;
+        this.attachmentsList = attachmentsList;
+    }
 }
