@@ -22,25 +22,32 @@ public class GianController {
 
     public GianController(GianService gianService){ this.gianService = gianService;}
 
+    @GetMapping("/gianMain")
+    public String goGianMain(Authentication authentication, Model model){
+        long userId = Long.parseLong(authentication.getName());
+        model.addAttribute("userName", gianService.selectUserTag(userId));
+        return "content/gian/gianMain";
+    }
+
+
     @GetMapping("/position-gian")
     public String goPositionGian(Authentication authentication, Model model){
         long userId = Long.parseLong(authentication.getName());
-        model.addAttribute("userId", gianService.selectUserTag(userId));
+        model.addAttribute("userName", gianService.selectUserTag(userId));
         return "content/gian/PositionGian";
     }
 
     @GetMapping("/promotion-gian")
     public String goPromotionGian(Authentication authentication, Model model){
-//        long userId = Long.parseLong(authentication.getName());
-        long userId = 1L;
-        model.addAttribute("userId", gianService.selectUserTag(userId));
+        long userId = Long.parseLong(authentication.getName());
+        model.addAttribute("userName", gianService.selectUserTag(userId));
         return "content/gian/PromotionGian";
     }
 
     @GetMapping("/punishment-gian")
     public String goPunishmentGian(Authentication authentication, Model model){
         long userId = Long.parseLong(authentication.getName());
-        model.addAttribute("userId", gianService.selectUserTag(userId));
+        model.addAttribute("userName", gianService.selectUserTag(userId));
         return "content/gian/PunishmentGian";
     }
 
@@ -54,6 +61,10 @@ public class GianController {
 
         // userId로 '부서'+'직급'+'이름'을 가져왔다고 가정하고 addOject
         mv.addObject("userId", "인사부 주임 김보성");
+
+//        // userName은 서비스 메소드로 가져옴
+//        long userId = Long.parseLong(authentication.getName());
+//        mv.addObject("userName", mv.addObject("userName", gianService.selectUserTag(userId)));
 
         // 조직도를 위한 조직 세팅
 

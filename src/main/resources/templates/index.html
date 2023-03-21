@@ -2,70 +2,107 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>웹사이트 제목</title>
-  <link rel="stylesheet" href="/css/main.css"/>
+    <meta charset="UTF-8">
+    <title>웹사이트 제목</title>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 
 <body>
-  <header>
-    <nav class="navbar">
-      <ul>
-        <li><a href="#">홈</a></li>
-        <li><a href="/myPage">마이페이지</a></li>
-        <li><a href="#">조직도</a></li>
-        <li><a href="/approval/draft">결재</a></li>
-        <li><a href="/approval/documentIng/2">기안</a></li>
-        <li><a href="/pay">급여</a></li>
-        <li><a href="/manage">관리자</a></li>
-        <li><a href="/logout">로그아웃</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+    <div style="float: left;">
+        <a href="/"><img class="logo" src="/image/THUMBS.png" alt="THUMBS.png"></a>
+    </div>
+    <div style="float: right;">
+        <div style="float: right; margin-right: 30px;">
+            <h4 th:text="'`'+${userRole} +'` `'+ ${userName} +'` 로그인 중...'"></h4>
+        </div>
+        <div style="clear: both;    display: flex;">
 
-  <main>
-    <h1>웹사이트 내용</h1>
+            <div class="function">
+                <a href="#"><h2>조직도</h2></a>
+            </div>
+
+            <div class="function">
+                <a href="/approval/draft"><h2>결재</h2></a>
+            </div>
+
+            <div class="function">
+                <a href="/vacancy"><h2>휴가/출장</h2></a>
+            </div>
+
+            <div class="function">
+                <a href="/pay"><h2>급여</h2></a>
+            </div>
+
+            <div class="function">
+                <a href="/myPage"><h2>마이페이지</h2></a>
+            </div>
+
+            <div class="function">
+                <a href="/manage"><h2>관리자</h2></a>
+            </div>
+
+            <div class="function">
+                <a href="/logout"><h2>로그아웃</h2></a>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
     <hr>
     <div style="display: flex;">
-      <div class="card" style="flex: 1;">
-        <h3>출근상태</h3>
-        <div class="inner-card">
-          <h4>출근 / 지각 / 병결 / 연가</h4>
+        <div class="card" style="flex: 1;">
+            <h2>근태(출근 관련)를 표시할 공간입니다.</h2>
+            <br>
+            <div class="inner-card">
+                <br><br>
+                <h4>출근 / 지각 / 병결 / 연가</h4>
+                <br><br><br><br><br><br><br><br>
+            </div>
         </div>
-      </div>
-      <div class="card"  style="flex: 2;">
-        <h3>결재 할 것</h3>
-        <div class="inner-card">
-          <h4>결재 게시판</h4>
+
+        <div class="card" style="flex: 2;">
+            <h2>나의 결재 관련 내용을 표시할 공간입니다.</h2>
+            <br>
+            <div style="flex: 1;">
+                <div class="inner-card">
+                    <br>
+                    <h4>결재 게시판</h4>
+                    <br>
+                </div>
+                <div class="inner-card">
+                    <br>
+                    <h4>결재 게시판</h4>
+                    <br>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <div style="display: flex;">
-      <div class="card"  style="flex: 1;">
-        <h2>공지사항</h2>
-        <div class="inner-card">
+        <div class="card" style="flex: 1;">
+            <h2>공지사항</h2>
+            <div class="inner-card" style="display: flex;">
 
-          <div class="post-container">
-            <h3><a href="#">게시물 제목</a></h3>
-            <p>게시물 내용은 여기에 작성됩니다. 여러 줄일 수도 있습니다. </p>
-            <p class="post-date">작성일: 2023-02-14</p>
-          </div>
+                <div class="post-container" style="flex: 1">
+                    <h3><a href="#">고객사(국립 국어원) 공지사항</a></h3>
+                    <p>공지사항 내용이 들어갈 공간입니다.</p>
+                    <p class="post-date"></p>
+                </div>
 
-          <div class="post-container">
-            <h3><a href="#">게시물 제목</a></h3>
-            <p>게시물 내용은 여기에 작성됩니다. 여러 줄일 수도 있습니다. </p>
-            <p class="post-date">작성일: 2023-02-14</p>
-          </div>
+                <div class="post-container" style="flex: 1">
+                    <h3><a href="#">프로그램(THUMBS) 공지사항</a></h3>
+                    <p>공지사항 내용이 들어갈 공간입니다.</p>
+                    <p class="post-date"></p>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    
-  </main>
-  <footer>
-    © 2023 THUMBS : The HUman resource Management & Business Services. All rights reserved.
-  </footer>
 
+</main>
+<footer>
+    © 2023 THUMBS : The HUman resource Management & Business Services. All rights reserved.
+</footer>
 </body>
 
 </html>

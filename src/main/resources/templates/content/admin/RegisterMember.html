@@ -60,200 +60,197 @@
     </div>
 
     <div class="container">
-        <form id="newMember" action="/manage/register-member" method="post">
-
-            <fieldset id="essential" action="manage/register-member/ess" mothod="post">
-                <div style="clear: both; height: 620px; clear:both; border:1px solid lightgray; margin:10px; padding:50px; width:100%;">
-                    <h2>필수 입력 사항</h2><br>
-                    <div style="clear:both; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
-                        <div style="clear:both; display: flex; width: 100%;">
-                            <div class="col-md-4">
-                                <label for="memberId" style="text-align: center; font-size: 15px;">사원번호 (아이디) :</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" id="memberId" name="memberId"
-                                       placeholder="( 숫자만 입력 가능합니다. )"
-                                       style="text-align: center; display: inline-block;" required>
-                            </div>
+        <form id="essential">
+            <div style="clear: both; height: 620px; clear:both; border:1px solid lightgray; margin:10px; padding:50px; width:100%;">
+                <h2>필수 입력 사항</h2><br>
+                <div style="clear:both; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
+                    <div style="clear:both; display: flex; width: 100%;">
+                        <div class="col-md-4">
+                            <label for="memberId" style="text-align: center; font-size: 15px;">사원번호 (아이디) :</label>
                         </div>
-                        <br>
-                        <div style="clear: both; display: flex; width: 100%;">
-                            <div class="col-md-4">
-                                <label for="memberPw" style="text-align: center; font-size: 15px;">비밀번호 :</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="memberPw" name="memberPw"
-                                       placeholder="비밀번호를 입력하세요."
-                                       style="text-align: center; display: inline-block;" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div style="clear: both; display: flex; width: 100%;">
-                            <div class="col-md-4">
-                                <label for="memberPwCon" style="text-align: center; font-size: 15px;">비밀번호 확인 :</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="memberPwCon" name="memberPwCon"
-                                       placeholder="(위의 비밀번호와 같아야 합니다.)"
-                                       style="text-align: center; display: inline-block;" required>
-                            </div>
+                        <div class="col-md-8">
+                            <input type="number" class="form-control" id="memberId" name="memberId"
+                                   placeholder="( 숫자만 입력 가능합니다. )"
+                                   style="text-align: center; display: inline-block;" required>
                         </div>
                     </div>
-                    <div style="clear: both;">
-                        <div style="height:230px; float:left; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
-                            <div style="clear: both; display: flex; width: 100%;">
-                                <div class="col-md-4">
-                                    <label for="memberName" style="text-align: center; font-size: 15px;">이름 :</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="memberName" name="memberName"
-                                           placeholder="이름을 입력하세요."
-                                           style="text-align: center; display: inline-block;" required>
-                                </div>
-                            </div>
-                            <br>
-                            <div style="clear:both; display: flex; width: 100%;">
-                                <div class="col-md-4">
-                                    <label for="memberRegNo" style="text-align: center; font-size: 15px;">주민등록번호
-                                        :</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="number" class="form-control" id="memberRegNo"
-                                           name="memberRegNo"
-                                           placeholder="( - 제외, 숫자만 입력 하세요. )"
-                                           style="text-align: center; display: inline-block;" required>
-                                </div>
-                            </div>
-                            <br>
-                            <div style="clear: both; display: flex; width: 100%;">
-                                <div class="col-md-4">
-                                    <label for="memberGenderSB" style="text-align: center; font-size: 15px;">성별
-                                        :</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <select class="form-select" name="memberGenderSB" id="memberGenderSB"
-                                            style="text-align: center; height: 30px; width:100%;" required>
-                                        <option value="">선택하세요.</option>
-                                        <option value="F">여성</option>
-                                        <option value="M">남성</option>
-                                    </select>
-                                    <input type="text" name="memberGender" id="memberGender" style="visibility: hidden">
-                                </div>
-                            </div>
+                    <br>
+                    <div style="clear: both; display: flex; width: 100%;">
+                        <div class="col-md-4">
+                            <label for="memberPw" style="text-align: center; font-size: 15px;">비밀번호 :</label>
                         </div>
-                        <div style="height: 230px; float: right; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
-                            <div style="clear: both; display: flex; width: 100%;">
-                                <div class="col-md-4">
-                                    <label for="memberAuthoritySB" style="text-align: center; font-size: 15px;">권한 설정
-                                        :</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <select class="form-select" id="memberAuthoritySB" name="memberAuthoritySB"
-                                            style="text-align: center; height: 30px; width:100%;" required>
-                                        <option value="">선택하세요.</option>
-                                        <option value="EMPLOYEE">일반 사원</option>
-                                        <option value="DOCU">문서 담당자</option>
-                                        <option value="INSA">인사 담당자</option>
-                                        <option value="ADMIN">프로그램 관리자</option>
-                                    </select>
-                                    <input type="text" id="memberAuthority" name="memberAuthority"
-                                           style="visibility: hidden">
-                                </div>
-                            </div>
-                            <br>
-                            <div style="clear: both; display: flex; width: 100%;">
-                                <div class="col-md-4">
-                                    <label for="memberStatusSB" style="text-align: center; font-size: 15px;">상태 설정
-                                        :</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <select class="form-select" id="memberStatusSB" name="memberStatusSB"
-                                            style="text-align: center; height: 30px; width:100%;" required>
-                                        <option value="">선택하세요.</option>
-                                        <option value="1">신규 사원</option>
-                                        <option value="2">복직 사원</option>
-                                        <option value="3">휴직(유급) 사원</option>
-                                        <option value="4">휴직(무급) 사원</option>
-                                        <option value="5">정직 사원</option>
-                                    </select>
-                                    <input type="number" id="memberStatus" name="memberStatus"
-                                           style="visibility: hidden"></input>
-                                </div>
-                            </div>
-                            <br>
-                            <div style="clear: both; display: flex; width: 100%;">
-                                <div class="col-md-4">
-                                    <label for="memberJoinDate" style="text-align: center; font-size: 15px;">입사일
-                                        :</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="memberJoinDate" name="memberJoinDate"
-                                           placeholder="일자를 선택하세요.">
-                                </div>
-                            </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="memberPw" name="memberPw"
+                                   placeholder="비밀번호를 입력하세요."
+                                   style="text-align: center; display: inline-block;" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="clear: both; display: flex; width: 100%;">
+                        <div class="col-md-4">
+                            <label for="memberPwCon" style="text-align: center; font-size: 15px;">비밀번호 확인 :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="memberPwCon" name="memberPwCon"
+                                   placeholder="(위의 비밀번호와 같아야 합니다.)"
+                                   style="text-align: center; display: inline-block;" required>
                         </div>
                     </div>
                 </div>
-            </fieldset>
-            <fieldset id="additional" action="manage/register-member/add" mothod="post">
-                <!--                <legend>Additional Information</legend>-->
-                <div style="height: 430px; clear:both; border:1px solid lightgray; margin:10px; padding:50px; width:100%;">
-                    <h2>선택 입력 사항</h2>
-                    <div style="clear: both;">
-                        <div style="float:left; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
-                            <div style="clear: both; display: flex; width: 100%;">
-                                <div class="col-md-4">
-                                    <label for="memberEmail" style="text-align: center; font-size: 15px;">이메일 :</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" id="memberEmail"
-                                           name="memberEmail" placeholder="이메일을 입력하세요."
-                                           style="text-align: center; display: inline-block;">
-                                </div>
-                            </div>
-                            <br>
-                            <div style="clear: both; display: flex; width: 100%;">
-                                <div class="col-md-4">
-                                    <label for="memberAddress" style="text-align: center; font-size: 15px;">주소 :</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <textarea class="form-control" id="memberAddressTA" name="memberAddressTA" rows="2"
-                                      placeholder="거주지 주소를 입력하세요." style="width: 100%"></textarea>
-                                    <input type="text" id="memberAddress" name="memberAddress" style="visibility: hidden">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="float: right; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
+                <div style="clear: both;">
+                    <div style="height:230px; float:left; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
                         <div style="clear: both; display: flex; width: 100%;">
                             <div class="col-md-4">
-                                <label for="memberIntroduction" style="text-align: center; font-size: 15px;">자기 소개
+                                <label for="memberName" style="text-align: center; font-size: 15px;">이름 :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="memberName" name="memberName"
+                                       placeholder="이름을 입력하세요."
+                                       style="text-align: center; display: inline-block;" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="clear:both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberRegNo" style="text-align: center; font-size: 15px;">주민등록번호
                                     :</label>
                             </div>
                             <div class="col-md-8">
-                                <textarea class="form-control" id="memberIntroductionTA"
-                                          name="memberIntroductionTA" rows="5"
-                                          placeholder="자기소개를 입력하세요." style="width: 100%"></textarea>
-                                <input type="text" id="memberIntroduction" name="memberIntroduction" style="visibility: hidden">
+                                <input type="number" class="form-control" id="memberRegNo"
+                                       name="memberRegNo"
+                                       placeholder="( - 제외, 숫자만 입력 하세요. )"
+                                       style="text-align: center; display: inline-block;" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberGender" style="text-align: center; font-size: 15px;">성별
+                                    :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-select" name="memberGender" id="memberGender"
+                                        style="text-align: center; height: 30px; width:100%;" required>
+                                    <option value="">선택하세요.</option>
+                                    <option value="F">여성</option>
+                                    <option value="M">남성</option>
+                                </select>
+                                <!--                                <input type="text" name="memberGender" id="memberGender" style="visibility: hidden">-->
                             </div>
                         </div>
                     </div>
-                    <!-- 기본 폼 : 붙임문서(첨부파일) 추가 -->
-                    <div style="float:left; margin:10px; width: 100%;">
-                        <label for="file" style="font-size: 23px;">회원 사진 :</label>
+                    <div style="height: 230px; float: right; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberAuthority" style="text-align: center; font-size: 15px;">권한 설정
+                                    :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-select" id="memberAuthority" name="memberAuthority"
+                                        style="text-align: center; height: 30px; width:100%;" required>
+                                    <option value="">선택하세요.</option>
+                                    <option value="EMPLOYEE">일반 사원</option>
+                                    <option value="DOCU">문서 담당자</option>
+                                    <option value="INSA">인사 담당자</option>
+                                    <option value="ADMIN">프로그램 관리자</option>
+                                </select>
+                                <!--                                <input type="text" id="memberAuthority" name="memberAuthority"-->
+                                <!--                                       style="visibility: hidden">-->
+                            </div>
+                        </div>
                         <br>
-                        <input type="file" style="border:none" id="file" class="img-thumbnail" accept="pictures/*">
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberStatus" style="text-align: center; font-size: 15px;">상태 설정
+                                    :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-select" id="memberStatus" name="memberStatus"
+                                        style="text-align: center; height: 30px; width:100%;" required>
+                                    <option value="">선택하세요.</option>
+                                    <option value="1">신규 사원</option>
+                                    <option value="2">복직 사원</option>
+                                    <option value="3">휴직(유급) 사원</option>
+                                    <option value="4">휴직(무급) 사원</option>
+                                    <option value="5">정직 사원</option>
+                                </select>
+                                <!--                                <input type="number" id="memberStatus" name="memberStatus"-->
+                                <!--                                       style="visibility: hidden"></input>-->
+                            </div>
+                        </div>
+                        <br>
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberJoinDate" style="text-align: center; font-size: 15px;">입사일
+                                    :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="memberJoinDate" name="memberJoinDate"
+                                       placeholder="일자를 선택하세요.">
+                            </div>
+                        </div>
                     </div>
-                    <!--        &lt;!&ndash; 미리보기 &ndash;&gt; -->
-                    <!--        <div id="showImg2">-->
-                    <!--            <img id="showImg" style="width: 250px; height: 150px;">-->
-                    <!--            <br><br>-->
-                    <!--        </div>-->
-
                 </div>
-            </fieldset>
+            </div>
         </form>
+        <form id="additional">
+            <!--                <legend>Additional Information</legend>-->
+            <div style="height: 430px; clear:both; border:1px solid lightgray; margin:10px; padding:50px; width:100%;">
+                <h2>선택 입력 사항</h2>
+                <div style="clear: both;">
+                    <div style="float:left; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberEmail" style="text-align: center; font-size: 15px;">이메일 :</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="memberEmail"
+                                       name="memberEmail" placeholder="이메일을 입력하세요."
+                                       style="text-align: center; display: inline-block;">
+                            </div>
+                        </div>
+                        <br>
+                        <div style="clear: both; display: flex; width: 100%;">
+                            <div class="col-md-4">
+                                <label for="memberAddress" style="text-align: center; font-size: 15px;">주소 :</label>
+                            </div>
+                            <div class="col-md-8">
+                                    <textarea class="form-control" id="memberAddress" name="memberAddress" rows="2"
+                                              placeholder="거주지 주소를 입력하세요." style="width: 100%"></textarea>
+                                <!--                                <input type="text" id="memberAddress" name="memberAddress" style="visibility: hidden">-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="float: right; border:1px solid lightgray; margin:10px; padding:30px; width:47%;">
+                    <div style="clear: both; display: flex; width: 100%;">
+                        <div class="col-md-4">
+                            <label for="memberIntroduction" style="text-align: center; font-size: 15px;">자기 소개
+                                :</label>
+                        </div>
+                        <div class="col-md-8">
+                                <textarea class="form-control" id="memberIntroduction"
+                                          name="memberIntroduction" rows="5"
+                                          placeholder="자기소개를 입력하세요." style="width: 100%"></textarea>
+                            <!--                            <input type="text" id="memberIntroduction" name="memberIntroduction"-->
+                            <!--                                   style="visibility: hidden">-->
+                        </div>
+                    </div>
+                </div>
+                <!-- 기본 폼 : 붙임문서(첨부파일) 추가 -->
+                <div style="float:left; margin:10px; width: 100%;">
+                    <label for="file" style="font-size: 23px;">회원 사진 :</label>
+                    <br>
+                    <input type="file" style="border:none" id="file" class="img-thumbnail" accept="pictures/*">
+                </div>
+                <!--        &lt;!&ndash; 미리보기 &ndash;&gt; -->
+                <!--        <div id="showImg2">-->
+                <!--            <img id="showImg" style="width: 250px; height: 150px;">-->
+                <!--            <br><br>-->
+                <!--        </div>-->
 
+            </div>
+        </form>
 
         <script>
             $('input[type=file]').on("change", (function () {
@@ -314,52 +311,52 @@
 
         });
 
-        // 셀렉트박스 입력값 처리
-
-        // 1. 성별
-        let memberGenderSB = document.getElementById("memberGenderSB");
-        let memberGender = document.getElementById("memberGender");
-
-        memberGenderSB.addEventListener("change", function () {
-            let selectedOption = memberGenderSB.options[memberGenderSB.selectedIndex];
-            memberGender.value = selectedOption.value;
-        });
-
-        // 2. 권한
-        let memberAuthoritySB = document.getElementById("memberAuthoritySB");
-        let memberAuthority = document.getElementById("memberAuthority");
-
-        memberAuthoritySB.addEventListener("change", function () {
-            let selectedOption = memberAuthoritySB.options[memberAuthoritySB.selectedIndex];
-            memberAuthority.value = selectedOption.value;
-        });
-
-        // 3. 상태
-        let memberStatusSB = document.getElementById("memberStatusSB");
-        let memberStatus = document.getElementById("memberStatus");
-
-        memberStatusSB.addEventListener("change", function () {
-            let selectedOption = memberStatusSB.options[memberStatusSB.selectedIndex];
-            memberStatus.value = selectedOption.value;
-        });
-
-
-        // 4. 주소
-        let memberAddressTA = document.getElementById("memberAddressTA");
-        let memberAddress = document.getElementById("memberAddress");
-
-        memberAddressTA.addEventListener("input", function () {
-            memberAddress.value = memberAddressTA.value;
-        });
-
-
-        // 5. 자기소개
-        let memberIntroductionTA = document.getElementById("memberIntroductionTA");
-        let memberIntroduction = document.getElementById("memberIntroduction");
-
-        memberIntroductionTA.addEventListener("input", function () {
-            memberIntroduction.value = memberIntroductionTA.value;
-        });
+        // // 셀렉트박스 입력값 처리
+        //
+        // // 1. 성별
+        // let memberGenderSB = document.getElementById("memberGenderSB");
+        // let memberGender = document.getElementById("memberGender");
+        //
+        // memberGenderSB.addEventListener("change", function () {
+        //     let selectedOption = memberGenderSB.options[memberGenderSB.selectedIndex];
+        //     memberGender.value = selectedOption.value;
+        // });
+        //
+        // // 2. 권한
+        // let memberAuthoritySB = document.getElementById("memberAuthoritySB");
+        // let memberAuthority = document.getElementById("memberAuthority");
+        //
+        // memberAuthoritySB.addEventListener("change", function () {
+        //     let selectedOption = memberAuthoritySB.options[memberAuthoritySB.selectedIndex];
+        //     memberAuthority.value = selectedOption.value;
+        // });
+        //
+        // // 3. 상태
+        // let memberStatusSB = document.getElementById("memberStatusSB");
+        // let memberStatus = document.getElementById("memberStatus");
+        //
+        // memberStatusSB.addEventListener("change", function () {
+        //     let selectedOption = memberStatusSB.options[memberStatusSB.selectedIndex];
+        //     memberStatus.value = selectedOption.value;
+        // });
+        //
+        //
+        // // 4. 주소
+        // let memberAddressTA = document.getElementById("memberAddressTA");
+        // let memberAddress = document.getElementById("memberAddress");
+        //
+        // memberAddressTA.addEventListener("input", function () {
+        //     memberAddress.value = memberAddressTA.value;
+        // });
+        //
+        //
+        // // 5. 자기소개
+        // let memberIntroductionTA = document.getElementById("memberIntroductionTA");
+        // let memberIntroduction = document.getElementById("memberIntroduction");
+        //
+        // memberIntroductionTA.addEventListener("input", function () {
+        //     memberIntroduction.value = memberIntroductionTA.value;
+        // });
 
 
         // 등록 버튼 눌렀을 시 처리
@@ -548,37 +545,50 @@
             if (check == "allTrue") {
                 console.log("check='allTrue' 확인, controller로 값 넘겨주는 함수 실행");
 
-                // 부모 form
-                let newMember = document.getElementById('newMember');
+                // 1. formData 처리
 
-                // formData 잡기
-                // 1-1. essential 필드셋 -> formData 처리
-                let essentialFieldset = newMember.querySelector('#essential');
+                // 1-1. 필수값
                 let essential = new FormData();
+                let essentialElements = document.querySelector("#essential");
+                if (essentialElements) {
+                    essentialElements.querySelectorAll("input, textarea, select").forEach(function (element) {
+                        essential.append(element.id, element.value);
+                    });
+                }
 
-                // 1-2. essential 필드셋의 데이터 append
-                let essentialInputs = essentialFieldset.querySelectorAll('input');
-                essentialInputs.forEach(input => {
-                    const name = input.getAttribute('name');
-                    const value = input.value;
-                    essential.append(name, value);
-                });
-
-                // 2-1. additional 필드셋 -> formData 처리
-                let additionalFieldset = newMember.querySelector('#additional');
+                // 2-1. 추가값
                 let additional = new FormData();
+                let additionalElements = document.querySelector("#additional");
+                if (additionalElements) {
+                    additionalElements.querySelectorAll("input, textarea, select").forEach(function (element) {
+                        additional.append(element.id, element.value);
+                    });
+                }
 
-                // 2-2. additional 필드셋의 데이터 append
-                let additionalInputs = additionalFieldset.querySelectorAll('input');
-                additional.append('memberId', essential.get("memberId"));
-                additionalInputs.forEach(input => {
-                    const name = input.getAttribute('name');
-                    const value = input.value;
-                    additional.append(name, value);
-                });
+                // // formData 잡기
+                // // 1-2. essential 필드셋의 데이터 append
+                // let essentialInputs = essentialFieldset.querySelectorAll('input');
+                // essentialInputs.forEach(input => {
+                //     const name = input.getAttribute('name');
+                //     const value = input.value;
+                //     essential.append(name, value);
+                // });
+                //
+                // // 2-1. additional 필드셋 -> formData 처리
+                // let additionalFieldset = newMember.querySelector('#additional');
+                // let additional = new FormData();
+                //
+                // // 2-2. additional 필드셋의 데이터 append
+                // let additionalInputs = additionalFieldset.querySelectorAll('input');
+                // additional.append('memberId', essential.get("memberId"));
+                // additionalInputs.forEach(input => {
+                //     const name = input.getAttribute('name');
+                //     const value = input.value;
+                //     additional.append(name, value);
+                // });
 
 
-                // 3. console로 확인
+                // 2. console로 확인
                 console.log("java로 넘겨줄 폼데이터 essential : ");
                 for (const [key, value] of essential.entries()) {
                     console.log(`${key}: ${value}`);
@@ -589,27 +599,29 @@
                 }
 
 
-                // 4. Back으로 넘겨 처리
+                // 3. Back으로 넘겨 처리
+                console.log("필수정보 넘길 곳 : " + "manage/register-member/ess");
+                console.log("추가정보 넘길 곳 : " + "manage/register-member/add");
 
                 // 4-1. .필수 사원 정보 입력
-                fetch(essential.action, {
+                fetch("/manage/register-member/ess", {
                     method: 'POST',
                     body: essential
                 })
                     .then(response => {
                         if (response.ok) {
-                            console.log('필수 사원정보 등록 성공!');
+                            alert('"필수" 사원정보 등록 성공!');
 
                             // 4-2.부가 사원 정보 입력
-                            fetch(additional.action, {
+                            fetch("/manage/register-member/add", {
                                 method: 'POST',
                                 body: additional
                             })
                                 .then(response => {
                                     if (response.ok) {
-                                        console.log('선택 사원정보 등록 성공!');
+                                        alert('"선택" 사원정보 등록 성공!');
                                     } else {
-                                        console.error('선택 사원정보 등록 실패!');
+                                        alert('"선택" 사원정보 등록 실패!');
                                     }
                                 })
                                 .catch(error => {
@@ -617,7 +629,7 @@
                                 });
 
                         } else {
-                            console.error('필수 사원정보 등록 실패!');
+                            alert('"필수"z5 사원정보 등록 실패!');
                         }
                     })
                     .catch(error => {

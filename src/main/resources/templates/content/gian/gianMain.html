@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="../css/Manage.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    </script>
+
+
+    <title>기안 메인 페이지</title>
+</head>
+
+<body>
+<header>
+    <div style="width:100%; float:right;">
+        <div style="float: right; margin-right: 20px">
+            <div style="float: left; margin-right: 30px">
+                <h4 th:text="${userName} +' 로그인 중...'"></h4>
+            </div>
+            <div style="float: right;">
+                <a href="/logout"><h4 style="font-weight: bold;">로그아웃</h4></a>
+            </div>
+
+        </div>
+    </div>
+</header>
+<aside>
+    <a href="/"><img class="logo" src="/image/THUMBS.png" alt="THUMBS.png"></a>
+</aside>
+<main>
+    <div style="height: 150px; margin:30px; padding:10px"> <!-- 기본 폼 : 선택한 서식 및 현재 작업을 알려주는 헤드라인 -->
+        <h1>문서 기안 양식 선택</h1>
+        <br>
+        <h4>아래 문서 양식 중 하나를 선택하세요.</h4>
+        <br><br><br>
+        <span><a href="/gian/position-gian">배정 문서 기안</a></span><br><br>
+        <br>
+        <span><a href="/gian/promotion-gian">진급 문서 기안</a></span><br><br>
+        <br>
+        <span><a href="/gian/punishment-gian">징계 문서 기안</a></span><br><br>
+        <br>
+        <span><a href="/gian/common-gian">일반 문서 기안 (DB 비연동)</a></span><br><br>
+        <br>
+    </div>
+
+</main>
+</body>
+
+</html>

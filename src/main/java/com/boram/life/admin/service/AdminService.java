@@ -4,16 +4,19 @@ import com.boram.life.admin.dto.AdditionalMemberInfoDTO;
 import com.boram.life.admin.dto.EssentialMemberInfoDTO;
 import com.boram.life.admin.repository.ManageMemberRepository;
 import com.boram.life.domain.Member;
+import com.boram.life.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,8 +29,19 @@ public class AdminService {
 
     private final ModelMapper modelMapper;
 
+    private final MemberRepository memberRepository;
+
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    EntityManager em;
+
+    // 멤버의 '이름'을 가져오는 메소드
+    public String selectUserName(long userId) {
+        String name = memberRepository.findByMemberId(String.valueOf(userId)).get().getMemberName();
+        return name;
+    }
 
     // 필수 정보로 회원가입
     @Transactional
@@ -95,6 +109,8 @@ public class AdminService {
                     if (aMemberInfo.getMemberIntroduction() != null) {
                         updateMember.setMemberIntroduction(aMemberInfo.getMemberIntroduction());
                     }
+
+                    em.persist(updateMember);
 
                     result = 2;
 

@@ -38,8 +38,9 @@ public class AdminController {
 
         // 유저 아이디 가져오기
         String userId = authentication.getName();
+        adminService.selectUserName(Long.parseLong(userId));
 
-        model.addAttribute("userId", userId);
+        model.addAttribute("userName", userId);
 
         return "content/admin/AdminMain";
     }
@@ -52,7 +53,7 @@ public class AdminController {
 //        String userId = authentication.getName();
 
 //        model.addAttribute("userId", userId);
-
+        log.info("[AdminController] HTML 폼에서 넘어온 값 확인1111111111111111111111111 ");
         return "content/admin/RegisterMember";
 
     }
@@ -78,15 +79,12 @@ public class AdminController {
 
         if (result == 1) {
 
-            rttr.addFlashAttribute("message", "회원 등록에 성공하였습니다! (추가 정보 제외)");
+            rttr.addFlashAttribute("message", "회원 등록(가입)에 성공하였습니다! (추가 정보 제외)");
 
-        } else if (result == 2) {
-
-            rttr.addFlashAttribute("message", "회원 등록 및 추가 정보 입력 에 성공하였습니다!");
 
         } else {
 
-            rttr.addFlashAttribute("message", "회원 등록에 실패하였습니다.");
+            rttr.addFlashAttribute("message", "회원 등록(가입)에 실패하였습니다.");
 
         }
 
